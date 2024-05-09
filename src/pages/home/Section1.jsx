@@ -1,0 +1,98 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Section1.css";
+import locationsData from "./location.json";
+
+const Section1 = () => {
+  const navigate = useNavigate();
+  const [locations, setLocations] = useState([]);
+  const [showSearch, setShowSearch] = useState(false);
+
+  useEffect(() => {
+    setLocations(locationsData);
+
+    const handlePageClick = (event) => {
+      if (
+        showSearch &&
+        !event.target.closest(".search-input, .search-button")
+      ) {
+        setShowSearch(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePageClick);
+    document.removeEventListener("mousedown", handlePageClick);
+    document.addEventListener("click", handlePageClick);
+    
+    return () => {
+      document.removeEventListener("mousedown", handlePageClick);
+    };
+  }, [showSearch]);
+
+  const handleResultClick = (location, event) => {
+    event.stopPropagation();
+    // 여기에 console.log를 추가해 함수가 호출되는지 확인합니다.
+    console.log(`Navigating to /plan with location: ${location}`);
+    // navigate 함수 호출
+    navigate("/plan", { state: { location } });
+  };
+
+  return (
+    <section className="h-screen flex bg-gray-50 justify-center items-center">
+      <div className="container">
+        <div className="flex -mt-10">
+          <div className="flex-1 flex flex-col justify-center items-start pl-5">
+            <h2 className="text-6xl mb-10 font-bold">함께 만들어가는</h2>
+            <h2 className="text-6xl mb-10 font-bold">여행 플랜 플랫폼</h2>
+            <p className="text-2lg mb-10 text-gray-500 pl-2">
+              온라인에서 함께 손쉽게 스케줄을 만들어보세요.
+            </p>
+            {!showSearch && (
+              <div className="search-container">
+                <button
+                  className="px-10 text-2xl py-6 ml-2 bg-black text-white rounded hover:bg-blue-900 transition-colors duration-300 search-button"
+                  onClick={() => setShowSearch(true)}
+                >
+                  여행 계획 짜러가기
+                </button>
+              </div>
+            )}
+            {showSearch && (
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="search-input search-input-active"
+                  autoFocus
+                />
+                <div className="search-results">
+                  {locations.map((location) => (
+                    <div
+                      key={location.id}
+                      className="result-item hover:bg-gray-200 cursor-pointer"
+                      onClick={(event) =>
+                        handleResultClick(location.location, event)
+                      }
+                    >
+                      <div className="location">{location.location}</div>
+                      <div className="country">{location.country}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="flex-1 flex items-center justify-center">
+            <img
+              src={`${process.env.PUBLIC_URL}/mainPage1.jpg`}
+              alt="여행"
+              className="w-auto h-128 rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Section1;

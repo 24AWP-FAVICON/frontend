@@ -1,0 +1,7 @@
+[
+    { "id": 1, "location": "서울", "country": "대한민국" },
+    { "id": 2, "location": "부산", "country": "대한민국" },
+    { "id": 3, "location": "제주", "country": "대한민국" },
+    { "id": 4, "location": "인천", "country": "대한민국" },
+    { "id": 5, "location": "대전", "country": "대한민국" }
+  ]
