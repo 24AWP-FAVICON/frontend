@@ -5,7 +5,7 @@ import placeData from "./place.json";
 function SelectPlace(){
   useEffect(() => {
     const draggables = document.querySelectorAll('.draggable');
-    const containers = document.querySelectorAll('.container');
+    const containers = document.querySelectorAll('.container_');
 
     draggables.forEach(el => {
       el.addEventListener('dragstart', () => {
@@ -43,7 +43,7 @@ function SelectPlace(){
 
   return(
     <div className="selectPlaceElement">
-      <div className="container list">
+      <div className="container_ list">
         {placeData.map((location) => (
           <div className="draggable" draggable="true">
             <div className="num"></div>

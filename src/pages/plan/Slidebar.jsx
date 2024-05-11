@@ -1,8 +1,7 @@
 import { useState,useEffect } from 'react';
 
 function Slidebar(){
-  const [isClick, setIsClick] = useState(false);
-  let planner = <div className="container"></div>;
+  let planner = <div className="container_"></div>;
   let p = <div></div>;
   
 
@@ -12,7 +11,7 @@ function Slidebar(){
         <p><b>Planner</b></p>
       </div>
       <div>
-        {isClick ? p:planner}
+        {planner}
       </div>
     </div>
   )
