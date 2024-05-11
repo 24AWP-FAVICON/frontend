@@ -1,5 +1,6 @@
 import './SelectPlace.css'
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import placeData from "./place.json";
 
 function SelectPlace(){
   useEffect(() => {
@@ -42,29 +43,19 @@ function SelectPlace(){
 
   return(
     <div className="selectPlaceElement">
-      <div className="draggable" draggable="true">
-        <div className="num"></div>
-        <div className="info">
-          <div>돌하르방</div>
-          <div>제주도 서귀포시 182</div>
-          
-        </div>
-      </div>
-      <div className="draggable" draggable="true">
-        <div className="num"></div>
-        <div className="info">
-          <div>천지연폭포</div>
-          <div>제주도 서귀포시 18-1</div>
-        </div>
-      </div>
-      <div className="draggable" draggable="true">
-        <div className="num"></div>
-        <div className="info">
-          <div>정방폭포</div>
-          <div>제주도 서귀포시 82-1</div>
-        </div>
+      <div className="container list">
+        {placeData.map((location) => (
+          <div className="draggable" draggable="true">
+            <div className="num"></div>
+            <div className="info">
+              <div>{location.location}</div>
+              <div>{location.address}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
+      
   );
 }
 
