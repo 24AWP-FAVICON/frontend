@@ -31,10 +31,8 @@ const Section1 = () => {
 
   const handleResultClick = (location, event) => {
     event.stopPropagation();
-    // 여기에 console.log를 추가해 함수가 호출되는지 확인합니다.
-    console.log(`Navigating to /plan with location: ${location}`);
     // navigate 함수 호출
-    navigate("/plan", { state: { location } });
+    navigate("/plan", { state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
   };
 
   return (
@@ -70,9 +68,7 @@ const Section1 = () => {
                     <div
                       key={location.id}
                       className="result-item hover:bg-gray-200 cursor-pointer"
-                      onClick={(event) =>
-                        handleResultClick(location.location, event)
-                      }
+                      onClick={(event) => handleResultClick(location, event)}
                     >
                       <div className="location">{location.location}</div>
                       <div className="country">{location.country}</div>
