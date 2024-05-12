@@ -8,6 +8,7 @@
   border-right: 2px solid #dedede;
   position: absolute;
   height:83.1%;
+  flex: 1; /*맵보다 우선순위 높게*/
 }
 
 .sidebar > .loc{
@@ -173,4 +174,14 @@
   margin-top: 1em;
   padding: 1em;
   width: 80%;
+}
+
+.map{
+  position: absolute;
+  right:0;
+  flex: 3;
+}
+
+.plan-container {
+  display: flex;
 }
