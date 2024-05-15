@@ -92,13 +92,17 @@ function SelectTime(){
             <td>예산</td>
           </tr>
           {resultDates.map((date,index) => (
-            <tr><td>{date.date}</td><td>{date.day}</td><td><input type="number" onChange={(e) => changeBalance(e, index)} /></td></tr>
+            <tr>
+              <td>{date.date}</td>
+              <td>{date.day}</td>
+              <td><input type="number" onChange={(e) => changeBalance(e, index)} /></td>
+            </tr>
           ))}
         </table>
         
       </div>
       <div>
-      <button>기간 설정 완료</button>
+        <button>기간 설정 완료</button>
       </div>
     </div>
   );
