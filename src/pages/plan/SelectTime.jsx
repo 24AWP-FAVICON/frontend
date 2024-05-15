@@ -9,6 +9,9 @@ function SelectTime(){
   const [startDate, setStartDate] = useState(day.toString());
   const [duration, setDuration] = useState('3');
   const [resultDates, setResultDates] = useState([]);
+  const [isBudget, setIsBudget] = useState('0');
+  const [items, setItems] = useState([{ name: '', cost: 0 }]);
+  const [isBalance, setIsBalance] = useState('0');
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -18,22 +21,39 @@ function SelectTime(){
     setDuration(event.target.value);
   };
 
+  const handleBudgetChange = (event) => {
+    setIsBudget(event.target.value);
+    setIsBalance(parseInt(event.target.value ? event.target.value:'0')-0);
+  };
+  
+  const changeBalance = (e, v) => {
+    let minus = 0;
+    for(let i=0; i<items.length;i++){
+      if(i===v && e.target.value){
+        items[i].cost = e.target.value;
+      }
+      minus += parseInt(items[i].cost);
+      console.log(minus);
+    }
+    setIsBalance(isBudget - minus);
+  }
+
+  const dates = [];
   const calculateDates = () => {
     if (startDate && duration) {
       const parsedStartDate = new Date(startDate);
       const parsedDuration = parseInt(duration);
-
-      const dates = [];
+      let li = [];
       for (let i = 0; i < parsedDuration; i++) {
         const resultDate = new Date(parsedStartDate);
         resultDate.setDate(parsedStartDate.getDate() + i);
         const day = getDayOfWeek(resultDate.getDay());
-        dates.push({date: resultDate.toISOString().split('T')[0], day: day});
+        dates.push({index:i, date: resultDate.toISOString().split('T')[0], day: day, cost: 0});
+        li.push({name:{i},cost:0});
       }
-
+      setItems(li);
+      console.log(li);
       setResultDates(dates);
-    } else {
-      setResultDates(['날짜와 기간을 모두 입력해주세요.']);
     }
   };
   const getDayOfWeek = (dayIndex) => {
@@ -54,24 +74,31 @@ function SelectTime(){
           <input type="number" value={duration} onChange={handleDurationChange} />
         </label>
         <p></p>
+        <label>
+          총예산액:&nbsp;
+          <input type="number" value={isBudget} onChange={handleBudgetChange} />
+        </label>
+        <p></p>
         <p></p>
         <button onClick={calculateDates}>확인</button>
       </div>
         
       <div>
+        <h3>잔액 : {isBalance}</h3>
         <table>
           <tr>
             <td>일자</td>
             <td>요일</td>
+            <td>예산</td>
           </tr>
           {resultDates.map((date,index) => (
-            <tr><td>{date.date}</td><td>{date.day}</td></tr>
+            <tr><td>{date.date}</td><td>{date.day}</td><td><input type="number" onChange={(e) => changeBalance(e, index)} /></td></tr>
           ))}
         </table>
+        
       </div>
-      
       <div>
-        <button>기간 설정 완료</button>
+      <button>기간 설정 완료</button>
       </div>
     </div>
   );

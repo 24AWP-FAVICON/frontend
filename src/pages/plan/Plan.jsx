@@ -15,6 +15,7 @@ const containerStyle = {
 function Plan() {
   const [isOpen, setIsOpen] = useState(true); // 사이드바 상태(state) 추가
   const [isTime, isPlace] = useState(false); // 시간선택 or 장소선택
+  const [selectedDates, setSelectedDates] = useState(['2024-04-12', '2024-04-13']);
   const location = useLocation(); // 위치 정보 가져오기
 
   // 사이드바를 열고 닫는 함수
@@ -68,7 +69,7 @@ function Plan() {
         </div>
         <div className="block">{isTime ? <SelectPlace /> : <SelectTime />}</div>
         <div className={`slidebar ${isOpen ? "open" : ""}`}>
-          <Slidebar />
+          <Slidebar selectedDates={selectedDates} />
         </div>
         <div className="toggle-button" onClick={toggleSlidebar}>
           <b>{isOpen ? "<" : ">"}</b>
