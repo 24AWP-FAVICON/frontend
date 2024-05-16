@@ -1,41 +1,62 @@
-import {useState} from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+// Sidebar.js
+import { useState } from 'react';
 import SelectPlace from './SelectPlace';
 import SelectTime from './SelectTime';
-import Slidebar from './Slidebar'
+import Slidebar from './Slidebar';
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(true); // 사이드바 상태(state) 추가
+  const [isTime, setIsTime] = useState(true); // 시간선택 상태
+  const [isPlace, setIsPlace] = useState(false); // 장소선택 상태
+  const [selectedDates, setSelectedDates] = useState([0]);
+
+  const handleDates = (childData) => {
+    setSelectedDates(childData);
+  };
+
   // 사이드바를 열고 닫는 함수
   const toggleSlidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-    <Router>
-      <div className="sidebar">
-        <div className="loc">제주</div>
-        
-        <div className="search">
-          <input id="name" type="text" placeholder="장소나 숙소를 검색하세요." />
-        </div>
+  const selectTime = () => {
+    setIsTime(true);
+    setIsPlace(false);
+  };
 
-        <div className="button">
-          <div><Link to="/time" id="selectTime">시간 선택</Link></div>
-          <div><Link to="/place" id="selectPlace">장소 선택</Link></div>
-        </div>
-        <Routes>
-          <Route path="/time" element={<SelectTime />} />
-          <Route path="/place" element={<SelectPlace />} />
-        </Routes>
-        <div className={`slidebar ${isOpen ? 'open':''}`}>
-          <Slidebar />
-        </div>
-        <div className="toggle-button" onClick={toggleSlidebar}>
-          {isOpen ? '<' : '>'}
-        </div>
+  const selectPlace = () => {
+    setIsTime(false);
+    setIsPlace(true);
+  };
+
+  return (
+    <div className="sidebar">
+      <div className="loc">제주</div>
+      <div className="search">
+        <input
+          id="name"
+          type="text"
+          placeholder="장소나 숙소를 검색하세요."
+        />
       </div>
-    </Router>
+      <div className="button">
+        <button onClick={selectTime} className={`${isTime ? "click" : ""}`}>
+          시간선택
+        </button>
+        <button onClick={selectPlace} className={`${isPlace ? "click" : ""}`}>
+          장소선택
+        </button>
+      </div>
+      <div className="block">
+        {isTime ? <SelectTime onData={handleDates} /> : <SelectPlace />}
+      </div>
+      <div className={`slidebar ${isOpen ? "open" : ""}`}>
+        <Slidebar selectedDates={selectedDates} />
+      </div>
+      <div className="toggle-button" onClick={toggleSlidebar}>
+        <b>{isOpen ? "<" : ">"}</b>
+      </div>
+    </div>
   );
 }
 
