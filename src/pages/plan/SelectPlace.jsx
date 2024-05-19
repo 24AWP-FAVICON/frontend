@@ -1,8 +1,17 @@
 import './SelectPlace.css'
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import placeData from "./place.json";
 
-function SelectPlace(){
+function SelectPlace({pick}){
+  
+  const [filteredData, setFilteredData] = useState(placeData);
+  useEffect(() => {
+    const results = placeData.filter(item =>
+      item.location.toLowerCase().includes(pick.toLowerCase())
+    );
+    setFilteredData(results);
+  }, [pick]);
+  
   useEffect(() => {
     const draggables = document.querySelectorAll('.draggable');
     const containers = document.querySelectorAll('.container_');
@@ -16,6 +25,7 @@ function SelectPlace(){
         el.classList.remove('dragging');
       });
     });
+    
 
     function getDragAfterElement(container, y) {
       const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
@@ -41,19 +51,48 @@ function SelectPlace(){
     });
   }, []);
 
+  /* pick location */
+  let doc = ''
+  if (pick==''){
+    doc = <div className="container_ list">
+    {placeData.map((location) => (
+      <div className="draggable" draggable="true">
+        <div className="num"></div>
+        <div className="info">
+          <div>{location.location}</div>
+          <div>{location.address}</div>
+          <div className='time'>
+            <input className='starttime' type="time" placeholder="00:00" />
+            &nbsp;-&nbsp;
+            <input className='endtime' type="time" placeholder="00:00" />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  }
+  else{
+    doc = <div className="container_ list">
+    {filteredData.map((location) => (
+      <div className="draggable" draggable="true">
+        <div className="num"></div>
+        <div className="info">
+          <div>{location.location}</div>
+          <div>{location.address}</div>
+          <div className='time'>
+            <input className='starttime' type="time" placeholder="00:00" />
+            &nbsp;-&nbsp;
+            <input className='endtime' type="time" placeholder="00:00" />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  }
+
   return(
     <div className="selectPlaceElement">
-      <div className="container_ list">
-        {placeData.map((location) => (
-          <div className="draggable" draggable="true">
-            <div className="num"></div>
-            <div className="info">
-              <div>{location.location}</div>
-              <div>{location.address}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      {doc}
     </div>
       
   );
