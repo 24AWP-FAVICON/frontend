@@ -11,6 +11,9 @@
 .selectPlaceElement > .container_{
   max-height: 100%;
   overflow-y: auto;
+  .info > .time{
+    display:none;
+  }
 }
 
 .selectPlaceElement > .container_ >  .draggable{
