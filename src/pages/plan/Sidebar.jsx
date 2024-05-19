@@ -9,6 +9,7 @@ function Sidebar() {
   const [isTime, setIsTime] = useState(true); // 시간선택 상태
   const [isPlace, setIsPlace] = useState(false); // 장소선택 상태
   const [selectedDates, setSelectedDates] = useState([0]);
+  const [loc, setLoc] = useState('');
 
   const handleDates = (childData) => {
     setSelectedDates(childData);
@@ -29,6 +30,11 @@ function Sidebar() {
     setIsPlace(true);
   };
 
+  const selectLoc = (event) => {
+    setLoc(event.target.value)
+    setIsTime(false);
+    setIsPlace(true);
+  }
   return (
     <div className="sidebar">
       <div className="loc">제주</div>
@@ -37,6 +43,7 @@ function Sidebar() {
           id="name"
           type="text"
           placeholder="장소나 숙소를 검색하세요."
+          onChange={(e) => selectLoc(e)}
         />
       </div>
       <div className="button">
@@ -48,7 +55,7 @@ function Sidebar() {
         </button>
       </div>
       <div className="block">
-        {isTime ? <SelectTime onData={handleDates} /> : <SelectPlace />}
+        {isTime ? <SelectTime onData={handleDates} /> : <SelectPlace pick={loc} />}
       </div>
       <div className={`slidebar ${isOpen ? "open" : ""}`}>
         <Slidebar selectedDates={selectedDates} />
