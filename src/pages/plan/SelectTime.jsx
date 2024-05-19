@@ -8,9 +8,9 @@ function SelectTime({ onData }) {
     (date.getMonth() < 10 ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1)) + "-" +
     (date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate());
   const [startDate, setStartDate] = useState(day.toString());
-  const [duration, setDuration] = useState('3');
+  const [duration, setDuration] = useState('');
   const [resultDates, setResultDates] = useState([]);
-  const [isBudget, setIsBudget] = useState('0');
+  const [isBudget, setIsBudget] = useState('');
   const [items, setItems] = useState([{ name: '', cost: 0 }]);
   const [isBalance, setIsBalance] = useState('0');
 
@@ -50,7 +50,7 @@ function SelectTime({ onData }) {
         const resultDate = new Date(parsedStartDate);
         resultDate.setDate(parsedStartDate.getDate() + i);
         const day = getDayOfWeek(resultDate.getDay());
-        dates.push({ index: i, date: resultDate.toISOString().split('T')[0], day: day, cost: 0 });
+        dates.push({ index: i, date: resultDate.toISOString().split('T')[0], day: day, cost: items.cost });
         items.push({ name: `Day ${i + 1}`, cost: 0 });
       }
       setItems(items);
@@ -73,12 +73,12 @@ function SelectTime({ onData }) {
         <p></p>
         <label>
           기간 (일):&nbsp;
-          <input type="number" value={duration} onChange={handleDurationChange} />
+          <input type="number" value={duration} onChange={handleDurationChange} placeholder='0'/>
         </label>
         <p></p>
         <label>
           총예산액:&nbsp;
-          <input type="number" value={isBudget} onChange={handleBudgetChange} />
+          <input type="number" value={isBudget} onChange={handleBudgetChange} placeholder='0'/>
         </label>
         <p></p>
         <p></p>
@@ -100,7 +100,7 @@ function SelectTime({ onData }) {
               <tr key={index}>
                 <td>{date.date}</td>
                 <td>{date.day}</td>
-                <td><input type="number" onChange={(e) => changeBalance(e, index)} /></td>
+                <td><input type="number" placeholder='0' onChange={(e) => changeBalance(e, index)} /></td>
               </tr>
             ))}
           </tbody>

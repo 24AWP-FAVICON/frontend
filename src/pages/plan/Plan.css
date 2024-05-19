@@ -1,3 +1,11 @@
+/* Plan.jsx */
+body{
+  -webkit-user-select: none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
 /* Map.jsx */
 .sidebar{
   position:relative;
@@ -105,6 +113,25 @@
   font-size: 24px;
 }
 
+.slidebar_ > div:nth-child(3){
+  height: 40px;
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+
+  button{
+    display:flex;
+    width: 50%;
+    height: 40px;
+    background: #00C0FF;
+    color: #fff;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    left:25%;
+  }
+}
+
 .draggable{
   display: flex;
   justify-content: space-around;
@@ -124,6 +151,7 @@
 }
 
 .draggable > .info{
+  position: relative;
   border:2px solid #dedede;
   border-radius: 10px;
   font-weight: 700;
@@ -135,9 +163,9 @@
 .draggable > .num::before{
   content: '';
   position: absolute;
-  top:20px;
+  top:51px;
   border-right: 3px dotted #000;
-  height:60px;
+  height:80px;
   width:0;
 }
 
@@ -148,7 +176,7 @@
 .num::after{
   content: '';
   position: absolute;
-  top: -2px;
+  top: 30px;
   border: 2px solid #00C0FF;
   border-radius: 100%;
   height: 20px;
@@ -176,6 +204,29 @@
   margin-left: 10%;
   padding: 1em;
   width: 80%;
+}
+
+.draggable > .info > .time{
+  font-size: 18px;
+  display: flex;
+  position: absolute;
+  left:0;
+  bottom:0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  input{
+    border: 2px solid #000;
+    border-radius: 5px;
+    width: 70px;
+    height: 20px;
+    font-size: 8.2px;
+  }
+}
+
+.slidebar_ > div:nth-child(2) > .container_ > .draggable > div{
+  height: 82px;
 }
 
 .map{
