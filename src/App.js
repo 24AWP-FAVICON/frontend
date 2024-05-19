@@ -10,7 +10,7 @@ import Login from "./pages/login/Login";
 function App() {
   return (
     <Router>
-      <div className="App flex flex-col min-h-screen">
+      <div className="App flex flex-col min-h-screen w-full">
         <Header />
         <main className="flex-grow">
           <Routes>

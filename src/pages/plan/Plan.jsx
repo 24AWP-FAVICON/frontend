@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 import "./Plan.css";
 
 const containerStyle = {
-  width: "1230px",
+  width: "100%",
   height: "813px",
 };
 

@@ -65,13 +65,12 @@ function Section2() {
         <Card {...cards[currentIndex]} />
       </div>
       <div className="navigation">
-      <button className="nav-btn prev" onClick={handlePrev}>
-  <span className="icon-wrapper"><FiChevronLeft style={{fontSize: "4em"}}/></span>
-</button>
-<button className="nav-btn next" onClick={handleNext}>
-  <span className="icon-wrapper"><FiChevronRight style={{fontSize: "4em"}} /></span>
-</button>
-
+        <button className="nav-btn prev" onClick={handlePrev}>
+          <span className="icon-wrapper"><FiChevronLeft /></span>
+        </button>
+        <button className="nav-btn next" onClick={handleNext}>
+          <span className="icon-wrapper"><FiChevronRight /></span>
+        </button>
       </div>
     </section>
   );

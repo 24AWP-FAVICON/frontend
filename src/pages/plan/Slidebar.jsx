@@ -1,4 +1,3 @@
-// Slidebar.js
 import React from 'react';
 
 function Slidebar({ selectedDates }) {
