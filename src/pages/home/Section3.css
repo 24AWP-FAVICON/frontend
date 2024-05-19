@@ -1,0 +1,44 @@
+.section3 {
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .cards-container-section3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .card-section3 {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 30%;
+    margin: 10px;
+  }
+  
+  .card-section3:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-section3 .country-section3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-section3 .location-section3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-section3 .image-section3 {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
