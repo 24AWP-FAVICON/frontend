@@ -11,9 +11,9 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <div className="App flex flex-col min-h-screen">
+      <div className="App">
         <Header />
-        <main className="flex-grow">
+        <main className="main-content">
           <Routes>
             <Route path="/" element={<Section />} />
             <Route path="/sns" element={<SNS />} />
