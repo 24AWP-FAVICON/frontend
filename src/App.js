@@ -6,11 +6,12 @@ import Section from "./pages/home/Sections";
 import SNS from "./pages/sns/Sns";
 import Plan from "./pages/plan/Plan";
 import Login from "./pages/login/Login";
+import "./App.css";
 
 function App() {
   return (
     <Router>
-      <div className="App flex flex-col min-h-screen w-full">
+      <div className="App flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
           <Routes>
