@@ -18,8 +18,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s;
-  width: 30%;
   margin: 10px;
+  flex: 1 1 calc(33.333% - 20px); /* 기본적으로 한 줄에 3개의 카드 */
 }
 
 .card-section3:hover {
@@ -38,7 +38,20 @@
 
 .card-section3 .image-section3 {
   width: 100%;
-  height: 200px; /* 원하는 고정된 높이 설정 */
+  height: 300px; /* 높이 설정 */
   object-fit: cover; /* 이미지가 카드를 채우도록 설정 */
   border-radius: 8px;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 1200px) {
+  .card-section3 {
+    flex: 1 1 calc(50% - 20px); /* 한 줄에 2개의 카드 */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-section3 {
+    flex: 1 1 calc(100% - 20px); /* 한 줄에 1개의 카드 */
+  }
 }
