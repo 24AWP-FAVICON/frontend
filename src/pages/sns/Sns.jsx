@@ -1,11 +1,9 @@
 import React from "react";
 
 function Sns(){
-    
-    return(
-
-        <div>Sns</div>
-    );
+  return(
+    <div className="sns-content">Sns</div>
+  );
 }
 
 export default Sns;
