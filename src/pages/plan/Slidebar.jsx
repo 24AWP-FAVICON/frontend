@@ -20,7 +20,7 @@ function Slidebar({ selectedDates, onDrop }) {
           >
             <div className="flex flex-col mb-4">
               <h3 className="text-lg font-semibold text-gray-700">{date.date}</h3>
-              <h3 className="text-lg font-semibold text-gray-700">{date.cost}</h3>
+              <h3 className="text-lg font-semibold text-gray-700">{date.cost}원</h3>
             </div>
             {date.items && date.items.map((item, itemIndex) => (
               <div className="flex justify-between items-center mt-4 cursor-pointer" key={itemIndex}>

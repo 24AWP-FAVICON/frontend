@@ -5,7 +5,7 @@ function SelectPlace({ pick, onDragStart }) {
   const [filteredData, setFilteredData] = useState(placeData['파리']);
 
   useEffect(() => {
-    const results = placeData["파리"].filter(item =>
+    const results = placeData["제주도"].filter(item =>
       item.name.toLowerCase().includes(pick.toLowerCase())
     );
     setFilteredData(results);
@@ -29,7 +29,7 @@ function SelectPlace({ pick, onDragStart }) {
               <input 
                 className="w-20 p-2 border border-gray-300 rounded" 
                 type="time" 
-                placeholder="00:00" 
+                placeholder="00:00"
               />
               <span>-</span>
               <input 

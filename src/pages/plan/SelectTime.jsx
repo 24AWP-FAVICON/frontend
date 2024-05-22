@@ -71,7 +71,7 @@ function SelectTime({
   };
 
   return (
-    <div className="p-5 font-sans bg-white h-full">
+    <div className="w-full p-5 font-sans bg-white h-full">
       <div>
         <label className="block mb-2 font-semibold w-full">
           시작 날짜:
@@ -122,15 +122,15 @@ function SelectTime({
             <table className="w-full mt-3 border-collapse">
               <thead>
                 <tr>
-                  <th className="p-2 border">일자</th>
-                  <th className="p-2 border">요일</th>
-                  <th className="p-2 border">예산</th>
+                  <th className="p-2 border text-nowrap">일자</th>
+                  <th className="p-2 border text-nowrap">요일</th>
+                  <th className="p-2 border text-nowrap">예산</th>
                 </tr>
               </thead>
               <tbody>
                 {resultDates.map((date, index) => (
                   <tr key={index}>
-                    <td className="p-2 border">{date.date}</td>
+                    <td className="p-2 border text-nowrap">{date.date}</td>
                     <td className="p-2 border">{date.day}</td>
                     <td className="p-2 border">
                       <input
