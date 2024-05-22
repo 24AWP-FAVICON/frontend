@@ -78,8 +78,8 @@ function Sidebar() {
   };
 
   return (
-    <div className={`flex ${isOpen ? "w-full" : "w-2/4"} transition-all duration-300`} style={{ height: '100%' }}>
-      <div className={`flex flex-col ${isOpen ? "w-2/4" : "w-4/4"} h-full border-r-2 border-gray-300 bg-gray-50 shadow-lg`}>
+    <div className={`flex ${isOpen ? "w-full" : "w-2/6"}`} style={{ height: '100%' }}>
+      <div className={`flex flex-col ${isOpen ? "w-2/4" : "w-full"} h-full border-r-2 border-gray-300 bg-gray-50 shadow-lg`}>
         <div className="flex items-center justify-between px-4 py-2 bg-white border-b-2 border-gray-300">
           <span className="font-bold text-lg text-gray-700">제주</span>
           <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition" onClick={toggleSlidebar}>
