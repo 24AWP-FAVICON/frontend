@@ -6,7 +6,7 @@ import "./Plan.css";
 
 const containerStyle = {
   width: "100%",
-  height: "813px",
+  height: "100%",
 };
 
 function Plan() {
@@ -39,10 +39,11 @@ function Plan() {
   const handleLoadError = (error) => {
     console.error("Error loading Google Maps API script:", error);
   };
+  console.log(location.loc);
 
   return (
-    <div className="plan-container">
-      <Sidebar />
+    <div className="plan-container flex-initial">
+      <Sidebar loc={location.loc} />
       <div className="map">
         {isScriptLoaded ? (
           <GoogleMap
