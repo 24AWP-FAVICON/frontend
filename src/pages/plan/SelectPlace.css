@@ -1,7 +1,7 @@
 .selectPlaceElement{
-  position: relative;
   font-size: 12px;
-  height: 43em;
+  height: 100%;
+  width: 100%;
 }
 
 .img{
@@ -9,8 +9,9 @@
 }
 
 .selectPlaceElement > .container_{
-  max-height: 100%;
-  overflow-y: auto;
+  height: 80%;
+  width: 100%;
+  overflow-y: scroll;
   .info > .time{
     display:none;
   }
