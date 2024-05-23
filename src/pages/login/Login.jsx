@@ -11,7 +11,7 @@ function Login() {
             height: '100vh',
             fontFamily: 'Arial, sans-serif'
         }}>
-            <h1 style={{ marginBottom: '20px' }}>Sign in to Figma</h1>
+            <h1 style={{ marginBottom: '20px', fontSize: '60px', fontWeight: 'bold' }}>Sign in to Favicon</h1>
             <button style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -25,9 +25,9 @@ function Login() {
                 <img 
                     src={loginImage} 
                     alt="Google Logo" 
-                    style={{ width: '20px', height: '20px', marginRight: '10px' }}
+                    style={{ width: '40px', height: '40px', marginRight: '10px' }}
                 />
-                <span style={{ fontSize: '14px', color: '#555' }}>Continue with Google</span>
+                <span style={{ fontSize: '30px', color: '#555' }}>Continue with Google</span>
             </button>
         </div>
     );
