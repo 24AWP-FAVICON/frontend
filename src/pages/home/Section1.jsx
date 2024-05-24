@@ -28,7 +28,7 @@ const Section1 = () => {
 
   const handleResultClick = (location, event) => {
     event.stopPropagation();
-    navigate("/plan", { state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
+    navigate("/plan", { loc:{ location }, state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
   };
 
   return (
