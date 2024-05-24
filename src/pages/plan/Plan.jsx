@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import Sidebar from "./Sidebar";
 import "./Plan.css";
 
 const containerStyle = {
   width: "100%",
-  height: "100%",
+  height: "93vh",
 };
 
 function Plan() {
   const location = useLocation();
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [center, setCenter] = useState(null);
+  const [places, setPlaces] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [placesData, setPlacesData] = useState([]); // JSON 형식의 장소 데이터 저장
+  const mapRef = useRef(null);
 
   useEffect(() => {
-    const script = document.querySelector(`script[src*="maps.googleapis.com"]`);
-    if (script) {
-      setIsScriptLoaded(true);
-    } else {
-      setIsScriptLoaded(false);
-    }
-
     if (location.state && location.state.center && location.state.center.coords) {
       setCenter({
         lat: location.state.center.coords.lat,
@@ -32,42 +28,99 @@ function Plan() {
     }
   }, [location]);
 
-  if (!center) {
-    return <div>지도를 표시할 위치 정보가 없습니다.</div>;
-  }
+  const onLoad = (map) => {
+    mapRef.current = map;
+    searchNearbyPlaces(map.getCenter());
+  };
+
+  const searchNearbyPlaces = (location) => {
+    const service = new window.google.maps.places.PlacesService(mapRef.current);
+    const request = {
+      location: location,
+      radius: '2000',
+      type: ['lodging'] // 검색할 장소 유형
+    };
+    service.nearbySearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        setPlaces(results);
+        const placesInfo = results.map(place => ({
+          name: place.name,
+          address: place.vicinity,
+          location: {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+          }
+        }));
+        setPlacesData(placesInfo); // 장소 데이터를 JSON 형식으로 저장
+      } else {
+        console.error("Places search failed: ", status);
+      }
+    });
+  };
+  const handleDragEnd = useCallback(() => {
+    if (mapRef.current) {
+      const newCenter = mapRef.current.getCenter();
+      const newCenterLat = newCenter.lat();
+      const newCenterLng = newCenter.lng();
+
+      // 이전 중심과 비교하여 실제로 변경된 경우에만 상태를 업데이트
+      if (newCenterLat !== center.lat || newCenterLng !== center.lng) {
+        setCenter({
+          lat: newCenterLat,
+          lng: newCenterLng,
+        });
+        searchNearbyPlaces(newCenter);
+      }
+    }
+  }, [center]);
 
   const handleLoadError = (error) => {
     console.error("Error loading Google Maps API script:", error);
   };
-  console.log(location.loc);
+
+  if (!center) {
+    return <div>지도를 표시할 위치 정보가 없습니다.</div>;
+  }
 
   return (
     <div className="plan-container flex-initial">
-      <Sidebar loc={location.loc} />
+      <Sidebar placesData={placesData} mainLoc={location.loc} />
       <div className="map">
-        {isScriptLoaded ? (
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-          />
-        ) : (
-          <LoadScript
-            googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-            onLoad={() => setIsScriptLoaded(true)}
-            onError={handleLoadError}
-            loadingElement={<div>Loading...</div>}
-            id="script-loader"
-            async
-            defer
-          >
+        <LoadScript
+          googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+          libraries={["places"]}
+          onError={handleLoadError}
+        >
+          <div className="map flex align-middle justify-center" style={{ width: "100%", height: "100%" }}>
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={10}
-            />
-          </LoadScript>
-        )}
+              zoom={15}
+              onLoad={onLoad}
+              onDragEnd={handleDragEnd} // 변경된 부분
+            >
+              {places.map((place) => (
+                <Marker
+                  key={place.place_id}
+                  position={{ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }}
+                  onClick={() => setSelectedPlace(place)}
+                />
+              ))}
+
+              {selectedPlace && (
+                <InfoWindow
+                  position={{ lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng() }}
+                  onCloseClick={() => setSelectedPlace(null)}
+                >
+                  <div>
+                    <h2>{selectedPlace.name}</h2>
+                    <p>{selectedPlace.vicinity}</p>
+                  </div>
+                </InfoWindow>
+              )}
+            </GoogleMap>
+          </div>
+        </LoadScript>
       </div>
     </div>
   );

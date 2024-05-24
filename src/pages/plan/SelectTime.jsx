@@ -74,7 +74,7 @@ function SelectTime({
     <div className="w-full p-5 font-sans bg-white h-full">
       <div>
         <label className="block mb-2 font-semibold w-full">
-          시작 날짜:
+          시작 날짜<hr />
           <DatePicker
             selected={startDate} 
             onChange={onStartDateChange} 
@@ -84,7 +84,7 @@ function SelectTime({
         </label>
         <p className="h-2"></p>
         <label className="block mb-2 font-semibold w-full">
-          기간 (일):
+          기간 (일) <hr />
           <input 
             type="number" 
             value={duration} 
@@ -95,7 +95,7 @@ function SelectTime({
         </label>
         <p className="h-2"></p>
         <label className="block mb-2 font-semibold">
-          총예산액:&nbsp;
+          총예산액 <hr />
           <input 
             type="number" 
             value={budget} 
