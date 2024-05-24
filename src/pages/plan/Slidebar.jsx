@@ -10,7 +10,7 @@ function Slidebar({ selectedDates, onDrop }) {
       <div className="text-2xl font-bold mb-6 text-gray-800">
         <p>Planner</p>
       </div>
-      <div className="space-y-6 h-full overflow-y-auto mt-6 rounded-lg" style={{ maxHeight: '500px' }}>
+      <div className="space-y-6 h-full overflow-y-auto mt-6 mb-6 rounded-lg" style={{ maxHeight: '500px' }}>
         {selectedDates.map((date, index) => (
           <div
             className="p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition cursor-pointer"
@@ -28,17 +28,16 @@ function Slidebar({ selectedDates, onDrop }) {
                   {itemIndex + 1}
                 </div>
                 <div className="relative border-2 border-gray-200 rounded-lg p-2 w-56 h-20 text-sm font-semibold bg-white shadow-sm">
-                <div className="text-gray-800">{item.name}</div>
-                <div className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
-                  {item.address}
+                  <div className="text-gray-800">{item.name}</div>
+                  <div className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
+                    {item.address}
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-full flex justify-between items-center p-1 bg-gray-50 rounded-b-lg">
+                    <input className="w-28 p-1 border border-gray-300 rounded-md text-xs" type="time" />
+                    <span className="mx-1">-</span>
+                    <input className="w-28 p-1 border border-gray-300 rounded-md text-xs" type="time" />
+                  </div>
                 </div>
-                <div className="absolute bottom-0 left-0 w-full flex justify-between items-center p-1 bg-gray-50 rounded-b-lg">
-                  <input className="w-20 p-1 border border-gray-300 rounded-md text-xs" type="time" placeholder="00:00" />
-                  <span className="mx-1">-</span>
-                  <input className="w-20 p-1 border border-gray-300 rounded-md text-xs" type="time" placeholder="00:00" />
-                </div>
-              </div>
-
               </div>
             ))}
           </div>
