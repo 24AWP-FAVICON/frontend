@@ -7,7 +7,6 @@ import SNS from "./pages/sns/Sns";
 import Plan from "./pages/plan/Plan";
 import Login from "./pages/login/Login";
 import Community from "./pages/community/Community";
-import PostDetail from "./pages/community/PostDetail";
 import "./App.css";
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
             <Route path="/sns" element={<SNS />} />
             <Route path="/plan" element={<Plan />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/community/post/:post_id" element={<PostDetail/>}/>
             <Route path="/login" element={<Login />} />
           </Routes>
         </main>

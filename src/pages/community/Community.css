@@ -1,87 +1,190 @@
 .community-content {
-    padding: 20px;
-  }
-  
-  .search-input {
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .posts-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .post-item {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .card {
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    width: 100%;
-    max-width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-  }
-  
-  .post-detail {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .post-image img {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .post-content {
-    flex-grow: 1;
-  }
-  
-  .follow-buttons {
-    margin: 20px 0;
-  }
-  
-  .comments-section {
-    margin-top: 20px;
-  }
-  
-  .comments-list {
-    margin-bottom: 20px;
-  }
-  
-  .comment-item {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-community-posts {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.post-item {
+  width: 100%;
+  max-width: 600px;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto !important;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.post-header {
+  width: 100%;
+  text-align: left;
+}
+
+.post-header h3 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.post-body {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.post-body.with-image img {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.post-body.without-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post-footer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.post-stats {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.post-stats span {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.post-stats span svg {
+  margin-right: 5px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.post-actions button, .post-actions a {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: none;
+  background: #fff !important;
+  color: black !important;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.post-actions button:hover, .post-actions a:hover {
+  background: #f0f0f0 !important; 
+}
+
+.post-actions button svg, .post-actions a svg {
+  margin-right: 5px;
+}
+
+/* 모달 스타일 추가 */
+.modal {
+  background: white;
+  padding: 20px;
+  min-width: 50%;
+  margin: 0 auto;
+  border-radius: 8px;
+  position: relative;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 12px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons button:hover {
+  background: #0056b3;
+}
+
+.post-detail .comments-section, .modal .comments-section {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.post-detail .comments-list, .modal .comments-list {
+  margin-bottom: 20px;
+}
+
+.post-detail .comment-item, .modal .comment-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
