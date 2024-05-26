@@ -6,17 +6,20 @@ import Section from "./pages/home/Sections";
 import SNS from "./pages/sns/Sns";
 import Plan from "./pages/plan/Plan";
 import Login from "./pages/login/Login";
+import Community from "./pages/community/Community";
+import "./App.css";
 
 function App() {
   return (
     <Router>
-      <div className="App flex flex-col min-h-screen">
+      <div className="App">
         <Header />
-        <main className="flex-grow">
+        <main className="main-content">
           <Routes>
             <Route path="/" element={<Section />} />
             <Route path="/sns" element={<SNS />} />
             <Route path="/plan" element={<Plan />} />
+            <Route path="/community" element={<Community />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </main>

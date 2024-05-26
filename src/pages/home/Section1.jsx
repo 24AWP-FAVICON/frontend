@@ -12,10 +12,7 @@ const Section1 = () => {
     setLocations(locationsData);
 
     const handlePageClick = (event) => {
-      if (
-        showSearch &&
-        !event.target.closest(".search-input, .search-button")
-      ) {
+      if (showSearch && !event.target.closest(".search-input, .search-button")) {
         setShowSearch(false);
       }
     };
@@ -31,18 +28,17 @@ const Section1 = () => {
 
   const handleResultClick = (location, event) => {
     event.stopPropagation();
-    // navigate 함수 호출
-    navigate("/plan", { state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
+    navigate("/plan", { loc:{ location }, state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
   };
 
   return (
     <section className="h-screen flex bg-gray-50 justify-center items-center">
       <div className="container">
-        <div className="flex -mt-10">
-          <div className="flex-1 flex flex-col justify-center items-start pl-5">
-            <h2 className="text-6xl mb-10 font-bold">함께 만들어가는</h2>
-            <h2 className="text-6xl mb-10 font-bold">여행 플랜 플랫폼</h2>
-            <p className="text-2lg mb-10 text-gray-500 pl-2">
+        <div className="flex flex-col md:flex-row justify-center items-center -mt-10">
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start md:pl-5">
+            <h2 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl xl:text-7xl mb-10 font-bold text-center md:text-left">함께 만들어가는</h2>
+            <h2 className="text-4xl sm:text-6xl md:text-5xl lg:text-6xl xl:text-7xl mb-10 font-bold text-center md:text-left">여행 플랜 플랫폼</h2>
+            <p className="text-2lg mb-10 text-gray-500 pl-2 text-center md:text-left">
               온라인에서 함께 손쉽게 스케줄을 만들어보세요.
             </p>
             {!showSearch && (
@@ -78,7 +74,7 @@ const Section1 = () => {
               </div>
             )}
           </div>
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 items-center justify-center hidden md:flex">
             <img
               src={`${process.env.PUBLIC_URL}/mainPage1.jpg`}
               alt="여행"

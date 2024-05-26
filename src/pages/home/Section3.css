@@ -1,0 +1,66 @@
+.section3 {
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.cards-container-section3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 중앙 정렬로 변경 */
+}
+
+.card-section3 {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin: 10px;
+  flex: 1 1 calc(33.333% - 20px); /* 기본적으로 한 줄에 3개의 카드 */
+  max-width: calc(33.333% - 20px); /* 최대 너비 설정 */
+}
+
+.card-section3:hover {
+  transform: scale(1.05);
+}
+
+.card-section3 .country-section3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.card-section3 .location-section3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.card-section3 .image-section3 {
+  width: 100%;
+  height: 300px; /* 높이 설정 */
+  object-fit: cover; /* 이미지가 카드를 채우도록 설정 */
+  border-radius: 8px;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 1200px) {
+  .card-section3 {
+    flex: 1 1 calc(50% - 20px); /* 한 줄에 2개의 카드 */
+    max-width: calc(50% - 20px); /* 최대 너비 설정 */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-section3 {
+    flex: 1 1 calc(100% - 20px); /* 한 줄에 1개의 카드 */
+    max-width: calc(100% - 20px); /* 최대 너비 설정 */
+  }
+}
+
+/* 마지막 카드가 넓어지는 문제 해결 */
+.cards-container-section3 .card-section3:last-child {
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+}
