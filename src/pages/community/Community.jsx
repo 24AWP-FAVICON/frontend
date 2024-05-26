@@ -66,7 +66,7 @@ function Community() {
 
   const handleAddComment = () => {
     const newComment = { id: comments.length + 1, post_id: selectedPost.id, 내용: commentContent };
-    setComments([...comments, newComment]);
+    setComments([newComment, ...comments]);
     setCommentContent("");
   };
 
@@ -142,13 +142,13 @@ function Community() {
             <div className="post-footer">
               <div className="post-stats">
                 <span><FaRegComment /> {comments.length}</span>
-                <span><FaRegThumbsUp /> {selectedPost.likes}</span>
+                <span><FaHeart /> {selectedPost.likes}</span>
               </div>
               <div className="post-actions">
-                  <button onClick={() => handleLike(selectedPost)}><FaHeart /> 좋아요</button>
-                  <button onClick={() => openModal(selectedPost)}><FaRegComment /> 댓글 작성하기</button>
-                  <button><FaShareSquare /> 공유하기</button>
-                </div>
+                <button onClick={handleLike}><FaHeart /> 좋아요</button>
+                <button><FaRegComment /> 댓글 작성하기</button>
+                <button><FaShareSquare /> 공유하기</button>
+              </div>
             </div>
             <div className="comments-section">
               <div className="comments-list">
