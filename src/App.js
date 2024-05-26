@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Section from "./pages/home/Sections";
-
 import SNS from "./pages/sns/Sns";
 import Plan from "./pages/plan/Plan";
 import Login from "./pages/login/Login";
