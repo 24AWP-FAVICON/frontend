@@ -4,11 +4,11 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 function Card({ image, title, description }) {
   return (
-    <div className="card">
-      <div className="card-image">
+    <div className="section2-card">
+      <div className="section2-card-image">
         <img src={image} alt={title} />
       </div>
-      <div className="card-info">
+      <div className="section2-card-info">
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
@@ -17,7 +17,6 @@ function Card({ image, title, description }) {
 }
 
 function Section2() {
-  // 카드 데이터
   const cards = [
     {
       image: `${process.env.PUBLIC_URL}/card1.jpg`,
@@ -60,15 +59,15 @@ function Section2() {
   };
 
   return (
-    <section className="section">
-      <div className="cards">
+    <section className="section2">
+      <div className="section2-cards">
         <Card {...cards[currentIndex]} />
       </div>
-      <div className="navigation">
-        <button className="nav-btn prev" onClick={handlePrev}>
+      <div className="section2-navigation">
+        <button className="section2-nav-btn section2-prev" onClick={handlePrev}>
           <span className="icon-wrapper"><FiChevronLeft /></span>
         </button>
-        <button className="nav-btn next" onClick={handleNext}>
+        <button className="section2-nav-btn section2-next" onClick={handleNext}>
           <span className="icon-wrapper"><FiChevronRight /></span>
         </button>
       </div>
