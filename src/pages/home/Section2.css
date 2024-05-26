@@ -1,11 +1,12 @@
-.section {
+.section2 {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
-.cards {
+.section2-cards {
   position: relative;
   z-index: 1;
   display: flex;
@@ -13,53 +14,59 @@
   overflow: hidden;
 }
 
-.card {
+.section2-card {
   height: 40em;
-  width: 100em;
+  width: 80em;
   display: flex;
   align-items: center;
   padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.card-image img {
-  max-width: 100%; /* 이미지의 최대 너비를 부모 요소의 100%로 제한 */
-  height: auto; /* 이미지의 높이를 자동으로 조정하여 비율을 유지 */
-  object-fit: cover; /* 비율을 유지하면서 요소의 박스에 맞춤 */
-  margin-right: 200px;
-  padding-right: 4em;
+.section2-card-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 8px;
+  padding-right: 30px;
 }
 
-@media (max-width: 768px) { /* 화면 너비가 768px 이하일 때 */
-  .card {
-    flex-direction: column; /* 카드 내용을 세로로 쌓음 */
-    width: auto; /* 카드 너비를 자동으로 조정 */
-    height: auto; /* 카드 높이를 자동으로 조정 */
+@media (max-width: 768px) {
+  .section2-card {
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    padding: 10px;
   }
-  .card-image img {
-    width: 100%; /* 이미지 너비를 부모 요소의 100%로 설정 */
-    max-height: 200px; /* 이미지의 최대 높이를 200px로 제한 */
+  .section2-card-image img {
+    width: 100%;
+    max-height: 200px;
     margin-right: 0;
     padding-right: 0;
   }
-  .navigation {
-    position: static; /* 네비게이션을 절대 위치에서 정적 위치로 변경 */
-    transform: none; /* 변환 제거 */
-    flex-direction: row; /* 네비게이션 버튼을 가로로 배치 */
-    justify-content: center; /* 중앙 정렬 */
+  .section2-navigation {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
   }
 }
 
-.card-info h3 {
+.section2-card-info h3 {
   font-weight: bold;
   font-size: 2em;
   margin-bottom: 20px;
 }
 
-.card-info p {
-  color: gray; /* 설명 텍스트를 회색으로 */
+.section2-card-info p {
+  color: gray;
 }
 
-.navigation {
+.section2-navigation {
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -70,38 +77,24 @@
   z-index: 2;
 }
 
-.nav-btn {
+.section2-nav-btn {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 50px;
-  padding: 8px;
+  font-size: 4em;
   color: #333;
-  width: 50px;
-  height: 100px;
   z-index: 3;
 }
-@media (max-width: 768px) {
-  .nav-btn {
-    font-size: 30px; /* 화면 크기가 768px 이하일 때 버튼의 글꼴 크기를 줄임 */
-    width: 40px; /* 버튼의 너비를 줄임 */
-    height: 80px; /* 버튼의 높이를 줄임 */
-  }
-  .navigation {
-    top: 40%; /* 화면 크기가 작을 때 navigation의 위치를 조정 */
-  }
-}
 
-.navigation button {
-  padding: 10px;
-  margin: 0 10px;
-  font-size: 16px;
+@media (max-width: 768px) {
+  .section2-nav-btn {
+    font-size: 2em;
+  }
+  .section2-navigation {
+    top: 40%;
+  }
 }
 
 .icon-wrapper:hover {
   color: #000100;
-}
-
-.navigation button:last-child {
-  padding-right: 60px; /* 마지막 버튼(오른쪽 버튼)의 오른쪽 마진 조정 */
 }
