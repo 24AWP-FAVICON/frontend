@@ -10,7 +10,6 @@ const Header = () => {
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center w-full md:w-auto">
           <Link to="/" className="mr-10 hover:text-headerTextColor font-semibold hover:scale-105 transition duration-150">Home</Link>
-          <Link to="/sns" className="mr-10 hover:text-headerTextColor font-semibold hover:scale-105 transition duration-150">SNS</Link>
           <Link to="/community" className="mr-10 hover:text-headerTextColor font-semibold hover:scale-105 transition duration-150">Community</Link>
           <Link to="/message" className="mr-10 hover:text-headerTextColor font-semibold hover:scale-105 transition duration-150">Message</Link>
           <Link to="/login" className="mr-10 hover:text-headerTextColor font-semibold hover:scale-105 transition duration-150">Login</Link>
