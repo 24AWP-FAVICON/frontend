@@ -14,7 +14,7 @@ function Plan() {
   const [center, setCenter] = useState(null);
   const [places, setPlaces] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const [placesData, setPlacesData] = useState([]); // JSON 형식의 장소 데이터 저장
+  const [placesData, setPlacesData] = useState([]);
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function Plan() {
     const request = {
       location: location,
       radius: '2000',
-      type: ['lodging'] // 검색할 장소 유형
+      type: ['lodging']
     };
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
@@ -51,19 +51,19 @@ function Plan() {
             lng: place.geometry.location.lng()
           }
         }));
-        setPlacesData(placesInfo); // 장소 데이터를 JSON 형식으로 저장
+        setPlacesData(placesInfo);
       } else {
         console.error("Places search failed: ", status);
       }
     });
   };
+
   const handleDragEnd = useCallback(() => {
     if (mapRef.current) {
       const newCenter = mapRef.current.getCenter();
       const newCenterLat = newCenter.lat();
       const newCenterLng = newCenter.lng();
 
-      // 이전 중심과 비교하여 실제로 변경된 경우에만 상태를 업데이트
       if (newCenterLat !== center.lat || newCenterLng !== center.lng) {
         setCenter({
           lat: newCenterLat,
@@ -84,7 +84,7 @@ function Plan() {
 
   return (
     <div className="plan-container flex-initial">
-      <Sidebar placesData={placesData} mainLoc={location.loc} />
+      <Sidebar placesData={placesData} locationName={location.state.locationName} />
       <div className="map">
         <LoadScript
           googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
@@ -97,7 +97,7 @@ function Plan() {
               center={center}
               zoom={15}
               onLoad={onLoad}
-              onDragEnd={handleDragEnd} // 변경된 부분
+              onDragEnd={handleDragEnd}
             >
               {places.map((place) => (
                 <Marker
