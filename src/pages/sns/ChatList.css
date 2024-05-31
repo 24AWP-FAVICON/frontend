@@ -50,7 +50,7 @@
 
 .chat-message {
   margin-left: 5px; /* 화면 너비의 1%로 설정 */
-  margin-top: 3px;
+  margin-top: 3%;
 }
 
 .chat-item:hover {
@@ -72,7 +72,7 @@
   text-overflow: ellipsis;
 }
 
-.modal {
+.chat-modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -98,11 +98,12 @@
 }
 
 .add-chat-input {
-  width: calc(100% - 2vw); /* 화면 너비의 100%에서 2%를 뺀 값으로 설정 */
+  width: calc(100% -  15%); /* 화면 너비의 100%에서 2%를 뺀 값으로 설정 */
   padding: 1vw; /* 화면 너비의 1%로 설정 */
-  margin-bottom: 2vw; /* 화면 너비의 2%로 설정 */
+  margin-top: 1vw; /* 화면 너비의 2%로 설정 */
   border: 0.2vw solid #ccc; /* 화면 너비의 0.2%로 설정 */
   border-radius: 0.5vw; /* 화면 너비의 0.5%로 설정 */
+  margin-left : 2%
 }
 
 .add-chat-button {
