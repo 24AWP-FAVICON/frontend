@@ -58,7 +58,7 @@ function ChatList({ chats, setSelectedChat }) {
         ))}
       </ul>
       {showModal && (
-        <div className="modal">
+        <div className="chat-modal">
           <div className="modal-content">
             <span className="close" onClick={() => setShowModal(false)}>
               &times;

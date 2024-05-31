@@ -28,7 +28,18 @@ const Section1 = () => {
 
   const handleResultClick = (location, event) => {
     event.stopPropagation();
-    navigate("/plan", { loc:{ location }, state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
+    navigate("/plan", {
+      state: {
+        loc: location,
+        center: {
+          coords: {
+            lat: location.coords.lat,
+            lng: location.coords.lng,
+          },
+        },
+        locationName: location.location // location.location 정보를 추가
+      },
+    });
   };
 
   return (
