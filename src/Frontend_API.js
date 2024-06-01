@@ -8,7 +8,7 @@ const api = axios.create({
 // 요청 인터셉터 설정
 api.interceptors.request.use(
   async (config) => {
-    let accessToken = Cookies.get("accessToken");
+    let accessToken = Cookies.get("access");
 
     // 액세스 토큰이 없다면 로그인 페이지로 리디렉션
     if (!accessToken) {
@@ -50,14 +50,14 @@ api.interceptors.response.use(
 );
 
 async function refreshAccessToken() {
-  const refreshToken = Cookies.get("refreshToken");
+  const refreshToken = Cookies.get("refresh");
 
   try {
     const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/refresh`, { token: refreshToken });
     const { accessToken } = response.data;
 
     // 새로운 액세스 토큰을 쿠키에 저장
-    Cookies.set("accessToken", accessToken);
+    Cookies.set("access", accessToken, { path: '/' });
     return accessToken;
   } catch (error) {
     console.error("Failed to refresh access token", error);
