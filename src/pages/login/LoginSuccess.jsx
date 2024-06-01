@@ -1,25 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function LoginSuccess() {
-    const [accessToken, setAccessToken] = useState(null);
-    const [refreshToken, setRefreshToken] = useState(null);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const accessToken = Cookies.get("accessToken");
-        const refreshToken = Cookies.get("refreshToken");
+  useEffect(() => {
+    // 쿠키에서 토큰 읽기
+    const accessToken = Cookies.get("access");
+    const refreshToken = Cookies.get("refresh");
 
-        setAccessToken(accessToken);
-        setRefreshToken(refreshToken);
-    }, []);
+    console.log("Access Token from Cookie:", accessToken);
+    console.log("Refresh Token from Cookie:", refreshToken);
 
-    return (
-        <div>
-            <h1>Login Successful</h1>
-            <p>Access Token: {accessToken}</p>
-            <p>Refresh Token: {refreshToken}</p>
-        </div>
-    );
+    if (accessToken && refreshToken) {
+      navigate("/");
+    } else {
+      // 토큰이 없으면 로그인 페이지로 리디렉션
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  return <div>Loading...</div>;
 }
 
 export default LoginSuccess;
