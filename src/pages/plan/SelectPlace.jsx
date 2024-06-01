@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react';
 import placeData from "./place.json";
 
-function SelectPlace({ placesData, pick, onDragStart }) {
+function SelectPlace({ placesData, pick, onDragStart, locationName }) {
+  console.log("loc", locationName);
   const [filteredData, setFilteredData] = useState([]);
   const [activeCategory, setActiveCategory] = useState('tourist'); // 'tourist' 또는 'lodging'
 
   useEffect(() => {
-    const touristResults = placeData["제주도"].filter(item =>
-      item.name.toLowerCase().includes(pick.toLowerCase())
-    );
+    if (locationName && placeData[locationName]) {
+      const touristResults = placeData[locationName].filter(item =>
+        item.name.toLowerCase().includes(pick.toLowerCase())
+      );
 
-    if (activeCategory === 'tourist') {
-      setFilteredData(touristResults);
-    } else if (activeCategory === 'lodging') {
-      setFilteredData(placesData);
+      if (activeCategory === 'tourist') {
+        setFilteredData(touristResults);
+      } else if (activeCategory === 'lodging') {
+        setFilteredData(placesData);
+      }
     }
-  }, [pick, placesData, activeCategory]);
+  }, [pick, placesData, activeCategory, locationName]);
 
   return (
     <div className="w-full p-4 space-y-4 overflow-y-auto" style={{ minHeight: '500px', maxHeight: '500px' }}>
@@ -39,7 +42,7 @@ function SelectPlace({ placesData, pick, onDragStart }) {
       </div>
       {filteredData.map((location) => (
         <div
-          className="p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-gray-100 transition w-4/4" // width를 w-full로 고정
+          className="p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-gray-100 transition w-full"
           draggable="true"
           key={location.id}
           onDragStart={() => onDragStart(location)}

@@ -4,18 +4,19 @@ import SelectTime from './SelectTime';
 import Slidebar from './Slidebar';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-function Sidebar({placesData}) {
-  const [isOpen, setIsOpen] = useState(true); // 사이드바 상태(state) 추가
-  const [isTime, setIsTime] = useState(true); // 시간선택 상태
-  const [isPlace, setIsPlace] = useState(false); // 장소선택 상태
+function Sidebar({ placesData, locationName }) {
+  const [isOpen, setIsOpen] = useState(true);
+  const [isTime, setIsTime] = useState(true);
+  const [isPlace, setIsPlace] = useState(false);
   const [selectedDates, setSelectedDates] = useState([]);
   const [loc, setLoc] = useState('');
-  const [draggedElement, setDraggedElement] = useState(null); // 드래그된 요소 상태
-  const [startDate, setStartDate] = useState(new Date()); // 시작 날짜 상태
-  const [duration, setDuration] = useState(''); // 기간 상태
-  const [budget, setBudget] = useState(0); // 예산 상태
-  const [items, setItems] = useState([]); // 항목 상태
-  const [resultDates, setResultDates] = useState([]); // 결과 날짜 상태
+  const [draggedElement, setDraggedElement] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [duration, setDuration] = useState('');
+  const [budget, setBudget] = useState(0);
+  const [items, setItems] = useState([]);
+  const [resultDates, setResultDates] = useState([]);
+
   const handleDates = (childData) => {
     setSelectedDates(childData);
   };
@@ -40,7 +41,6 @@ function Sidebar({placesData}) {
     setResultDates(newDates);
   };
 
-  // 사이드바를 열고 닫는 함수
   const toggleSlidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -72,7 +72,7 @@ function Sidebar({placesData}) {
           i === index ? { ...date, items: [...(date.items || []), draggedElement] } : date
         )
       );
-      setDraggedElement(null); // 드래그된 요소 상태 초기화
+      setDraggedElement(null);
     }
   };
 
@@ -80,7 +80,7 @@ function Sidebar({placesData}) {
     <div className={`flex ${isOpen ? "w-full" : "w-2/6"}`} style={{ height: '100%' }}>
       <div className={`flex flex-col ${isOpen ? "w-2/4" : "w-full"} h-full border-r-2 border-gray-300 bg-gray-50 shadow-lg`}>
         <div className="flex items-center justify-between px-4 py-2 bg-white border-b-2 border-gray-300">
-          <span className="font-bold text-lg text-gray-700">{}</span>
+          <span className="font-bold text-lg text-gray-700">{locationName}</span>
           <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition" onClick={toggleSlidebar}>
             <span className="text-xl text-gray-700">{!isOpen ? <FiChevronRight /> : <FiChevronLeft />}</span>
           </button>
@@ -126,12 +126,14 @@ function Sidebar({placesData}) {
               onBudgetChange={handleBudgetChange}
               onItemsChange={handleItemsChange}
               onResultDatesChange={handleResultDatesChange}
+              locationName={locationName}
             />
           ) : (
             <SelectPlace
               pick={loc}
               onDragStart={handleDragStart}
               placesData={placesData}
+              locationName={locationName} // locationName을 SelectPlace로 전달
             />
           )}
         </div>
