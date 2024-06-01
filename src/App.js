@@ -8,6 +8,8 @@ import Plan from "./pages/plan/Plan";
 import Login from "./pages/login/Login";
 import Community from "./pages/community/Community";
 import LoginSuccess from "./pages/login/LoginSuccess";
+import Dashboard from "./pages/login/Dashboard";
+import "./Frontend_API";
 import "./App.css";
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
             <Route path="/community" element={<Community />} />
             <Route path="/login" element={<Login />} />
             <Route path="/login/success" element={<LoginSuccess></LoginSuccess>}></Route>
+            <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
           </Routes>
         </main>
         <Footer />
