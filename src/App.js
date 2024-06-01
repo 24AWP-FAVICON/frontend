@@ -7,6 +7,7 @@ import SNS from "./pages/sns/Sns";
 import Plan from "./pages/plan/Plan";
 import Login from "./pages/login/Login";
 import Community from "./pages/community/Community";
+import LoginSuccess from "./pages/login/LoginSuccess";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/plan" element={<Plan />} />
             <Route path="/community" element={<Community />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/login/success" element={<LoginSuccess></LoginSuccess>}></Route>
           </Routes>
         </main>
         <Footer />
