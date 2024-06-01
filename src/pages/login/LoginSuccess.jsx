@@ -14,6 +14,7 @@ function LoginSuccess() {
     console.log("Refresh Token from Cookie:", refreshToken);
 
     if (accessToken && refreshToken) {
+      // 이미 쿠키에 저장된 토큰을 사용하여 인증 처리
       navigate("/");
     } else {
       // 토큰이 없으면 로그인 페이지로 리디렉션

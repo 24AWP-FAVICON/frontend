@@ -24,8 +24,8 @@ function App() {
             <Route path="/plan" element={<Plan />} />
             <Route path="/community" element={<Community />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/login/success" element={<LoginSuccess></LoginSuccess>}></Route>
-            <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
+            <Route path="/login/success" element={<LoginSuccess />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </main>
         <Footer />
