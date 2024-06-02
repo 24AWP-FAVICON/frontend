@@ -60,12 +60,13 @@
 }
 
 .post-body {
-  margin-top: 10px;
+  padding-left: 20px;
+  margin-top: 20px;
   width: 100%;
 }
 
 .post-body.with-image img {
-  width: 100%;
+  width: 40%;
   height: auto;
   margin-top: 10px;
 }
@@ -246,11 +247,23 @@
 
 .post-detail .comments-list, .modal .comments-list {
   margin-bottom: 20px;
+  max-height: 150px; /* 최대 높이를 설정 */
+  overflow-y: auto; /* 스크롤 가능하게 설정 */
 }
 
 .post-detail .comment-item, .modal .comment-item {
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+/* 스크롤바 숨기기 */
+.post-detail .comments-list::-webkit-scrollbar, .modal .comments-list::-webkit-scrollbar {
+  display: none;
+}
+
+.post-detail .comments-list, .modal .comments-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 textarea {
@@ -268,7 +281,7 @@ textarea {
   width: 100%;
   max-width: 800px; /* 적절한 최대 너비 설정 */
   margin-bottom: 20px;
-  margin-left: 6em;
+  margin-left: 7em;
 }
 
 .search-community-posts {
@@ -302,6 +315,15 @@ textarea {
   animation: float 1s ease-in-out;
 }
 
+.unlike-heart-animation {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  font-size: 50px;
+  color: blue;
+  animation: drop 1s ease-in-out;
+}
+
 @keyframes float {
   0% {
     opacity: 0;
@@ -315,4 +337,32 @@ textarea {
     opacity: 0;
     transform: translateY(-100px);
   }
+}
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 10px;
 }
