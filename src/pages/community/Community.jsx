@@ -1,23 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { FaRegComment, FaRegThumbsUp, FaShareSquare, FaTimes, FaHeart } from "react-icons/fa";
+import { FaRegComment, FaRegThumbsUp, FaShareSquare, FaTimes, FaHeart, FaPlus } from "react-icons/fa";
 import Modal from "react-modal";
 import './Community.css';
 import {
   fetchPosts,
-  fetchPostById,
   createPost,
   likePost,
   unlikePost,
   fetchCommentsByPostId,
   addComment,
-  followUser,
-  unfollowUser,
-  blockUser,
-  unblockUser,
-  fetchFollows,
-  fetchFollowers,
-  fetchBlocks,
-  uploadPostImage
+  uploadPostImage,
+  updatePost // 여기에 추가
 } from './CommunityApiService'; // API 서비스 가져오기
 
 Modal.setAppElement('#root');
@@ -36,6 +29,7 @@ function Community() {
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostContent, setNewPostContent] = useState("");
   const [newPostImage, setNewPostImage] = useState(null);
+  const [showHeart, setShowHeart] = useState(false); // 하트 애니메이션 상태
 
   useEffect(() => {
     loadPosts();
@@ -45,7 +39,19 @@ function Community() {
     setLoading(true);
     try {
       const response = await fetchPosts();
-      setPosts(response.data);
+      const postsWithCommentsAndLikes = await Promise.all(response.data.map(async (post) => {
+        const commentsResponse = await fetchCommentsByPostId(post.postId);
+        return {
+          ...post,
+          comments: commentsResponse.data,
+          commentsCount: commentsResponse.data.length,
+          likesCount: post.postLikes ? post.postLikes.length : 0,
+          liked: false // 기본값을 false로 설정
+        };
+      }));
+      // 최신순으로 정렬
+      const sortedPosts = postsWithCommentsAndLikes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setPosts(sortedPosts);
     } catch (error) {
       console.error('Failed to fetch posts:', error);
     } finally {
@@ -94,6 +100,15 @@ function Community() {
       const response = await fetchCommentsByPostId(selectedPost.postId);
       setComments(response.data);
       setCommentContent("");
+
+      // 댓글 수 업데이트
+      const updatedPosts = posts.map(post => {
+        if (post.postId === selectedPost.postId) {
+          return { ...post, comments: response.data, commentsCount: response.data.length };
+        }
+        return post;
+      });
+      setPosts(updatedPosts);
     } catch (error) {
       console.error('Failed to add comment:', error);
     }
@@ -101,12 +116,24 @@ function Community() {
 
   const handleLike = async (post) => {
     try {
+      setShowHeart(true); // 애니메이션 시작
+      setTimeout(() => setShowHeart(false), 1000); // 1초 후 애니메이션 숨김
+      let updatedPost = { ...post };
       if (post.liked) {
         await unlikePost(post.postId);
+        updatedPost.liked = false;
+        updatedPost.likesCount -= 1;
       } else {
         await likePost(post.postId);
+        updatedPost.liked = true;
+        updatedPost.likesCount += 1;
       }
-      await loadPosts();
+      // 상태 업데이트
+      const updatedPosts = posts.map(p => p.postId === post.postId ? updatedPost : p);
+      setPosts(updatedPosts);
+      if (selectedPost && selectedPost.postId === post.postId) {
+        setSelectedPost(updatedPost);
+      }
     } catch (error) {
       console.error('Failed to update like status:', error);
     }
@@ -127,6 +154,12 @@ function Community() {
     setIsCreatePostModalOpen(false);
   };
 
+  const extractUrl = (markdown) => {
+    const regex = /!\[.*?\]\((.*?)\)/;
+    const match = regex.exec(markdown);
+    return match ? match[1] : '';
+  };
+
   const handleCreatePost = async () => {
     if (!newPostTitle.trim() || !newPostContent.trim()) return;
     try {
@@ -136,7 +169,11 @@ function Community() {
       if (newPostImage) {
         const formData = new FormData();
         formData.append('image', newPostImage);
-        await uploadPostImage(postId, formData);
+        const uploadResponse = await uploadPostImage(postId, formData);
+        const imageUrl = extractUrl(uploadResponse.data);
+
+        // 게시글 업데이트
+        await updatePost(postId, { title: newPostTitle, content: newPostContent, thumbnailImageId: imageUrl });
       }
 
       await loadPosts(); // 새로운 게시글을 로드합니다.
@@ -157,14 +194,18 @@ function Community() {
 
   return (
     <div className="community-content">
-      <button onClick={openCreatePostModal} className="create-post-button">새 게시글 작성</button>
-      <input
-        type="text"
-        placeholder="Search posts..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-community-posts"
-      />
+      <div className="search-and-create">
+        <input
+          type="text"
+          placeholder="Search posts..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-community-posts"
+        />
+        <button onClick={openCreatePostModal} className="create-post-button">
+          <FaPlus />
+        </button>
+      </div>
 
       <div className="posts-list">
         {filteredPosts.map((post, index) => (
@@ -175,16 +216,16 @@ function Community() {
           >
             <div className="card">
               <div className="post-header">
-                <h3>{post.userId}</h3>
+                <h3>{post.title}</h3>
               </div>
               <div onClick={() => openModal(post)} className={`post-body ${post.thumbnailImageId ? 'with-image' : 'without-image'}`}>
                 <p>{post.content}</p>
-                {post.thumbnailImageId && <img src={post.thumbnailImageId} alt={post.title} />}
+                {post.thumbnailImageId && <img src={extractUrl(post.thumbnailImageId)} alt={post.title} />}
               </div>
               <div className="post-footer">
                 <div className="post-stats">
-                  <span><FaRegComment /> {post.comments ? post.comments.length : 0}</span>
-                  <span><FaRegThumbsUp /> {post.postLikes ? post.postLikes.length : 0}</span>
+                  <span><FaRegComment /> {post.commentsCount}</span>
+                  <span><FaRegThumbsUp /> {post.likesCount}</span>
                 </div>
                 <div className="post-actions">
                   <button onClick={() => handleLike(post)}><FaHeart /> {post.liked ? 'Unlike' : 'Like'}</button>
@@ -192,6 +233,7 @@ function Community() {
                   <button><FaShareSquare /> Share</button>
                 </div>
               </div>
+              {showHeart && <FaHeart className="heart-animation" />} {/* 하트 애니메이션 */}
             </div>
           </div>
         ))}
@@ -212,15 +254,15 @@ function Community() {
             </div>
             <div className={`post-body ${selectedPost.thumbnailImageId ? 'with-image' : 'without-image'}`}>
               <p>{selectedPost.content}</p>
-              {selectedPost.thumbnailImageId && <img src={selectedPost.thumbnailImageId} alt={selectedPost.title} />}
+              {selectedPost.thumbnailImageId && <img src={extractUrl(selectedPost.thumbnailImageId)} alt={selectedPost.title} />}
             </div>
             <div className="post-footer">
               <div className="post-stats">
                 <span><FaRegComment /> {comments.length}</span>
-                <span><FaHeart /> {selectedPost.postLikes ? selectedPost.postLikes.length : 0}</span>
+                <span><FaHeart /> {selectedPost.likesCount}</span>
               </div>
               <div className="post-actions">
-                <button onClick={handleLike}><FaHeart /> {selectedPost.liked ? 'Unlike' : 'Like'}</button>
+                <button onClick={() => handleLike(selectedPost)}><FaHeart /> {selectedPost.liked ? 'Unlike' : 'Like'}</button>
                 <button><FaRegComment /> Comment</button>
                 <button><FaShareSquare /> Share</button>
               </div>
@@ -253,7 +295,7 @@ function Community() {
       >
         <div className="modal-card">
           <div className="modal-header">
-            <h3>새 게시글 작성</h3>
+            <h3>Create New Post</h3>
             <button className="close-button" onClick={closeCreatePostModal}><FaTimes /></button>
           </div>
           <div className="modal-body">
@@ -277,7 +319,7 @@ function Community() {
             />
           </div>
           <div className="modal-footer">
-            <button onClick={handleCreatePost} className="create-post-button">게시글 작성</button>
+            <button onClick={handleCreatePost} className="create-post-button">Create</button>
           </div>
         </div>
       </Modal>
