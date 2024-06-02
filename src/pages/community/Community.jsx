@@ -10,7 +10,7 @@ import {
   fetchCommentsByPostId,
   addComment,
   uploadPostImage,
-  updatePost // 여기에 추가
+  updatePost
 } from './CommunityApiService'; // API 서비스 가져오기
 
 Modal.setAppElement('#root');
@@ -30,6 +30,7 @@ function Community() {
   const [newPostContent, setNewPostContent] = useState("");
   const [newPostImage, setNewPostImage] = useState(null);
   const [showHeart, setShowHeart] = useState(false); // 하트 애니메이션 상태
+  const [showUnlikeHeart, setShowUnlikeHeart] = useState(false); // 파란 하트 애니메이션 상태
 
   useEffect(() => {
     loadPosts();
@@ -70,7 +71,6 @@ function Community() {
   }, []);
 
   const loadMorePosts = () => {
-    // 추가로 로딩할 포스트가 있다면 이곳에서 처리합니다.
   };
 
   const filteredPosts = posts.filter(post =>
@@ -116,23 +116,24 @@ function Community() {
 
   const handleLike = async (post) => {
     try {
-      setShowHeart(true); // 애니메이션 시작
-      setTimeout(() => setShowHeart(false), 1000); // 1초 후 애니메이션 숨김
-      let updatedPost = { ...post };
       if (post.liked) {
         await unlikePost(post.postId);
-        updatedPost.liked = false;
-        updatedPost.likesCount -= 1;
+        setShowUnlikeHeart(true); // 파란 하트 애니메이션 시작
+        setTimeout(() => setShowUnlikeHeart(false), 1000); // 1초 후 애니메이션 숨김
+        let updatedPost = { ...post, liked: false, likesCount: post.likesCount - 1 };
+        setPosts(posts.map(p => p.postId === post.postId ? updatedPost : p));
+        if (selectedPost && selectedPost.postId === post.postId) {
+          setSelectedPost(updatedPost);
+        }
       } else {
         await likePost(post.postId);
-        updatedPost.liked = true;
-        updatedPost.likesCount += 1;
-      }
-      // 상태 업데이트
-      const updatedPosts = posts.map(p => p.postId === post.postId ? updatedPost : p);
-      setPosts(updatedPosts);
-      if (selectedPost && selectedPost.postId === post.postId) {
-        setSelectedPost(updatedPost);
+        setShowHeart(true); // 빨간 하트 애니메이션 시작
+        setTimeout(() => setShowHeart(false), 1000); // 1초 후 애니메이션 숨김
+        let updatedPost = { ...post, liked: true, likesCount: post.likesCount + 1 };
+        setPosts(posts.map(p => p.postId === post.postId ? updatedPost : p));
+        if (selectedPost && selectedPost.postId === post.postId) {
+          setSelectedPost(updatedPost);
+        }
       }
     } catch (error) {
       console.error('Failed to update like status:', error);
@@ -154,12 +155,6 @@ function Community() {
     setIsCreatePostModalOpen(false);
   };
 
-  const extractUrl = (markdown) => {
-    const regex = /!\[.*?\]\((.*?)\)/;
-    const match = regex.exec(markdown);
-    return match ? match[1] : '';
-  };
-
   const handleCreatePost = async () => {
     if (!newPostTitle.trim() || !newPostContent.trim()) return;
     try {
@@ -170,7 +165,7 @@ function Community() {
         const formData = new FormData();
         formData.append('image', newPostImage);
         const uploadResponse = await uploadPostImage(postId, formData);
-        const imageUrl = extractUrl(uploadResponse.data);
+        const imageUrl = uploadResponse.data;
 
         // 게시글 업데이트
         await updatePost(postId, { title: newPostTitle, content: newPostContent, thumbnailImageId: imageUrl });
@@ -220,7 +215,7 @@ function Community() {
               </div>
               <div onClick={() => openModal(post)} className={`post-body ${post.thumbnailImageId ? 'with-image' : 'without-image'}`}>
                 <p>{post.content}</p>
-                {post.thumbnailImageId && <img src={extractUrl(post.thumbnailImageId)} alt={post.title} />}
+                {post.thumbnailImageId && <img src={post.thumbnailImageId} alt={post.title} />}
               </div>
               <div className="post-footer">
                 <div className="post-stats">
@@ -233,7 +228,8 @@ function Community() {
                   <button><FaShareSquare /> Share</button>
                 </div>
               </div>
-              {showHeart && <FaHeart className="heart-animation" />} {/* 하트 애니메이션 */}
+              {showHeart && <FaHeart className="heart-animation" />} {/* 빨간 하트 애니메이션 */}
+              {showUnlikeHeart && <FaHeart className="unlike-heart-animation" />} {/* 파란 하트 애니메이션 */}
             </div>
           </div>
         ))}
@@ -249,12 +245,15 @@ function Community() {
         >
           <div className="modal-card">
             <div className="modal-header">
-              <h3>{selectedPost.userId}</h3>
+              <div className="profile-info">
+                <img src={`${process.env.PUBLIC_URL}/profile.png`} alt="Profile" className="profile-image" />
+                <h3>{selectedPost.userId}</h3>
+              </div>
               <button className="close-button" onClick={closeModal}><FaTimes /></button>
             </div>
             <div className={`post-body ${selectedPost.thumbnailImageId ? 'with-image' : 'without-image'}`}>
               <p>{selectedPost.content}</p>
-              {selectedPost.thumbnailImageId && <img src={extractUrl(selectedPost.thumbnailImageId)} alt={selectedPost.title} />}
+              {selectedPost.thumbnailImageId && <img src={selectedPost.thumbnailImageId} alt={selectedPost.title} />}
             </div>
             <div className="post-footer">
               <div className="post-stats">
