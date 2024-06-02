@@ -1,3 +1,4 @@
+// LoginSuccess.js
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -6,18 +7,36 @@ function LoginSuccess() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 쿠키에서 토큰 읽기
     const accessToken = Cookies.get("access");
     const refreshToken = Cookies.get("refresh");
 
-    console.log("Access Token from Cookie:", accessToken);
-    console.log("Refresh Token from Cookie:", refreshToken);
+    // 여기에서 사용자 정보를 받아와 쿠키에 저장.
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/info`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch user info');
+        }
+
+        const data = await response.json();
+
+        Cookies.set("userEmail", data.email, { path: '/' });
+
+        navigate("/");
+      } catch (error) {
+        console.error('Failed to fetch user info:', error);
+        navigate("/login");
+      }
+    };
 
     if (accessToken && refreshToken) {
-      // 이미 쿠키에 저장된 토큰을 사용하여 인증 처리
-      navigate("/");
+      fetchUserInfo();
     } else {
-      // 토큰이 없으면 로그인 페이지로 리디렉션
       navigate("/login");
     }
   }, [navigate]);

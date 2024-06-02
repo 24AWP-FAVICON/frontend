@@ -12,7 +12,7 @@ export const createPost = (postData) => {
   return api.post('/community/posts', postData);
 };
 
-export const updatePost = (postId, postData) => {
+export const updatePost = (postId, postData) => { 
   return api.put(`/community/post/${postId}`, postData);
 };
 
@@ -73,5 +73,9 @@ export const fetchBlocks = () => {
 };
 
 export const uploadPostImage = (postId, imageData) => {
-  return api.post(`/community/post/${postId}/s3/upload`, imageData);
+  return api.post(`/community/post/${postId}/s3/upload`, imageData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
 };
