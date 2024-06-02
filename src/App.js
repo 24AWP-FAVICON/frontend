@@ -11,26 +11,32 @@ import LoginSuccess from "./pages/login/LoginSuccess";
 import Dashboard from "./pages/login/Dashboard";
 import "./Frontend_API";
 import "./App.css";
+import { LoadScript } from "@react-google-maps/api";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Section />} />
-            <Route path="/sns" element={<SNS />} />
-            <Route path="/plan" element={<Plan />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/login/success" element={<LoginSuccess />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <LoadScript
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+      libraries={["places"]}
+    >
+      <Router>
+        <div className="App">
+          <Header />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Section />} />
+              <Route path="/sns" element={<SNS />} />
+              <Route path="/plan" element={<Plan />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/login/success" element={<LoginSuccess />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LoadScript>
   );
 }
 

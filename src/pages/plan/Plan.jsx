@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import Sidebar from "./Sidebar";
 import "./Plan.css";
 
@@ -74,10 +74,6 @@ function Plan() {
     }
   }, [center]);
 
-  const handleLoadError = (error) => {
-    console.error("Error loading Google Maps API script:", error);
-  };
-
   if (!center) {
     return <div>지도를 표시할 위치 정보가 없습니다.</div>;
   }
@@ -86,41 +82,35 @@ function Plan() {
     <div className="plan-container flex-initial">
       <Sidebar placesData={placesData} locationName={location.state.locationName} />
       <div className="map">
-        <LoadScript
-          googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-          libraries={["places"]}
-          onError={handleLoadError}
-        >
-          <div className="map flex align-middle justify-center" style={{ width: "100%", height: "100%" }}>
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={center}
-              zoom={15}
-              onLoad={onLoad}
-              onDragEnd={handleDragEnd}
-            >
-              {places.map((place) => (
-                <Marker
-                  key={place.place_id}
-                  position={{ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }}
-                  onClick={() => setSelectedPlace(place)}
-                />
-              ))}
+        <div className="map flex align-middle justify-center" style={{ width: "100%", height: "100%" }}>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={15}
+            onLoad={onLoad}
+            onDragEnd={handleDragEnd}
+          >
+            {places.map((place) => (
+              <Marker
+                key={place.place_id}
+                position={{ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }}
+                onClick={() => setSelectedPlace(place)}
+              />
+            ))}
 
-              {selectedPlace && (
-                <InfoWindow
-                  position={{ lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng() }}
-                  onCloseClick={() => setSelectedPlace(null)}
-                >
-                  <div>
-                    <h2>{selectedPlace.name}</h2>
-                    <p>{selectedPlace.vicinity}</p>
-                  </div>
-                </InfoWindow>
-              )}
-            </GoogleMap>
-          </div>
-        </LoadScript>
+            {selectedPlace && (
+              <InfoWindow
+                position={{ lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng() }}
+                onCloseClick={() => setSelectedPlace(null)}
+              >
+                <div>
+                  <h2>{selectedPlace.name}</h2>
+                  <p>{selectedPlace.vicinity}</p>
+                </div>
+              </InfoWindow>
+            )}
+          </GoogleMap>
+        </div>
       </div>
     </div>
   );
