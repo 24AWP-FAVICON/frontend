@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Front-End Features Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. Home
+**Purpose**: The main page for creating travel plans. Users can search for a destination or click on a country/region to start planning. Alternatively, they can select a card at the bottom to proceed.
 
-## Available Scripts
+## 2. Community
+**Purpose**: A space to upload and share travel experiences. Includes functionalities for liking, commenting, and attaching photos.
 
-In the project directory, you can run:
+## 3. SNS
+**Purpose**: Personal messaging feature where users can send direct messages.
 
-### `npm start`
+## 4. Plan
+**Purpose**: Feature for creating detailed travel plans. Integrates Google Maps API for location search and addition.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 5. Login
+**Purpose**: Uses Google OAuth2 for user registration and login.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+### 1. Home
+(Include an image of the Home screen here)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Community
+(Include an image of the Community screen here)
 
-### `npm run build`
+### 3. SNS
+(Include an image of the SNS screen here)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 4. Plan
+(Include an image of the Plan screen here)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 5. Login
+(Include an image of the Login screen here)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Development Contributions
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Feature   | Developer   | Description                                      |
+|-----------|-------------|--------------------------------------------------|
+| Home      | 박재민 | Implemented the main travel planning interface   |
+| Community | 박재민 | Created the social sharing functionalities       |
+| SNS       | 김민재 | Developed the direct messaging feature           |
+| Plan      | 양지훈 | Integrated Google Maps API for travel planning   |
+| Login     | 박재민 | Implemented OAuth2 social login using Google     |
