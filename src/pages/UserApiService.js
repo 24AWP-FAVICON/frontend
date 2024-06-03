@@ -1,4 +1,3 @@
-// UserApiService.js
 import api from '.././Frontend_API';
 
 export const fetchUserInfo = () => {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import NotificationList from "./NotificationList";
+import './Header.css';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -72,7 +73,8 @@ const Header = () => {
           to="/"
           className="flex title-font font-medium items-center text-headerTextColor mb-4 md:mb-0"
         >
-          <span className="ml-3 text-3xl font-bold">Favicon</span>
+          <img src={`${process.env.PUBLIC_URL}/HeaderLogo.png`} className="logo-image" alt="Logo"/>
+          <span className="ml-3 text-3xl font-bold logo-text">TOUS</span>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center w-full md:w-auto">
           <Link
