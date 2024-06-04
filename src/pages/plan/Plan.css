@@ -1,0 +1,20 @@
+/* Plan.jsx */
+body{
+  -webkit-user-select: none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+.map{
+  position:relative;
+  width: 100%;
+  height: 100%;
+  top:0;
+  right: 0%;
+  z-index:1;
+}
+
+.plan-container {
+  display: flex;
+}

@@ -1,0 +1,1687 @@
+{
+  "서울": [
+    {
+      "name": "경복궁",
+      "address": "서울 종로구 사직로 161",
+      "description": "조선 왕조의 법궁으로 대한민국 국보 제223호로 지정된 곳."
+    },
+    {
+      "name": "남산서울타워",
+      "address": "서울 용산구 남산공원길 105",
+      "description": "서울의 랜드마크로 아름다운 야경과 전망을 즐길 수 있는 타워."
+    },
+    {
+      "name": "명동",
+      "address": "서울 중구 명동길",
+      "description": "서울의 대표적인 쇼핑 거리로 다양한 쇼핑몰과 맛집이 밀집한 지역."
+    },
+    {
+      "name": "북촌한옥마을",
+      "address": "서울 종로구 계동길 37",
+      "description": "전통 한옥이 잘 보존된 마을로 한국의 전통문화를 체험할 수 있는 곳."
+    },
+    {
+      "name": "인사동",
+      "address": "서울 종로구 인사동길",
+      "description": "한국 전통 공예품과 예술품을 만날 수 있는 문화 거리."
+    },
+    {
+      "name": "동대문디자인플라자",
+      "address": "서울 중구 을지로 281",
+      "description": "현대적 디자인과 전시가 어우러진 복합 문화 공간."
+    },
+    {
+      "name": "청계천",
+      "address": "서울 종로구 청계천로",
+      "description": "서울 도심을 가로지르는 도심 속 휴식 공간."
+    },
+    {
+      "name": "이태원",
+      "address": "서울 용산구 이태원로",
+      "description": "다양한 국제적 문화를 경험할 수 있는 거리."
+    },
+    {
+      "name": "홍대거리",
+      "address": "서울 마포구 홍익로",
+      "description": "젊음과 예술의 거리로 유명한 곳."
+    },
+    {
+      "name": "롯데월드타워",
+      "address": "서울 송파구 올림픽로 300",
+      "description": "세계에서 다섯 번째로 높은 타워로 쇼핑, 레저, 호텔이 한곳에 모여있는 복합 공간."
+    },
+    {
+      "name": "창덕궁",
+      "address": "서울 종로구 율곡로 99",
+      "description": "유네스코 세계문화유산으로 지정된 조선 시대 궁궐."
+    },
+    {
+      "name": "광장시장",
+      "address": "서울 종로구 창경궁로 88",
+      "description": "다양한 전통 음식을 맛볼 수 있는 전통 시장."
+    },
+    {
+      "name": "한강공원",
+      "address": "서울 여러 위치",
+      "description": "서울 도심 속 강변 휴식 공간으로 다양한 레저 활동 가능."
+    },
+    {
+      "name": "삼청동",
+      "address": "서울 종로구 삼청로",
+      "description": "아기자기한 카페와 갤러리가 모여있는 거리."
+    },
+    {
+      "name": "도산공원",
+      "address": "서울 강남구 도산대로 45길 20",
+      "description": "한국의 독립운동가 도산 안창호를 기리기 위해 조성된 공원."
+    },
+    {
+      "name": "서울숲",
+      "address": "서울 성동구 뚝섬로 273",
+      "description": "도심 속 자연을 즐길 수 있는 대형 공원."
+    },
+    {
+      "name": "서울시청광장",
+      "address": "서울 중구 세종대로 110",
+      "description": "다양한 문화 행사가 열리는 서울의 중심 광장."
+    },
+    {
+      "name": "보신각",
+      "address": "서울 종로구 종로 54",
+      "description": "매년 제야의 종 타종식이 열리는 전통 유적지."
+    },
+    {
+      "name": "국립중앙박물관",
+      "address": "서울 용산구 서빙고로 137",
+      "description": "한국의 역사와 문화를 한눈에 볼 수 있는 박물관."
+    },
+    {
+      "name": "경희궁",
+      "address": "서울 종로구 새문안로 45",
+      "description": "조선 시대의 궁궐로 고궁의 아름다움을 느낄 수 있는 곳."
+    },
+    {
+      "name": "63빌딩",
+      "address": "서울 영등포구 여의대로 50",
+      "description": "한강을 조망할 수 있는 전망대와 다양한 엔터테인먼트 시설을 갖춘 빌딩."
+    },
+    {
+      "name": "N서울타워",
+      "address": "서울 용산구 남산공원길 105",
+      "description": "서울의 전경을 한눈에 볼 수 있는 전망대."
+    },
+    {
+      "name": "코엑스",
+      "address": "서울 강남구 영동대로 513",
+      "description": "국제적인 전시회와 행사가 열리는 대형 전시 컨벤션 센터."
+    },
+    {
+      "name": "선유도공원",
+      "address": "서울 영등포구 선유로 343",
+      "description": "한강 위의 생태 공원."
+    },
+    {
+      "name": "서대문형무소역사관",
+      "address": "서울 서대문구 통일로 251",
+      "description": "일제 강점기 독립운동가들이 수감되었던 형무소를 재현한 역사관."
+    },
+    {
+      "name": "봉은사",
+      "address": "서울 강남구 봉은사로 531",
+      "description": "서울 도심 속에서 전통 불교문화를 체험할 수 있는 사찰."
+    },
+    {
+      "name": "쌈지길",
+      "address": "서울 종로구 인사동길 44",
+      "description": "인사동의 대표적인 복합 쇼핑몰."
+    },
+    {
+      "name": "서울대공원",
+      "address": "서울 과천시 대공원광장로 102",
+      "description": "동물원, 식물원, 놀이공원이 모여있는 대형 공원."
+    },
+    {
+      "name": "동묘벼룩시장",
+      "address": "서울 종로구 종로 358",
+      "description": "다양한 중고품과 골동품을 구경할 수 있는 벼룩시장."
+    },
+    {
+      "name": "탑골공원",
+      "address": "서울 종로구 종로 99",
+      "description": "대한민국 최초의 근대식 공원으로 역사의 숨결을 느낄 수 있는 곳."
+    }
+  ],
+  "부산": [
+    {
+      "name": "해운대 해수욕장",
+      "address": "부산 해운대구 해운대해변로 264",
+      "description": "부산의 대표적인 해변으로 다양한 해양 스포츠와 축제가 열리는 곳."
+    },
+    {
+      "name": "광안리 해수욕장",
+      "address": "부산 수영구 광안해변로 219",
+      "description": "아름다운 광안대교가 보이는 해변으로 야경이 유명한 곳."
+    },
+    {
+      "name": "태종대",
+      "address": "부산 영도구 전망로 24",
+      "description": "절벽과 숲이 어우러진 자연 경관이 아름다운 국립공원."
+    },
+    {
+      "name": "부산타워",
+      "address": "부산 중구 용두산길 37-55",
+      "description": "부산의 전경을 한눈에 볼 수 있는 전망 타워."
+    },
+    {
+      "name": "자갈치 시장",
+      "address": "부산 중구 자갈치해안로 52",
+      "description": "부산을 대표하는 수산 시장으로 신선한 해산물을 만날 수 있는 곳."
+    },
+    {
+      "name": "감천문화마을",
+      "address": "부산 사하구 감내2로 203",
+      "description": "알록달록한 집들이 모여있는 예술 마을."
+    },
+    {
+      "name": "부산국제영화제",
+      "address": "부산 해운대구 수영강변대로 120",
+      "description": "매년 열리는 국제 영화제로 유명한 부산의 대표 행사."
+    },
+    {
+      "name": "동백섬",
+      "address": "부산 해운대구 동백로 99",
+      "description": "아름다운 자연 경관과 산책로가 있는 섬."
+    },
+    {
+      "name": "해동용궁사",
+      "address": "부산 기장군 기장읍 용궁길 86",
+      "description": "바다를 배경으로 한 아름다운 절."
+    },
+    {
+      "name": "부산 아쿠아리움",
+      "address": "부산 해운대구 해운대해변로 266",
+      "description": "다양한 해양 생물을 만날 수 있는 대형 아쿠아리움."
+    },
+    {
+      "name": "송도 해수욕장",
+      "address": "부산 서구 암남공원로 100",
+      "description": "한국 최초의 공설 해수욕장으로 유명한 해변."
+    },
+    {
+      "name": "용두산 공원",
+      "address": "부산 중구 용두산길 37-30",
+      "description": "부산타워가 위치한 공원으로 부산의 전망을 즐길 수 있는 곳."
+    },
+    {
+      "name": "국제시장",
+      "address": "부산 중구 신창동4가 21",
+      "description": "다양한 물건들을 저렴하게 살 수 있는 전통 시장."
+    },
+    {
+      "name": "부산대교",
+      "address": "부산 중구 대교로 122",
+      "description": "부산항을 연결하는 주요 다리로 야경이 아름다운 곳."
+    },
+    {
+      "name": "누리마루 APEC 하우스",
+      "address": "부산 해운대구 동백로 116",
+      "description": "2005년 APEC 정상 회의가 열렸던 장소로 유명."
+    },
+    {
+      "name": "부산시민공원",
+      "address": "부산 부산진구 새싹로 295",
+      "description": "넓은 녹지와 다양한 편의시설을 갖춘 공원."
+    },
+    {
+      "name": "부산 현대미술관",
+      "address": "부산 사하구 낙동남로 1191",
+      "description": "현대미술 작품을 감상할 수 있는 미술관."
+    },
+    {
+      "name": "송정 해수욕장",
+      "address": "부산 해운대구 송정광어골로 58-1",
+      "description": "서핑으로 유명한 깨끗한 해변."
+    },
+    {
+      "name": "부산항대교",
+      "address": "부산 영도구 봉래동 3가",
+      "description": "부산의 새로운 랜드마크로 떠오르는 대교."
+    },
+    {
+      "name": "부산박물관",
+      "address": "부산 남구 유엔평화로 63",
+      "description": "부산의 역사와 문화를 한눈에 볼 수 있는 박물관."
+    },
+    {
+      "name": "광복동 거리",
+      "address": "부산 중구 광복로",
+      "description": "부산의 대표적인 쇼핑 거리."
+    },
+    {
+      "name": "해운대 달맞이길",
+      "address": "부산 해운대구 달맞이길",
+      "description": "아름다운 해안도로와 벚꽃으로 유명한 산책로."
+    },
+    {
+      "name": "범어사",
+      "address": "부산 금정구 범어사로 250",
+      "description": "신라 시대에 창건된 유서 깊은 사찰."
+    },
+    {
+      "name": "영도대교",
+      "address": "부산 중구 영도대교로",
+      "description": "부산의 상징적인 다리로 도개교로 유명."
+    },
+    {
+      "name": "부산 해양자연사박물관",
+      "address": "부산 동래구 우장춘로 175",
+      "description": "해양 생물과 자연사를 전시하는 박물관."
+    },
+    {
+      "name": "부산어린이대공원",
+      "address": "부산 부산진구 초읍천로 139",
+      "description": "다양한 놀이 시설과 동물원이 있는 공원."
+    },
+    {
+      "name": "송도 스카이워크",
+      "address": "부산 서구 암남동 129-4",
+      "description": "해변을 따라 걷는 산책로로 바다 위를 걷는 듯한 느낌을 주는 곳."
+    },
+    {
+      "name": "흰여울문화마을",
+      "address": "부산 영도구 영선동4가 605",
+      "description": "벽화와 예술작품이 가득한 해안가 마을."
+    },
+    {
+      "name": "다대포 해수욕장",
+      "address": "부산 사하구 몰운대1길 14",
+      "description": "넓은 백사장과 아름다운 일몰로 유명한 해변."
+    },
+    {
+      "name": "오륙도 스카이워크",
+      "address": "부산 남구 오륙도로 137",
+      "description": "바다 위를 걷는 스릴을 체험할 수 있는 유리 바닥 다리."
+    }
+  ],
+  "제주": [
+    {
+      "name": "한라산 국립공원",
+      "address": "제주특별자치도 제주시 1100로 2070-61",
+      "description": "제주의 중심에 위치한 산으로 다양한 등산로와 아름다운 경관을 제공."
+    },
+    {
+      "name": "성산일출봉",
+      "address": "제주특별자치도 서귀포시 성산읍 성산리 1",
+      "description": "유네스코 세계자연유산으로 지정된 곳으로 일출이 아름다운 명소."
+    },
+    {
+      "name": "우도",
+      "address": "제주특별자치도 제주시 우도면",
+      "description": "아름다운 해변과 독특한 자연 경관을 자랑하는 섬."
+    },
+    {
+      "name": "섭지코지",
+      "address": "제주특별자치도 서귀포시 성산읍 섭지코지로 107",
+      "description": "드라마와 영화 촬영지로 유명한 해안 경관이 아름다운 곳."
+    },
+    {
+      "name": "천지연 폭포",
+      "address": "제주특별자치도 서귀포시 천지연로 132",
+      "description": "한국에서 가장 유명한 폭포 중 하나로 야경이 아름다운 곳."
+    },
+    {
+      "name": "만장굴",
+      "address": "제주특별자치도 제주시 구좌읍 만장굴길 182",
+      "description": "세계에서 가장 긴 용암 동굴 중 하나로 유네스코 세계자연유산."
+    },
+    {
+      "name": "제주 민속촌",
+      "address": "제주특별자치도 서귀포시 표선면 민속해안로 631-34",
+      "description": "제주의 전통 문화를 체험할 수 있는 민속 박물관."
+    },
+    {
+      "name": "용두암",
+      "address": "제주특별자치도 제주시 용담이동",
+      "description": "용의 머리를 닮은 바위로 유명한 해안 절경."
+    },
+    {
+      "name": "서귀포 잠수함",
+      "address": "제주특별자치도 서귀포시 칠십리로 50",
+      "description": "실제 잠수함을 타고 바다 속을 탐험할 수 있는 관광 명소."
+    },
+    {
+      "name": "한림공원",
+      "address": "제주특별자치도 제주시 한림읍 한림로 300",
+      "description": "다양한 식물과 동굴, 정원이 있는 자연 공원."
+    },
+    {
+      "name": "주상절리대",
+      "address": "제주특별자치도 서귀포시 이어도로 36-30",
+      "description": "해안 절벽을 따라 형성된 독특한 주상절리 지형."
+    },
+    {
+      "name": "한담해안산책로",
+      "address": "제주특별자치도 제주시 애월읍 곽지리",
+      "description": "아름다운 해안선을 따라 걷는 산책로."
+    },
+    {
+      "name": "제주 오설록 티뮤지엄",
+      "address": "제주특별자치도 서귀포시 안덕면 신화역사로 15",
+      "description": "녹차와 관련된 다양한 전시와 체험을 할 수 있는 곳."
+    },
+    {
+      "name": "에코랜드 테마파크",
+      "address": "제주특별자치도 제주시 조천읍 번영로 1278-169",
+      "description": "기차를 타고 자연 속을 탐험할 수 있는 테마파크."
+    },
+    {
+      "name": "제주 러브랜드",
+      "address": "제주특별자치도 제주시 1100로 2894-72",
+      "description": "성 테마 공원으로 성인들에게 인기가 많은 관광지."
+    },
+    {
+      "name": "비자림",
+      "address": "제주특별자치도 제주시 구좌읍 비자숲길 55",
+      "description": "비자나무 숲이 우거진 자연 보호 구역."
+    },
+    {
+      "name": "김녕미로공원",
+      "address": "제주특별자치도 제주시 구좌읍 만장굴길 122",
+      "description": "재미있는 미로 체험을 할 수 있는 공원."
+    },
+    {
+      "name": "협재해수욕장",
+      "address": "제주특별자치도 제주시 한림읍 협재리",
+      "description": "맑은 물과 아름다운 백사장으로 유명한 해수욕장."
+    },
+    {
+      "name": "함덕해수욕장",
+      "address": "제주특별자치도 제주시 조천읍 함덕리",
+      "description": "에메랄드빛 바다와 넓은 백사장이 있는 해수욕장."
+    },
+    {
+      "name": "산굼부리",
+      "address": "제주특별자치도 서귀포시 표선면 가시리 산 183-2",
+      "description": "화산 폭발로 형성된 분화구로 아름다운 자연 경관."
+    },
+    {
+      "name": "천제연 폭포",
+      "address": "제주특별자치도 서귀포시 천제연로 132",
+      "description": "아름다운 세 개의 폭포와 주변의 자연 경관이 어우러진 곳."
+    },
+    {
+      "name": "돌하르방 공원",
+      "address": "제주특별자치도 제주시 조천읍 북촌리 976",
+      "description": "제주의 상징인 돌하르방을 주제로 한 공원."
+    },
+    {
+      "name": "이중섭 미술관",
+      "address": "제주특별자치도 서귀포시 이중섭로 27-3",
+      "description": "한국의 유명한 화가 이중섭의 작품을 전시한 미술관."
+    },
+    {
+      "name": "천지연 난대림",
+      "address": "제주특별자치도 서귀포시 천지연로 132",
+      "description": "난대림과 폭포가 어우러진 자연 휴양림."
+    },
+    {
+      "name": "제주 테디베어 박물관",
+      "address": "제주특별자치도 서귀포시 중문관광로 110",
+      "description": "다양한 테디베어를 전시한 박물관."
+    },
+    {
+      "name": "제주 바다체험장",
+      "address": "제주특별자치도 서귀포시 성산읍 신양리",
+      "description": "다양한 해양 스포츠와 체험 활동을 즐길 수 있는 곳."
+    },
+    {
+      "name": "한라수목원",
+      "address": "제주특별자치도 제주시 수목원길 72",
+      "description": "다양한 식물과 자연을 감상할 수 있는 수목원."
+    },
+    {
+      "name": "소인국 테마파크",
+      "address": "제주특별자치도 서귀포시 안덕면 서광리 산 41번지",
+      "description": "세계의 유명 건축물을 미니어처로 전시한 테마파크."
+    },
+    {
+      "name": "제주 아쿠아플라넷",
+      "address": "제주특별자치도 서귀포시 성산읍 섭지코지로 95",
+      "description": "다양한 해양 생물을 만날 수 있는 대형 아쿠아리움."
+    },
+    {
+      "name": "제주 돌문화공원",
+      "address": "제주특별자치도 제주시 조천읍 남조로 2023",
+      "description": "제주의 돌 문화를 주제로 한 공원."
+    }
+  ],
+  "인천": [
+    {
+      "name": "인천 차이나타운",
+      "address": "인천 중구 차이나타운로 38",
+      "description": "다양한 중국 문화와 음식을 체험할 수 있는 차이나타운."
+    },
+    {
+      "name": "송도 센트럴파크",
+      "address": "인천 연수구 컨벤시아대로 160",
+      "description": "현대적인 도시 속에 조성된 대규모 공원으로, 산책로와 수로가 아름다운 곳."
+    },
+    {
+      "name": "월미도",
+      "address": "인천 중구 월미문화로 36",
+      "description": "다양한 놀이기구와 해변 산책로가 있는 인기 해양 레저 명소."
+    },
+    {
+      "name": "강화도",
+      "address": "인천 강화군 강화읍 강화대로",
+      "description": "역사적 유적지와 자연 경관이 어우러진 섬."
+    },
+    {
+      "name": "송월동 동화마을",
+      "address": "인천 중구 송월동3가",
+      "description": "다양한 동화 속 이야기를 테마로 한 벽화 마을."
+    },
+    {
+      "name": "인천대교",
+      "address": "인천 연수구 인천대교고속도로",
+      "description": "인천과 영종도를 연결하는 대교로, 야경이 아름다운 곳."
+    },
+    {
+      "name": "인천 아트플랫폼",
+      "address": "인천 중구 제물량로218번길 3",
+      "description": "다양한 문화 예술 프로그램이 열리는 복합 문화 공간."
+    },
+    {
+      "name": "인천 상륙작전 기념관",
+      "address": "인천 연수구 청량로160번길 26",
+      "description": "6.25 전쟁 당시 인천 상륙작전을 기념하는 기념관."
+    },
+    {
+      "name": "연안부두",
+      "address": "인천 중구 연안부두로 33",
+      "description": "신선한 해산물을 맛볼 수 있는 어시장과 여객 터미널이 있는 곳."
+    },
+    {
+      "name": "경인아라뱃길",
+      "address": "인천 서구 정서진로 55",
+      "description": "서울과 인천을 연결하는 인공 수로로, 다양한 레저 활동이 가능."
+    },
+    {
+      "name": "송도 컨벤시아",
+      "address": "인천 연수구 센트럴로 123",
+      "description": "국제적인 컨벤션 센터로 다양한 행사와 전시회가 열리는 곳."
+    },
+    {
+      "name": "인천 어린이 과학관",
+      "address": "인천 연수구 경원대로 526",
+      "description": "어린이들이 과학을 재미있게 배울 수 있는 체험형 과학관."
+    },
+    {
+      "name": "인천 문학경기장",
+      "address": "인천 미추홀구 매소홀로 618",
+      "description": "다양한 스포츠 경기가 열리는 대규모 종합운동장."
+    },
+    {
+      "name": "인천 연수구 석산도서관",
+      "address": "인천 연수구 동춘동 926-7",
+      "description": "다양한 도서와 자료를 이용할 수 있는 지역 도서관."
+    },
+    {
+      "name": "인천대공원",
+      "address": "인천 남동구 무네미로 236",
+      "description": "넓은 녹지와 다양한 놀이 시설이 있는 도시 공원."
+    },
+    {
+      "name": "배다리 헌책방 거리",
+      "address": "인천 동구 금곡로 2",
+      "description": "다양한 헌책방이 모여 있는 문화 거리."
+    },
+    {
+      "name": "을왕리 해수욕장",
+      "address": "인천 중구 을왕동",
+      "description": "아름다운 해변과 다양한 해양 스포츠를 즐길 수 있는 곳."
+    },
+    {
+      "name": "차이나타운 박물관",
+      "address": "인천 중구 선린동길 12",
+      "description": "중국 문화와 역사를 소개하는 박물관."
+    },
+    {
+      "name": "인천개항박물관",
+      "address": "인천 중구 신포로23번길 89",
+      "description": "인천의 개항 역사와 관련된 유물을 전시하는 박물관."
+    },
+    {
+      "name": "인천 도호부청사",
+      "address": "인천 남구 경원대로 325번길 14",
+      "description": "조선시대 인천 도호부의 행정청사로, 역사적 가치가 높은 곳."
+    },
+    {
+      "name": "강화평화전망대",
+      "address": "인천 강화군 양사면 강화대로 797",
+      "description": "북한과 인접한 지역으로, 평화와 통일을 염원하는 전망대."
+    },
+    {
+      "name": "인천 나비공원",
+      "address": "인천 연수구 청량로 161",
+      "description": "다양한 나비와 식물을 관찰할 수 있는 생태 공원."
+    },
+    {
+      "name": "백령도",
+      "address": "인천 옹진군 백령면",
+      "description": "서해 5도 중 하나로, 아름다운 자연경관을 자랑하는 섬."
+    },
+    {
+      "name": "덕적도",
+      "address": "인천 옹진군 덕적면",
+      "description": "맑은 바다와 다양한 해양 레저를 즐길 수 있는 섬."
+    },
+    {
+      "name": "인천 대청도",
+      "address": "인천 옹진군 대청면",
+      "description": "맑은 물과 다양한 해양 생물이 서식하는 자연 보호 구역."
+    },
+    {
+      "name": "인천 국제공항",
+      "address": "인천 중구 공항로 271",
+      "description": "세계적인 허브 공항으로 다양한 편의시설과 쇼핑몰이 있는 곳."
+    },
+    {
+      "name": "인천상상놀이터",
+      "address": "인천 연수구 송도동",
+      "description": "아이들이 다양한 놀이를 통해 상상력을 키울 수 있는 곳."
+    },
+    {
+      "name": "송도 해상케이블카",
+      "address": "인천 중구 북성동1가 102-3",
+      "description": "바다 위를 가로지르는 케이블카로 송도의 아름다운 전경을 감상할 수 있음."
+    },
+    {
+      "name": "인천 상륙작전기념탑",
+      "address": "인천 연수구 옥련동 779-7",
+      "description": "6.25 전쟁 당시 인천 상륙작전을 기념하는 탑."
+    },
+    {
+      "name": "인천 로봇랜드",
+      "address": "인천 서구 로봇랜드로 20",
+      "description": "다양한 로봇 체험과 전시를 즐길 수 있는 테마파크."
+    }
+  ],
+  "대전": [
+    {
+      "name": "한밭수목원",
+      "address": "대전광역시 서구 둔산대로 169",
+      "description": "다양한 식물과 자연을 감상할 수 있는 도시 속의 수목원."
+    },
+    {
+      "name": "대전 엑스포 과학공원",
+      "address": "대전광역시 유성구 엑스포로 2",
+      "description": "과학기술을 체험할 수 있는 다양한 전시와 활동이 있는 공원."
+    },
+    {
+      "name": "계족산 황톳길",
+      "address": "대전광역시 대덕구 장동",
+      "description": "자연 속에서 황톳길을 맨발로 걸으며 힐링할 수 있는 산책로."
+    },
+    {
+      "name": "대전 오월드",
+      "address": "대전광역시 중구 사정공원로 70",
+      "description": "동물원과 놀이공원이 결합된 복합 테마파크."
+    },
+    {
+      "name": "동춘당공원",
+      "address": "대전광역시 대덕구 동춘당로 80",
+      "description": "조선 시대 학자인 송시열의 별장을 중심으로 조성된 공원."
+    },
+    {
+      "name": "장태산 자연휴양림",
+      "address": "대전광역시 서구 장안로 461",
+      "description": "울창한 숲과 다양한 산책로가 있는 자연 휴양림."
+    },
+    {
+      "name": "대전시립미술관",
+      "address": "대전광역시 서구 둔산대로 155",
+      "description": "현대 미술 작품을 감상할 수 있는 시립 미술관."
+    },
+    {
+      "name": "솔로몬 로파크",
+      "address": "대전광역시 유성구 엑스포로 219-39",
+      "description": "법과 관련된 체험을 할 수 있는 교육 테마파크."
+    },
+    {
+      "name": "지질박물관",
+      "address": "대전광역시 유성구 과학로 124",
+      "description": "다양한 지질학적 자료와 전시를 볼 수 있는 박물관."
+    },
+    {
+      "name": "한밭대학교 미술관",
+      "address": "대전광역시 유성구 덕명동 산16-1",
+      "description": "다양한 미술 작품을 전시하는 대학 미술관."
+    },
+    {
+      "name": "대전아쿠아리움",
+      "address": "대전광역시 유성구 도룡동 3-1",
+      "description": "다양한 해양 생물을 볼 수 있는 아쿠아리움."
+    },
+    {
+      "name": "대청호",
+      "address": "대전광역시 동구 추동",
+      "description": "아름다운 호수 경관과 다양한 레저 활동을 즐길 수 있는 곳."
+    },
+    {
+      "name": "대전천문대",
+      "address": "대전광역시 유성구 과학로 213-48",
+      "description": "별과 우주를 관측할 수 있는 천문대."
+    },
+    {
+      "name": "대전시민천문대",
+      "address": "대전광역시 유성구 과학로 213-48",
+      "description": "시민들이 천문 관측을 할 수 있는 시설을 갖춘 천문대."
+    },
+    {
+      "name": "대전컨벤션센터",
+      "address": "대전광역시 유성구 엑스포로 107",
+      "description": "국제적인 회의와 전시가 열리는 컨벤션센터."
+    },
+    {
+      "name": "대전둔산대공원",
+      "address": "대전광역시 서구 둔산동",
+      "description": "도심 속에서 자연을 즐길 수 있는 대형 공원."
+    },
+    {
+      "name": "국립중앙과학관",
+      "address": "대전광역시 유성구 대덕대로 481",
+      "description": "과학기술에 대한 다양한 전시와 체험을 할 수 있는 곳."
+    },
+    {
+      "name": "대전중앙시장",
+      "address": "대전광역시 동구 중앙로 200",
+      "description": "다양한 상품과 먹거리를 만날 수 있는 전통 시장."
+    },
+    {
+      "name": "대전무역전시관",
+      "address": "대전광역시 유성구 도룡동 3-8",
+      "description": "다양한 전시와 무역 행사가 열리는 전시관."
+    },
+    {
+      "name": "대전창작센터",
+      "address": "대전광역시 중구 중앙로 32",
+      "description": "현대 미술 작품을 창작하고 전시하는 공간."
+    },
+    {
+      "name": "대전 한빛탑",
+      "address": "대전광역시 유성구 대덕대로 480",
+      "description": "대전 엑스포의 상징으로, 전망대에서 대전 시내를 조망할 수 있음."
+    },
+    {
+      "name": "유성온천",
+      "address": "대전광역시 유성구 온천로 101",
+      "description": "역사가 깊은 온천 지역으로, 다양한 온천 시설이 있음."
+    },
+    {
+      "name": "대전 동물원",
+      "address": "대전광역시 중구 사정공원로 70",
+      "description": "다양한 동물을 볼 수 있는 동물원."
+    },
+    {
+      "name": "연정국악문화회관",
+      "address": "대전광역시 서구 둔산대로 117",
+      "description": "한국 전통 음악과 공연을 즐길 수 있는 문화 공간."
+    },
+    {
+      "name": "대전우체국",
+      "address": "대전광역시 중구 중앙로 101",
+      "description": "대전의 대표적인 역사적 건축물 중 하나."
+    },
+    {
+      "name": "대전예술의전당",
+      "address": "대전광역시 서구 둔산대로 135",
+      "description": "다양한 예술 공연이 열리는 문화 예술의 중심지."
+    },
+    {
+      "name": "대전역사박물관",
+      "address": "대전광역시 중구 중앙로 141",
+      "description": "대전의 역사와 문화를 한눈에 볼 수 있는 박물관."
+    },
+    {
+      "name": "대전사이언스콤플렉스",
+      "address": "대전광역시 유성구 엑스포로 123",
+      "description": "과학과 기술을 체험할 수 있는 복합 공간."
+    },
+    {
+      "name": "대전평생학습관",
+      "address": "대전광역시 서구 둔산로 100",
+      "description": "다양한 평생 교육 프로그램을 제공하는 학습관."
+    },
+    {
+      "name": "계룡산 국립공원",
+      "address": "대전광역시 유성구 계룡로 601",
+      "description": "아름다운 산과 계곡을 자랑하는 국립공원."
+    }
+  ],
+  "도쿄": [
+    {
+      "name": "도쿄 타워",
+      "address": "4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan",
+      "description": "도쿄의 대표적인 랜드마크로, 도심을 한눈에 볼 수 있는 전망대."
+    },
+    {
+      "name": "도쿄 스카이트리",
+      "address": "1 Chome-1-2 Oshiage, Sumida City, Tokyo 131-0045, Japan",
+      "description": "세계에서 가장 높은 타워로, 멋진 전망과 쇼핑, 식사를 즐길 수 있는 곳."
+    },
+    {
+      "name": "메이지 신궁",
+      "address": "1-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-8557, Japan",
+      "description": "도쿄의 중심에 위치한 평화로운 신사로, 자연 경관이 아름다운 곳."
+    },
+    {
+      "name": "센소지",
+      "address": "2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan",
+      "description": "아사쿠사에 위치한 도쿄에서 가장 오래된 불교 사찰."
+    },
+    {
+      "name": "시부야 교차로",
+      "address": "2 Chome-2-1 Dogenzaka, Shibuya City, Tokyo 150-0043, Japan",
+      "description": "세계에서 가장 붐비는 교차로로, 시부야의 활기찬 분위기를 느낄 수 있는 곳."
+    },
+    {
+      "name": "도쿄 디즈니랜드",
+      "address": "1-1 Maihama, Urayasu, Chiba 279-0031, Japan",
+      "description": "아이들과 어른 모두 즐길 수 있는 인기 테마파크."
+    },
+    {
+      "name": "긴자",
+      "address": "Chuo City, Tokyo 104-0061, Japan",
+      "description": "고급 쇼핑과 식사, 엔터테인먼트를 즐길 수 있는 도쿄의 유명한 거리."
+    },
+    {
+      "name": "오다이바",
+      "address": "Daiba, Minato City, Tokyo 135-0091, Japan",
+      "description": "도쿄 만에 위치한 인기 있는 인공 섬으로, 다양한 쇼핑과 오락시설을 제공."
+    },
+    {
+      "name": "우에노 공원",
+      "address": "Uenokoen, Taito City, Tokyo 110-0007, Japan",
+      "description": "다양한 박물관과 동물원, 아름다운 정원이 있는 공원."
+    },
+    {
+      "name": "아키하바라",
+      "address": "Sotokanda, Chiyoda City, Tokyo 101-0021, Japan",
+      "description": "전자 제품과 애니메이션, 만화 팬들에게 인기 있는 쇼핑 지역."
+    },
+    {
+      "name": "롯폰기 힐즈",
+      "address": "6 Chome-10-1 Roppongi, Minato City, Tokyo 106-6108, Japan",
+      "description": "고급 쇼핑몰과 미술관, 전망대가 있는 복합 건물."
+    },
+    {
+      "name": "쓰키지 시장",
+      "address": "5 Chome-2-1 Tsukiji, Chuo City, Tokyo 104-0045, Japan",
+      "description": "신선한 해산물과 스시를 맛볼 수 있는 유명한 시장."
+    },
+    {
+      "name": "신주쿠 교엔",
+      "address": "11 Naitomachi, Shinjuku City, Tokyo 160-0014, Japan",
+      "description": "넓고 아름다운 일본식 정원이 있는 공원."
+    },
+    {
+      "name": "도쿄 국립 박물관",
+      "address": "13-9 Uenokoen, Taito City, Tokyo 110-8712, Japan",
+      "description": "일본의 역사와 문화를 소개하는 박물관."
+    },
+    {
+      "name": "가부키자 극장",
+      "address": "4 Chome-12-15 Ginza, Chuo City, Tokyo 104-0061, Japan",
+      "description": "전통 일본 연극 가부키를 감상할 수 있는 극장."
+    },
+    {
+      "name": "도쿄 돔",
+      "address": "1 Chome-3-61 Koraku, Bunkyo City, Tokyo 112-0004, Japan",
+      "description": "야구 경기와 콘서트, 다양한 이벤트가 열리는 대형 돔."
+    },
+    {
+      "name": "하라주쿠",
+      "address": "1 Chome Jingumae, Shibuya City, Tokyo 150-0001, Japan",
+      "description": "독특한 패션과 문화를 경험할 수 있는 젊은이들의 거리."
+    },
+    {
+      "name": "다이칸야마",
+      "address": "Daikanyamacho, Shibuya City, Tokyo 150-0034, Japan",
+      "description": "세련된 카페와 상점들이 모여 있는 고급 쇼핑 지역."
+    },
+    {
+      "name": "도쿄 미드타운",
+      "address": "9 Chome-7-1 Akasaka, Minato City, Tokyo 107-0052, Japan",
+      "description": "쇼핑과 다이닝, 예술을 즐길 수 있는 복합 단지."
+    },
+    {
+      "name": "닛코",
+      "address": "Nikko, Tochigi 321-1431, Japan",
+      "description": "유네스코 세계문화유산으로 지정된 역사적인 사원과 자연 경관."
+    },
+    {
+      "name": "고쿄",
+      "address": "1-1 Chiyoda, Chiyoda City, Tokyo 100-8111, Japan",
+      "description": "일본 천황의 거처인 도쿄의 황궁."
+    },
+    {
+      "name": "고토구 아쿠아리움",
+      "address": "1-1-1 Kasai Rinkai Koen, Edogawa City, Tokyo 134-0086, Japan",
+      "description": "다양한 해양 생물을 볼 수 있는 도쿄의 주요 아쿠아리움."
+    },
+    {
+      "name": "이케부쿠로",
+      "address": "Ikebukuro, Toshima City, Tokyo 171-0021, Japan",
+      "description": "쇼핑과 엔터테인먼트가 풍부한 도쿄의 번화가."
+    },
+    {
+      "name": "요코하마 차이나타운",
+      "address": "Yamashitacho, Naka Ward, Yokohama, Kanagawa 231-0023, Japan",
+      "description": "다양한 중국 음식을 맛볼 수 있는 요코하마의 차이나타운."
+    },
+    {
+      "name": "요요기 공원",
+      "address": "2-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-0052, Japan",
+      "description": "도심 속에서 자연을 즐길 수 있는 대형 공원."
+    },
+    {
+      "name": "카마쿠라",
+      "address": "Kamakura, Kanagawa 248-0012, Japan",
+      "description": "고대 사원과 아름다운 해변이 있는 역사적인 도시."
+    },
+    {
+      "name": "오모테산도",
+      "address": "Jingumae, Shibuya City, Tokyo 150-0001, Japan",
+      "description": "고급 브랜드와 세련된 카페가 모여 있는 거리."
+    },
+    {
+      "name": "신주쿠 골든가이",
+      "address": "1 Chome-1 Kabukicho, Shinjuku City, Tokyo 160-0021, Japan",
+      "description": "작고 독특한 바와 레스토랑이 모여 있는 지역."
+    },
+    {
+      "name": "가마쿠라 대불",
+      "address": "4 Chome-2-28 Hase, Kamakura, Kanagawa 248-0016, Japan",
+      "description": "일본에서 가장 유명한 대불 중 하나로, 많은 관광객이 찾는 명소."
+    },
+    {
+      "name": "도쿄 도청 전망대",
+      "address": "2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo 163-8001, Japan",
+      "description": "무료로 도쿄의 전경을 감상할 수 있는 전망대."
+    }
+  ],
+  "오사카": [
+    {
+      "name": "오사카 성",
+      "address": "Osaka, Chuo Ward, Osakajo, 1-1",
+      "description": "오사카의 역사적 상징물로서 아름다운 정원과 박물관이 있는 성."
+    },
+    {
+      "name": "유니버설 스튜디오 재팬",
+      "address": "Osaka, Konohana Ward, Sakurajima, 2 Chome-1-33",
+      "description": "영화와 애니메이션을 테마로 한 대형 놀이공원."
+    },
+    {
+      "name": "도톤보리",
+      "address": "Osaka, Chuo Ward, Dotonbori, 1 Chome",
+      "description": "화려한 네온사인과 다양한 음식점들이 밀집한 오사카의 대표 거리."
+    },
+    {
+      "name": "쓰텐카쿠 타워",
+      "address": "Osaka, Naniwa Ward, Ebisu Higashi, 1 Chome-18-6",
+      "description": "오사카의 상징적인 전망 타워."
+    },
+    {
+      "name": "오사카 수족관 카이유칸",
+      "address": "Osaka, Minato Ward, Kaigandori, 1 Chome-1-10",
+      "description": "다양한 해양 생물을 전시하는 대형 수족관."
+    },
+    {
+      "name": "신세카이",
+      "address": "Osaka, Naniwa Ward, Ebisuhigashi, 1 Chome",
+      "description": "옛 오사카의 분위기를 느낄 수 있는 레트로한 거리."
+    },
+    {
+      "name": "난바 파크스",
+      "address": "Osaka, Naniwa Ward, Nambanaka, 2 Chome-10-70",
+      "description": "쇼핑과 휴식을 동시에 즐길 수 있는 복합 쇼핑몰."
+    },
+    {
+      "name": "우메다 스카이 빌딩",
+      "address": "Osaka, Kita Ward, Oyodonaka, 1 Chome-1-88",
+      "description": "오사카의 경치를 한눈에 볼 수 있는 독특한 건축물."
+    },
+    {
+      "name": "시텐노지",
+      "address": "Osaka, Tennoji Ward, Shitennoji, 1 Chome-11-18",
+      "description": "일본에서 가장 오래된 불교 사찰 중 하나."
+    },
+    {
+      "name": "아베노 하루카스",
+      "address": "Osaka, Abeno Ward, Abenosuji, 1 Chome-1-43",
+      "description": "일본에서 가장 높은 마천루로 다양한 상점과 미술관이 있는 곳."
+    },
+    {
+      "name": "덴노지 동물원",
+      "address": "Osaka, Tennoji Ward, Chausuyamacho, 1-108",
+      "description": "오사카의 중심부에 위치한 대형 동물원."
+    },
+    {
+      "name": "오사카 과학관",
+      "address": "Osaka, Kita Ward, Nakanoshima, 4 Chome-2-1",
+      "description": "다양한 과학 전시물과 플라네타리움을 갖춘 박물관."
+    },
+    {
+      "name": "아쿠아라이너",
+      "address": "Osaka, Chuo Ward, Tenmabashi Kyomachi",
+      "description": "오사카의 강을 따라 운행하는 관광 유람선."
+    },
+    {
+      "name": "오사카 민속박물관",
+      "address": "Osaka, Higashiyodogawa Ward, Kaminoda, 3 Chome-1-41",
+      "description": "오사카의 역사와 문화를 전시하는 박물관."
+    },
+    {
+      "name": "오사카 국제 평화센터",
+      "address": "Osaka, Chuo Ward, Osakajo, 2-1",
+      "description": "평화를 주제로 한 다양한 전시를 진행하는 박물관."
+    },
+    {
+      "name": "오사카 역사박물관",
+      "address": "Osaka, Chuo Ward, Otemae, 4 Chome-1-32",
+      "description": "오사카의 역사를 한눈에 볼 수 있는 박물관."
+    },
+    {
+      "name": "나카노시마 공원",
+      "address": "Osaka, Kita Ward, Nakanoshima, 1 Chome",
+      "description": "도심 속의 휴식처로 유명한 공원."
+    },
+    {
+      "name": "오사카텐만구",
+      "address": "Osaka, Kita Ward, Tenjimbashi, 2 Chome-1-8",
+      "description": "오사카의 전통 신사로 유명한 곳."
+    },
+    {
+      "name": "국립 국제 미술관",
+      "address": "Osaka, Kita Ward, Nakanoshima, 4 Chome-2-55",
+      "description": "현대 미술 작품을 전시하는 미술관."
+    },
+    {
+      "name": "우메다 조이폴리스",
+      "address": "Osaka, Kita Ward, Kakudacho, 5-15",
+      "description": "다양한 놀이기구와 게임을 즐길 수 있는 실내 놀이공원."
+    },
+    {
+      "name": "아메리카무라",
+      "address": "Osaka, Chuo Ward, Nishi-Shinsaibashi",
+      "description": "젊은이들이 모이는 패션과 문화의 중심지."
+    },
+    {
+      "name": "오사카 난바 그랜드 카게츠",
+      "address": "Osaka, Chuo Ward, Namba, 3 Chome-6-12",
+      "description": "오사카의 전통 코미디 공연을 즐길 수 있는 극장."
+    },
+    {
+      "name": "오사카 시립 미술관",
+      "address": "Osaka, Tennoji Ward, Chausuyamacho, 1-82",
+      "description": "다양한 예술 작품을 소장한 미술관."
+    },
+    {
+      "name": "덴포잔 대관람차",
+      "address": "Osaka, Minato Ward, Kaigandori, 1 Chome-1-10",
+      "description": "오사카 항구를 한눈에 볼 수 있는 대형 관람차."
+    },
+    {
+      "name": "헵파이브 관람차",
+      "address": "Osaka, Kita Ward, Kakudacho, 5-15",
+      "description": "도심 속에서 야경을 즐길 수 있는 관람차."
+    },
+    {
+      "name": "덴노지 공원",
+      "address": "Osaka, Tennoji Ward, Chausuyamacho",
+      "description": "도심 속에서 자연을 즐길 수 있는 공원."
+    },
+    {
+      "name": "오사카 큐즈 몰",
+      "address": "Osaka, Abeno Ward, Abenosuji, 1 Chome",
+      "description": "다양한 상점과 레스토랑이 있는 대형 쇼핑몰."
+    },
+    {
+      "name": "난코 포트 타운",
+      "address": "Osaka, Suminoe Ward, Nankokita, 1 Chome",
+      "description": "해안가에 위치한 현대적인 주거 및 상업 지역."
+    },
+    {
+      "name": "오사카 중앙도매시장",
+      "address": "Osaka, Fukushima Ward, Noda, 2 Chome-2-1",
+      "description": "신선한 해산물과 농산물을 거래하는 대형 시장."
+    },
+    {
+      "name": "오사카 비즈니스 파크",
+      "address": "Osaka, Chuo Ward, Shiromi, 1 Chome",
+      "description": "현대적인 건물들과 공원이 어우러진 상업 지역."
+    }
+  ],
+  "방콕": [
+    {
+      "name": "왕궁과 왕릉",
+      "address": "Na Phra Lan Road, Phra Nakhon, Bangkok 10200",
+      "description": "태국의 국왕 거주지로 사용되던 곳으로 아름다운 태국 전통 건축물을 감상할 수 있습니다."
+    },
+    {
+      "name": "와트 아룬",
+      "address": "West bank of the Chao Phraya River, Bangkok Yai, Bangkok 10600",
+      "description": "아름다운 일몰을 감상하기 위해 유명한 사원으로, 하얀 색감이 아름다운 태국의 랜드마크입니다."
+    },
+    {
+      "name": "와트 프라케오",
+      "address": "24 Bamrung Muang Road, Wat Ratchabophit, Bangkok 10200",
+      "description": "태국의 아름다운 사찰로, 특히 그 타워는 라마 4세 때 건립된 아름다운 구조물입니다."
+    },
+    {
+      "name": "치나타운",
+      "address": "Samphanthawong, Bangkok 10100",
+      "description": "태국에서 가장 큰 중국인 거주지로, 맛있는 중국 요리와 유명한 템플 스트리트 시장이 있습니다."
+    },
+    {
+      "name": "와트 포",
+      "address": "Maharat Road, Phra Borom Maha Ratchawang, Phra Nakhon, Bangkok 10200",
+      "description": "태국에서 가장 중요한 왕릉 중 하나로, 예쁜 유럽식 정원과 왕궁을 감상할 수 있습니다."
+    },
+    {
+      "name": "방콕 동물원",
+      "address": "71 Rama V Road, Dusit, Bangkok 10300",
+      "description": "아이들과 함께 가기에 좋은 곳으로, 흥미로운 동물들을 감상할 수 있습니다."
+    },
+    {
+      "name": "와트 사츠폰",
+      "address": "Phra Borom Maha Ratchawang, Phra Nakhon, Bangkok 10200",
+      "description": "대단한 유적지로, 고대 왕조의 건물과 화려한 인테리어가 있습니다."
+    },
+    {
+      "name": "상록수 공원",
+      "address": "Sukhumvit Road, Watthana, Bangkok 10110",
+      "description": "방콕의 시끌벅적한 도심에서 조용한 휴식을 즐길 수 있는 아름다운 공원입니다."
+    },
+    {
+      "name": "와트 인타라와티",
+      "address": "80 Wisut Kasat Road, Phra Nakhon, Bangkok 10200",
+      "description": "흥미로운 현지인들의 문화와 태국의 역사적인 건축물을 볼 수 있는 사찰입니다."
+    },
+    {
+      "name": "신변 공원",
+      "address": "Thanon Phra Athit, Phra Nakhon, Bangkok 10200",
+      "description": "지역 주민들과 함께하는 즐거운 공원으로, 휴식과 엔터테인먼트를 즐길 수 있습니다."
+    },
+    {
+      "name": "에메랄드 빈티지 시티",
+      "address": "Ratchadamnoen Klang Road, Phra Nakhon, Bangkok 10200",
+      "description": "시간 여행을 할 것 같은 곳으로, 색다른 상점들과 예쁜 건물들이 있는 유명한 거리입니다."
+    },
+    {
+      "name": "벤자티트 공원",
+      "address": "Kok Wua Intersection, Phra Nakhon, Bangkok 10200",
+      "description": "가족과 함께하기에 좋은 아름다운 공원으로, 놀이터와 휴식 공간이 있습니다."
+    },
+    {
+      "name": "시암 야시장",
+      "address": "Rama I Road, Pathum Wan, Bangkok 10330",
+      "description":"방콕에서 가장 유명한 야시장 중 하나로, 맛있는 태국 음식과 다양한 상품을 살 수 있는 곳입니다."
+    },
+    {
+      "name": "왓 프라타치 스커룹",
+      "address": "Sukhumvit Road, Watthana, Bangkok 10110",
+      "description": "태국의 문화와 역사를 경험할 수 있는 아름다운 사찰로, 현지인들의 행사와 축제가 열립니다."
+    },
+    {
+      "name": "룸피니 파크",
+      "address": "Thanon Phra Athit, Phra Nakhon, Bangkok 10200",
+      "description": "조용한 휴식을 즐길 수 있는 아름다운 공원으로, 특히 해가 지는 경관이 아름답습니다."
+    },
+    {
+      "name": "파랑 공원",
+      "address": "Ratchadamnoen Klang Road, Phra Nakhon, Bangkok 10200",
+      "description": "대단한 연못과 풍경을 감상할 수 있는 아름다운 공원으로, 특히 아이들과 함께 가기에 좋습니다."
+    },
+    {
+      "name": "코르나쿤",
+      "address": "Ratchadamnoen Klang Road, Phra Nakhon, Bangkok 10200",
+      "description": "태국의 역사와 문화를 경험할 수 있는 아름다운 궁전으로, 특히 아름다운 정원이 유명합니다."
+    },
+    {
+      "name": "타이거 킹덤",
+      "address": "Sukhumvit Road, Watthana, Bangkok 10110",
+      "description": "매력적인 호랑이와 다양한 동물을 만날 수 있는 유명한 동물원으로, 가족들과 함께하는 추억 만들기에 좋습니다."
+    },
+    {
+      "name": "방콕 아쿠아리움",
+      "address": "4th Floor, Siam Paragon, Rama I Road, Pathum Wan, Bangkok 10330",
+      "description": "다양한 해양 생물을 감상할 수 있는 대형 아쿠아리움으로, 특히 유명한 해초의 터널이 인기가 많습니다."
+    },
+    {
+      "name": "치아왓하나콩",
+      "address": "Nakhon Pathom, Thailand",
+      "description": "태국의 역사와 문화를 경험할 수 있는 유명한 궁전으로, 아름다운 정원과 건물들이 인상적입니다."
+    },
+    {
+      "name": "세라다빌",
+      "address": "Ratchadamnoen Nok Road, Phra Nakhon, Bangkok 10200",
+      "description": "태국의 역사와 문화를 배울 수 있는 아름다운 박물관으로, 특히 전시물과 고고학적 발굴 지역이 인상적입니다."
+    },
+    {
+      "name": "킹 파워 마하나콩",
+      "address": "Phaholyothin Road, Phayathai, Bangkok 10400",
+      "description": "태국의 역사와 문화를 체험할 수 있는 유명한 궁전으로, 특히 아름다운 정원과 행사가 인기가 많습니다."
+    },
+    {
+      "name": "가이 강",
+      "address": "Phra Nakhon, Bangkok 10200",
+      "description": "아름다운 강이 흐르는 풍경을 감상할 수 있는 곳으로, 특히 선셋이 아름답습니다."
+    }
+  ],
+  "파리": [
+    {
+      "name": "에펠탑",
+      "address": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, 프랑스",
+      "description": "파리의 상징적인 랜드마크로, 아름다운 파노라마 전망을 제공합니다."
+    },
+    {
+      "name": "루브르 박물관",
+      "address": "Rue de Rivoli, 75001 Paris, 프랑스",
+      "description": "세계적으로 유명한 미술 박물관으로, 다양한 예술품을 전시합니다."
+    },
+    {
+      "name": "몽마르트르",
+      "address": "Montmartre, 75018 Paris, 프랑스",
+      "description": "아름다운 전망과 예술가의 마을로, 사카레 산을 중심으로 펼쳐져 있습니다."
+    },
+    {
+      "name": "노트르담 대성당",
+      "address": "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris, 프랑스",
+      "description": "고딕 양식의 대성당으로, 세계적인 건축물로 유명합니다."
+    },
+    {
+      "name": "샹젤리제 거리",
+      "address": "Champs-Élysées, 75008 Paris, 프랑스",
+      "description": "세계적인 쇼핑 거리로, 아름다운 건물과 럭셔리 브랜드가 입점해 있습니다."
+    },
+    {
+      "name": "센 강",
+      "address": "Seine River, 프랑스",
+      "description": "파리를 가로지르는 강으로, 세인 강변 산책이 인기 있습니다."
+    },
+    {
+      "name": "오르세 미술관",
+      "address": "1 Rue de la Légion d'Honneur, 75007 Paris, 프랑스",
+      "description": "19세기 프랑스 미술을 전시하는 박물관으로, 고흐, 모네 등의 작품을 감상할 수 있습니다."
+    },
+    {
+      "name": "에펠 타워",
+      "address": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, 프랑스",
+      "description": "파리의 상징적인 랜드마크로, 아름다운 야경을 감상할 수 있는 곳입니다."
+    },
+    {
+      "name": "팔레 갈리에",
+      "address": "Place Charles de Gaulle, 75008 Paris, 프랑스",
+      "description": "파리의 대표적인 광장으로, 아르크 드 트리엄프와 연결됩니다."
+    },
+    {
+      "name": "몽파르나스 타워",
+      "address": "33 Avenue du Maine, 75015 Paris, 프랑스",
+      "description": "파리에서 가장 높은 건물로, 파노라마 전망을 제공합니다."
+    },
+    {
+      "name": "파리 대학교",
+      "address": "Paris, 프랑스",
+      "description": "유럽에서 가장 유명한 대학 중 하나로, 예술과 문학의 중심입니다."
+    },
+    {
+      "name": "무사 궁전",
+      "address": "Musée du Louvre, Rue de Rivoli, 75001 Paris, 프랑스",
+      "description": "세계적으로 유명한 미술 박물관으로, 다양한 예술품을 소장하고 있습니다."
+    },
+    {"name": "파리 보테가","address": "Paris, 프랑스"},
+    {"name": "파리 지하마을","address": "Place des Vosges, 75004 Paris, 프랑스"},
+    {"name": "베르사유 궁전","address": "Place d'Armes, 78000 Versailles, 프랑스"},
+    {"name": "파리 공원","address": "Paris, 프랑스"},
+    {"name": "파리 라파예트 박물관","address": "Quai François Mauriac, 75013 Paris, 프랑스"},
+    {"name": "오르세 레스토랑","address": "1 Rue de la Légion d'Honneur, 75007 Paris, 프랑스"},
+    {"name": "파리 성당","address": "75004 Paris, 프랑스"},
+    {"name": "오르세 미술관","address": "1 Rue de la Légion d'Honneur, 75007 Paris, 프랑스"},
+    {"name": "파리 지하마을","address": "Place des Vosges, 75004 Paris, 프랑스"},
+    {"name": "베르사유 궁전","address": "Place d'Armes, 78000 Versailles, 프랑스"}
+  ],
+  "런던": [
+    {"name": "대영박물관","address": "Great Russell St, London WC1B 3DG, 영국"},
+    {"name": "런던탑","address": "St Katharine's & Wapping, London EC3N 4AB, 영국"},
+    {"name": "버킹엄 궁전","address": "Westminster, London SW1A 1AA, 영국"},
+    {"name": "런던 아이","address": "Riverside Building, County Hall, London SE1 7PB, 영국"},
+    {"name": "국회의사당","address": "Westminster, London SW1A 0AA, 영국"},
+    {"name": "자연사 박물관","address": "Cromwell Rd, South Kensington, London SW7 5BD, 영국"},
+    {"name": "빅토리아 앨버트 박물관","address": "Cromwell Rd, London SW7 2RL, 영국"},
+    {"name": "과학 박물관","address": "Exhibition Rd, South Kensington, London SW7 2DD, 영국"},
+    {"name": "테이트 모던","address": "Bankside, London SE1 9TG, 영국"},
+    {"name": "하이드 파크","address": "London W2 2UH, 영국"}
+  ],
+  "뉴욕":[
+    {"name": "자유의 여신상", "address": "Liberty Island, New York, NY 10004, 미국"},
+    {"name": "센트럴 파크", "address": "New York, NY 10024, 미국"},
+    {"name": "메트로폴리탄 미술관", "address": "1000 5th Ave, New York, NY 10028, 미국"},
+    {"name": "타임스퀘어", "address": "Manhattan, NY 10036, 미국"},
+    {"name": "브로드웨이", "address": "Manhattan, NY 10036, 미국"},
+    {"name": "엠파이어 스테이트 빌딩", "address": "350 5th Ave, New York, NY 10118, 미국"},
+    {"name": "9/11 메모리얼 & 뮤지엄", "address": "180 Greenwich St, New York, NY 10007, 미국"},
+    {"name": "브루클린 브리지", "address": "New York, NY 10038, 미국"},
+    {"name": "록펠러 센터", "address": "45 Rockefeller Plaza, New York, NY 10111, 미국"},
+    {"name": "현대미술관 (MoMA)", "address": "11 W 53rd St, New York, NY 10019, 미국"}
+  ],
+  "로스앤젤레스":[
+    {"name": "그리피스 천문대", "address": "2800 E Observatory Rd, Los Angeles, CA 90027, 미국"},
+    {"name": "게티 센터", "address": "1200 Getty Center Dr, Los Angeles, CA 90049, 미국"},
+    {"name": "유니버설 스튜디오 할리우드", "address": "100 Universal City Plaza, Universal City, CA 91608, 미국"},
+    {"name": "할리우드 명예의 거리", "address": "Hollywood Blvd, Los Angeles, CA 90028, 미국"},
+    {"name": "산타모니카 피어", "address": "200 Santa Monica Pier, Santa Monica, CA 90401, 미국"},
+    {"name": "로스앤젤레스 카운티 미술관", "address": "5905 Wilshire Blvd, Los Angeles, CA 90036, 미국"},
+    {"name": "돌비 극장", "address": "6801 Hollywood Blvd, Hollywood, CA 90028, 미국"},
+    {"name": "로스앤젤레스 동물원", "address": "5333 Zoo Dr, Los Angeles, CA 90027, 미국"},
+    {"name": "로스앤젤레스 자연사 박물관", "address": "900 W Exposition Blvd, Los Angeles, CA 90007, 미국"},
+    {"name": "산타 모니카 해변", "address": "Santa Monica, CA 90401, 미국"}
+  ],
+  "시카고":[
+    {"name": "밀레니엄 파크", "address": "201 E Randolph St, Chicago, IL 60602, 미국"},
+    {"name": "시카고 아트 인스티튜트", "address": "111 S Michigan Ave, Chicago, IL 60603, 미국"},
+    {"name": "네이비 피어", "address": "600 E Grand Ave, Chicago, IL 60611, 미국"},
+    {"name": "윌리스 타워", "address": "233 S Wacker Dr, Chicago, IL 60606, 미국"},
+    {"name": "시카고 필드 박물관", "address": "1400 S Lake Shore Dr, Chicago, IL 60605, 미국"},
+    {"name": "셰드 아쿠아리움", "address": "1200 S Lake Shore Dr, Chicago, IL 60605, 미국"},
+    {"name": "시카고 과학 산업 박물관", "address": "5700 S Lake Shore Dr, Chicago, IL 60637, 미국"},
+    {"name": "링컨 파크 동물원", "address": "2001 N Clark St, Chicago, IL 60614, 미국"},
+    {"name": "매그니피션트 마일", "address": "North Michigan Avenue, Chicago, IL 60611, 미국"},
+    {"name": "그랜트 파크", "address": "337 E Randolph St, Chicago, IL 60601, 미국"}
+  ],
+  "샌프란시스코":[
+    {"name": "골든 게이트 공원", "address": "Golden Gate Park, San Francisco, CA 94122, 미국"},
+    {"name": "알카트라즈 섬", "address": "San Francisco, CA 94133, 미국"},
+    {"name": "피어 39", "address": "The Embarcadero, San Francisco, CA 94133, 미국"},
+    {"name": "피시맨스 워프", "address": "Beach St & The Embarcadero, San Francisco, CA 94133, 미국"},
+    {"name": "샌프란시스코 모던 아트 박물관 (SFMOMA)", "address": "151 3rd St, San Francisco, CA 94103, 미국"},
+    {"name": "코엑스 박물관", "address": "1 Bowling Green, New York, NY 10004, 미국"},
+    {"name": "샌프란시스코 국제공항", "address": "San Francisco, CA 94128, 미국"},
+    {"name": "테크 미술관", "address": "180 Montgomery St, San Francisco, CA 94104, 미국"},
+    {"name": "샌프란시스코 자연사 박물관", "address": "55 Music Concourse Dr, San Francisco, CA 94118, 미국"},
+    {"name": "캘리포니아 아카데미 오브 사이언스", "address": "55 Music Concourse Dr, San Francisco, CA 94118, 미국"}
+  ],
+  "베이징":[
+    {"name": "금강관", "address": "중국 베이징 동대문 광장 동쪽에 위치"},
+    {"name": "태양계공원", "address": "중국 베이징 시추이 타이사쯔 산쪽으로 약 12km 떨어진 곳"},
+    {"name": "북경 만리장성", "address": "중국 베이징 시내 북쪽"},
+    {"name": "천안문 광장", "address": "중국 베이징 도시 중심부에 위치"},
+    {"name": "국립 중화문화박물관", "address": "중국 베이징 도심 지역, 동쪽 창안문 광장 남쪽"},
+    {"name": "자화자창", "address": "중국 베이징 도심 중심부 동서대로에서 북서쪽으로 2.5km 떨어진 곳"},
+    {"name": "북경 인민문 광장", "address": "중국 베이징 도심 지역 중심"},
+    {"name": "베이징 어떤길거리", "address": "베이징 도심 지역 중심"},
+    {"name": "북경 동방문", "address": "중국 베이징 동쪽, 북쪽 경복궁에서 약 2.5km 떨어진 곳"},
+    {"name": "베이징 사람의 대성당", "address": "중국 베이징 성에 위치한 성당"}
+  ],
+  "상하이":[
+    {"name": "동방 진만광장", "address": "중국 상하이 동방 진만광장"},
+    {"name": "영동 진만로", "address": "중국 상하이 영동 진만로"},
+    {"name": "난징로", "address": "중국 상하이 난징로"},
+    {"name": "난징반도", "address": "중국 상하이 난징반도"},
+    {"name": "상하이 헌전박물관", "address": "중국 상하이 상하이 헌전박물관"},
+    {"name": "난징집회광장", "address": "중국 상하이 난징집회광장"},
+    {"name": "신전도", "address": "중국 상하이 신전도"},
+    {"name": "푸동", "address": "중국 상하이 푸동"},
+    {"name": "동방 진만", "address": "중국 상하이 동방 진만"},
+    {"name": "북징도", "address": "중국 상하이 북징도"}
+  ],
+  "홍콩":[
+    {"name": "홍콩 디즈니랜드", "address": "홍콩 디즈니랜드, 홍콩"},
+    {"name": "오션파크 홍콩", "address": "호주 홍콩 오션파크, 홍콩"},
+    {"name": "스탠리 마켓", "address": "홍콩 스탠리, 홍콩"},
+    {"name": "빅 토치 가든", "address": "홍콩 센트럴, 홍콩"},
+    {"name": "홍콩 스카이라인", "address": "홍콩 센트럴, 홍콩"},
+    {"name": "홍콩 섬", "address": "홍콩 센트럴, 홍콩"},
+    {"name": "랭껍 호텔", "address": "홍콩 센트럴, 홍콩"},
+    {"name": "홍콩 바이크 투어", "address": "홍콩 센트럴, 홍콩"},
+    {"name": "루마니아 베이 덕", "address": "홍콩 센트럴, 홍콩"},
+    {"name": "팔라스 센트럴", "address": "홍콩 센트럴, 홍콩"}
+  ],
+  "시드니":[
+    {"name": "시드니 오페라하우스", "address": "시드니 해안, 베네딕트 주석 베이, 시드니 NSW 2000, 호주"},
+    {"name": "시드니 하버 브릿지", "address": "시드니 해안, 시드니 NSW 2000, 호주"},
+    {"name": "다바오스 오피스 빌딩", "address": "33,33 타이 피드 프리웨이, 시드니 NSW 2000, 호주"},
+    {"name": "타워 아이", "address": "시드니 타워 아이, 시드니 NSW 2000, 호주"},
+    {"name": "리틀 베이", "address": "클라렌스 스트리트, 신호 용암, 시드니 NSW 2000, 호주"},
+    {"name": "더 레지던스 오브 아이언 블루", "address": "15 러쉬 레이닝, 밀스 푸인트, 시드니 NSW 2000, 호주"},
+    {"name": "센터 포인트 타워", "address": "101바이러스 스트리트, 시드니 NSW 2000, 호주"},
+    {"name": "시드니 타워 눈 및 원더 렌드", "address": "시드니 타워 눈 및 원더 렌드, 시드니 NSW 2000, 호주"},
+    {"name": "숀 크로키 경매인", "address": "23 딩헤이 어브뉴, 시드니 NSW 2000, 호주"},
+    {"name": "시드니 오픈 에어 시네마", "address": "15 헤어스, 시드니 NSW 2000, 호주"}
+  ],
+  "멜버른":[
+    {"name": "플린더스 스트리트", "address": "플린더스 스트리트, 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "멜버른 크리켓 브라운", "address": "경기장 드라이브, 이스트 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "멜버른 동물원", "address": "릴리 대리브, 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "퀸 빅토리아 시장", "address": "에린 스트리트, 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "레저센터", "address": "라운드하우스 디밍, 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "싱가포르 호텔", "address": "단순 루이스 플레이스, 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "로얄 봇닉 가든", "address": "비르믹 밸리 로드, 세 사물이, 빅토리아, 오스트레일리아"},
+    {"name": "멜버른 미술관", "address": "세인트 키일다 로드, 세인트 키일다, 빅토리아, 오스트레일리아"},
+    {"name": "나우랑 센터", "address": "7 샤인스트리트, 멜버른, 빅토리아, 오스트레일리아"},
+    {"name": "로얄 아케이드", "address": "250 스완 스트리트, 멜버른, 빅토리아, 오스트레일리아"}
+  ],
+  "브리즈번":[
+    {"name": "사우스 뱅크", "address": "사우스 뱅크, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "브리즈번 동물원", "address": "셜튼 로드, 비비코, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "퀸즈랜드 미술관", "address": "사우스 백 테라스, 사우스 백, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "사우스 뱅크 파크랜드", "address": "마이언드 스트리트, 사우스 백, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "리버티 삼림", "address": "600 마운트 프리트로드, 피겔로피, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "럼 시트 주얼리 골드 코스트", "address": "브리즈번, 큐슬랜드, 호주"},
+    {"name": "샌드게이트 선수촌", "address": "피쳐드 스트리트, 실버 동스, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "브리즈번 강변", "address": "브리즈번, 큐슬랜드, 호주"},
+    {"name": "퍼스널리티 인터내셔널", "address": "119 캐드 맥스웨일 캐드, 알베르트 파크, 브리즈번, 큐슬랜드, 호주"},
+    {"name": "호주 먼 별의 여정", "address": "13 레틀로드, 브리즈번, 큐슬랜드, 호주"}
+  ],
+  "베를린":[
+    {"name": "브란덴부르크문", "address": "Pariser Platz 7, 10117 베를린, 독일"},
+    {"name": "레스토랑 체커 포인트", "address": "Grüntaler Str. 14, 13357 베를린, 독일"},
+    {"name": "독일 역사 박물관", "address": "Unter den Linden 2, 10117 베를린, 독일"},
+    {"name": "베를린 벽 박물관", "address": "Bernauer Str. 111, 13355 베를린, 독일"},
+    {"name": "파르란자헨 제작소", "address": "Drontheimer Str. 33, 13359 베를린, 독일"},
+    {"name": "파우스트 주유소", "address": "Chausseestr. 37, 10115 베를린, 독일"},
+    {"name": "프리드리히쉬홀 증기기관차 기차 박물관", "address": "Trebbiner Str. 9, 10963 베를린, 독일"},
+    {"name": "더블린", "address": "Müllerstraße 49, 13349 베를린, 독일"},
+    {"name": "상테 오벨베크 주유소", "address": "Wriezener Karree 16, 10243 베를린, 독일"},
+    {"name": "베를린 동물원", "address": "Hardenbergplatz 8, 10787 베를린, 독일"}
+  ],
+  "뮌헨":[
+    {"name": "니뮈펜부르크 궁전", "address": "니뮈펜부르크 궁전, 1, 80539 뮌헨, 독일"},
+    {"name": "빅토리안 마켓", "address": "Schrannenhalle, Viktualienmarkt 3, 80331 뮌헨, 독일"},
+    {"name": "독일 박물관", "address": "Museuminsel 1, 80538 뮌헨, 독일"},
+    {"name": "올림피아 공원", "address": "Olympiapark, Spiridon-Louis-Ring 21, 80809 뮌헨, 독일"},
+    {"name": "니드에라우 샹뜨라사페", "address": "Nymphenburg Schlosspark, 80638 뮌헨, 독일"},
+    {"name": "알타 핀칭 학생 퍼블", "address": "Hochbrückenstr. 9, 80637 뮌헨, 독일"},
+    {"name": "모니카 파크", "address": "Monopteros im Englischen Garten, 80538 뮌헨, 독일"},
+    {"name": "비엔날레 디 파라다이스", "address": "Theresienhöhe 15, 80339 뮌헨, 독일"},
+    {"name": "빅토리아 마켓", "address": "Theresienstr. 13, 80333 뮌헨, 독일"},
+    {"name": "빈센트 리그브란트 하우스", "address": "Ismaninger Str. 46, 81675 뮌헨, 독일"}
+  ],
+  "프랑크푸르트":[
+    {"name": "라인 강변", "address": "라인 강변, 프랑크푸르트, 독일"},
+    {"name": "론발레로프 브럭케", "address": "프랑크푸르트, 론발레로프 브럭케, 독일"},
+    {"name": "프랑크푸르트 주방 박물관", "address": "소시엔타인 장로안 15, 프랑크푸르트, 독일"},
+    {"name": "프랑크푸르트 국제 공항", "address": "프랑크푸르트 국제 공항, 프랑크푸르트, 독일"},
+    {"name": "쾰스트 범르크", "address": "쾰스트 범르크, 프랑크푸르트, 독일"},
+    {"name": "플로르 스타인", "address": "광장 1, 60311 프랑크푸르트, 독일"},
+    {"name": "론발레로프 앨리", "address": "론발레로프 앨리, 프랑크푸르트, 독일"},
+    {"name": "샨크베르크 집", "address": "샨크베르크 집, 프랑크푸르트, 독일"},
+    {"name": "돔", "address": "돔, 프랑크푸르트, 독일"},
+    {"name": "콜레지움 프랑크푸르트", "address": "모젠탈러 장로안 21, 프랑크푸르트, 독일"}
+  ],
+  "취리히":[
+    {"name": "취리히 호수", "address": "취리히 호수, 취리히, 스위스"},
+    {"name": "바인호프스트라쓰에", "address": "바인호프스트라쓰에, 8001 취리히, 스위스"},
+    {"name": "바들 화이선", "address": "바들 화이선, 8044 취리히, 스위스"},
+    {"name": "취리히 주방 박물관", "address": "프라하트스트라쓰에 2, 8001 취리히, 스위스"},
+    {"name": "트라우베룬너 콰이어", "address": "트라우베룬너 콰이어, 8001 취리히, 스위스"},
+    {"name": "취리히 쇼핑 거리", "address": "바힌호프슈트라쓰에, 8001 취리히, 스위스"},
+    {"name": "취리히 동물원", "address": "취리히 동물원, 장구트스트라쓰에 1, 8001 취리히, 스위스"},
+    {"name": "국립 박물관", "address": "네슈트라쓰에 1, 8001 취리히, 스위스"},
+    {"name": "헤트리 홀", "address": "루더슈트라쓰에 8, 8021 취리히, 스위스"},
+    {"name": "마르크스", "address": "히포딩거쉬트라쓰에 65, 8001 취리히, 스위스"}
+  ],
+  "제네바":[
+    {"name": "제트 디'오", "address": "제트 디'오, 제네바, 스위스"},
+    {"name": "유엔 국제무역센터", "address": "유엔 국제무역센터, 1211 제네바, 스위스"},
+    {"name": "국제적인 빌라", "address": "국제적인 빌라, 제네바, 스위스"},
+    {"name": "스위스 국립 박물관", "address": "스위스 국립 박물관, 제네바, 스위스"},
+    {"name": "바젤 공원", "address": "바젤 공원, 제네바, 스위스"},
+    {"name": "오지벨레 센터", "address": "오지벨레 센터, 제네바, 스위스"},
+    {"name": "제네바 센터", "address": "제네바 센터, 제네바, 스위스"},
+    {"name": "국제 보건 기구", "address": "국제 보건 기구, 제네바, 스위스"},
+    {"name": "세네갈 대사관", "address": "세네갈 대사관, 24 Rue Prévost-Martin, 1205 제네바, 스위스"},
+    {"name": "소호 강", "address": "소호 강, 제네바, 스위스"}
+  ],
+  "바르셀로나":[
+    {"name": "사그라다 파밀리아 대성당", "address": "Carrer de Mallorca, 401, 08013 바르셀로나, 스페인"},
+    {"name": "파르크 구엘", "address": "08024 바르셀로나, 스페인"},
+    {"name": "바르셀로나 역사 박물관", "address": "Plaça del Rei, s/n, 08002 바르셀로나, 스페인"},
+    {"name": "카사 밀라", "address": "Passeig de Gràcia, 92, 08008 바르셀로나, 스페인"},
+    {"name": "고텔 투르렐", "address": "Passeig de Gràcia, 92, 08008 바르셀로나, 스페인"},
+    {"name": "바르셀로나 공원 근처", "address": "08038 바르셀로나, 스페인"},
+    {"name": "카사 바투", "address": "Passeig de Gràcia, 43, 08007 바르셀로나, 스페인"},
+    {"name": "바르셀로나 도시 홀", "address": "Plaça de Carles Pi i Sunyer, 08002 바르셀로나, 스페인"},
+    {"name": "바르셀로나 역", "address": "08014 바르셀로나, 스페인"},
+    {"name": "바르셀로나의 새로운 시장", "address": "08001 바르셀로나, 스페인"}
+  ],
+  "마드리드":[
+    {"name": "프라도 박물관", "address": "Paseo del Prado, s/n, 28014 마드리드, 스페인"},
+    {"name": "레티로 공원", "address": "Calle de Alcalá, 28009 마드리드, 스페인"},
+    {"name": "레알 마드리드 스타디움", "address": "Av. de Concha Espina, 1, 28036 마드리드, 스페인"},
+    {"name": "레티로 기차역", "address": "Plaza del Emperador Carlos V, s/n, 28014 마드리드, 스페인"},
+    {"name": "마드리드 왕궁", "address": "Calle de Bailén, s/n, 28071 마드리드, 스페인"},
+    {"name": "레티로 메트로", "address": "Paseo del Prado, 28014 마드리드, 스페인"},
+    {"name": "레티로 거리", "address": "Calle de Alcalá, 28014 마드리드, 스페인"},
+    {"name": "마드리드 센트럴 마켓", "address": "Calle de Alcalá, 28014 마드리드, 스페인"},
+    {"name": "푸에르타 데 알칼라", "address": "Plaza de la Independencia, 1, 28001 마드리드, 스페인"},
+    {"name": "에르미타 데 산 안토니오 데 라 플로레스", "address": "Calle de la Flor Baja, 28, 28013 마드리드, 스페인"}
+  ],
+  "리스본":[
+    {"name": "베레투스 궁전", "address": "Praça Afonso de Albuquerque, 1300-044 리스본, 포르투갈"},
+    {"name": "리스본 오션리움", "address": "Esplanada Dom Carlos I, s/n, 1990-005 리스본, 포르투갈"},
+    {"name": "사오 조르지 성", "address": "Praça do Império, 1400-206 리스본, 포르투갈"},
+    {"name": "리스본 도심", "address": "리스본, 포르투갈"},
+    {"name": "베이렌 조르지 궁전", "address": "Largo Martim Moniz, 1100-341 리스본, 포르투갈"},
+    {"name": "베르카", "address": "Rua da Cintura do Porto de Lisboa, 1200-109 리스본, 포르투갈"},
+    {"name": "알파마 뷰포인트", "address": "Rua da Regueira 38, 1100-008 리스본, 포르투갈"},
+    {"name": "리스본 동자 트라멀 호텔", "address": "Rua da Madalena 2, 1100-319 리스본, 포르투갈"},
+    {"name": "리베이라 국가 궁전", "address": "Praça do Império, 1400-206 리스본, 포르투갈"},
+    {"name": "세레나 교", "address": "리스본, 포르투갈"}
+  ],
+  "로마":[
+    {"name": "콜로세움", "address": "Piazza del Colosseo, 1, 00184 로마 RM, 이탈리아"},
+    {"name": "바티칸 시티", "address": "바티칸 시티, 00120 Città del Vaticano"},
+    {"name": "판테온", "address": "Piazza della Rotonda, 00186 로마 RM, 이탈리아"},
+    {"name": "로마 포럼", "address": "Via della Salara Vecchia, 5/6, 00186 로마 RM, 이탈리아"},
+    {"name": "트레비 분수", "address": "Piazza di Trevi, 00187 로마 RM, 이탈리아"},
+    {"name": "스페인 광장", "address": "Piazza di Spagna, 00187 로마 RM, 이탈리아"},
+    {"name": "바르카라 분수", "address": "Piazza Navona, 00186 로마 RM, 이탈리아"},
+    {"name": "로마 카톨릭 성당", "address": "Piazza di San Giovanni in Laterano, 4, 00184 로마 RM, 이탈리아"},
+    {"name": "카스텔 산탄젤로", "address": "Lungotevere Castello, 50, 00193 로마 RM, 이탈리아"},
+    {"name": "로마 국립 박물관", "address": "Viale della Trinità dei Monti, 1, 00187 로마 RM, 이탈리아"}
+  ],
+  "밀라노":[
+    {"name": "밀라노 대성당", "address": "Piazza del Duomo, 20122 밀라노 MI, 이탈리아"},
+    {"name": "비티꼬", "address": "Piazza della Scala, 6, 20121 밀라노 MI, 이탈리아"},
+    {"name": "샤토 마르치지아노", "address": "Piazza Castello, 20121 밀라노 MI, 이탈리아"},
+    {"name": "밀라노 과학 기술 박물관", "address": "Via San Vittore, 21, 20123 밀라노 MI, 이탈리아"},
+    {"name": "브레라 미술관", "address": "Via Brera, 28, 20121 밀라노 MI, 이탈리아"},
+    {"name": "세레나 박물관", "address": "Via Palestro, 16, 20121 밀라노 MI, 이탈리아"},
+    {"name": "나비라 원숭이관", "address": "Via Lazzaretto, 3, 20124 밀라노 MI, 이탈리아"},
+    {"name": "스칼라 극장", "address": "Via Filodrammatici, 2, 20121 밀라노 MI, 이탈리아"},
+    {"name": "밀라노 역사 박물관", "address": "Via Sant'Ambrogio, 15, 20123 밀라노 MI, 이탈리아"},
+    {"name": "살비아티코 동물원", "address": "Corso Venezia, 55, 20121 밀라노 MI, 이탈리아"}
+  ],
+  "베니스": [
+    {"name": "밀라노 대성당", "address": "Piazza del Duomo, 20122 밀라노 MI, 이탈리아"},
+    {"name": "비티꼬", "address": "Piazza della Scala, 6, 20121 밀라노 MI, 이탈리아"},
+    {"name": "샤토 마르치지아노", "address": "Piazza Castello, 20121 밀라노 MI, 이탈리아"},
+    {"name": "밀라노 과학 기술 박물관", "address": "Via San Vittore, 21, 20123 밀라노 MI, 이탈리아"},
+    {"name": "브레라 미술관", "address": "Via Brera, 28, 20121 밀라노 MI, 이탈리아"},
+    {"name": "세레나 박물관", "address": "Via Palestro, 16, 20121 밀라노 MI, 이탈리아"},
+    {"name": "나비라 원숭이관", "address": "Via Lazzaretto, 3, 20124 밀라노 MI, 이탈리아"},
+    {"name": "스칼라 극장", "address": "Via Filodrammatici, 2, 20121 밀라노 MI, 이탈리아"},
+    {"name": "밀라노 역사 박물관", "address": "Via Sant'Ambrogio, 15, 20123 밀라노 MI, 이탈리아"},
+    {"name": "살비아티코 동물원", "address": "Corso Venezia, 55, 20121 밀라노 MI, 이탈리아"}
+  ],
+  "피렌체": [
+    {"name": "피렌체 대성당", "address": "Piazza del Duomo, 50122 피렌체 FI, 이탈리아"},
+    {"name": "우피치 박물관", "address": "Piazzale degli Uffizi, 6, 50122 피렌체 FI, 이탈리아"},
+    {"name": "피트리 궁전", "address": "Piazza Pitti, 1, 50125 피렌체 FI, 이탈리아"},
+    {"name": "바르네시 가든", "address": "Piazza dei Pitti, 50125 피렌체 FI, 이탈리아"},
+    {"name": "피렌체 과학 박물관", "address": "Via Giorgio La Pira, 4, 50121 피렌체 FI, 이탈리아"},
+    {"name": "보보리 갈러리아", "address": "Piazza del Duomo, 10, 50122 피렌체 FI, 이탈리아"},
+    {"name": "센토 마리아 델 피오레 궁전", "address": "Piazza Santa Maria Novella, 50123 피렌체 FI, 이탈리아"},
+    {"name": "팔라치오 베키오", "address": "Piazza della Signoria, 50122 피렌체 FI, 이탈리아"},
+    {"name": "피렌체 미술 아카데미", "address": "Via Ricasoli, 58/60, 50122 피렌체 FI, 이탈리아"},
+    {"name": "보보리 정원", "address": "Piazza dei Pitti, 1, 50125 피렌체 FI, 이탈리아"}
+  ],
+  "나폴리": [
+    {"name": "나폴리 대성당", "address": "Via Duomo, 149, 80138 나폴리 NA, 이탈리아"},
+    {"name": "나폴리 국립 고고학 박물관", "address": "Piazza Museo, 19, 80135 나폴리 NA, 이탈리아"},
+    {"name": "나폴리 국립 석판 박물관", "address": "Piazza Museo, 19, 80135 나폴리 NA, 이탈리아"},
+    {"name": "로열 궁전", "address": "Piazza del Plebiscito, 1, 80132 나폴리 NA, 이탈리아"},
+    {"name": "나폴리 해협", "address": "Gulf of Naples, 나폴리 NA, 이탈리아"},
+    {"name": "나폴리 극장", "address": "Via San Carlo, 98, 80132 나폴리 NA, 이탈리아"},
+    {"name": "카푸아수 궁전", "address": "Viale Colli Aminei, 80131 나폴리 NA, 이탈리아"},
+    {"name": "나폴리 수족관", "address": "Via Fuorigrotta, 80124 나폴리 NA, 이탈리아"},
+    {"name": "스파키 궁전", "address": "Viale Dohrn, 2, 80122 나폴리 NA, 이탈리아"},
+    {"name": "나폴리 산타 치아라 궁전", "address": "Piazza del Plebiscito, 1, 80132 나폴리 NA, 이탈리아"}
+  ],
+  "피사": [
+    {"name": "피사 대성당", "address": "Piazza del Duomo, 56126 피사 PI, 이탈리아"},
+    {"name": "피사의 사탑", "address": "Piazza del Duomo, 56126 피사 PI, 이탈리아"},
+    {"name": "바티칸 궁전", "address": "Piazza dei Miracoli, 56126 피사 PI, 이탈리아"},
+    {"name": "나비라 치안티", "address": "Via Curtatone, 1, 56125 피사 PI, 이탈리아"},
+    {"name": "피사 성벽", "address": "Viale delle Piagge, 50142 피사 PI, 이탈리아"},
+    {"name": "나비라 음악 기념관", "address": "Via San Nicola, 29, 56126 피사 PI, 이탈리아"},
+    {"name": "보니 파노라마", "address": "Lungarno Antonio Pacinotti, 15, 56126 피사 PI, 이탈리아"},
+    {"name": "유일레오 공원", "address": "Piazza dei Miracoli, 56126 피사 PI, 이탈리아"},
+    {"name": "피사 국립 미술관", "address": "Lungarno Gambacorti, 9, 56125 피사 PI, 이탈리아"},
+    {"name": "피사 보코네 궁전", "address": "Piazza dei Miracoli, 56126 피사 PI, 이탈리아"}
+  ],
+  "프라하": [
+    {"name": "찰스 다리", "address": "Karlův most, 110 00 프라하 1-스타레 미에스토, 체코"},
+    {"name": "프라하 성", "address": "119 08 프라하 1-후라, 체코"},
+    {"name": "성 비투스 대성당", "address": "III. nádvoří 48/2, 119 01 프라하 1-후라, 체코"},
+    {"name": "베드리히 스미히예브", "address": "Staroměstské nám. 1/4, 110 00 프라하 1-스타레 미에스토, 체코"},
+    {"name": "프라하 천문대", "address": "Petřínské sady 411, 118 00 프라하 1-말á 스트라나, 체코"},
+    {"name": "프라하 성당", "address": "Kostelní 280, 160 00 프라하 6-하드초니, 체코"},
+    {"name": "프라하 국립 갈러리", "address": "Dukelských hrdinů 47, 170 00 프라하 7-호레시, 체코"},
+    {"name": "레토나섬", "address": "Na Kampe 494/1, 118 00 프라하 1-말á 스트라나, 체코"},
+    {"name": "페트린 언덕", "address": "Praha 1-말á 스트라나, 체코"},
+    {"name": "프라하 도시 박물관", "address": "Na Poříčí 52, 110 00 프라하 1-스타레 미에스토, 체코"}
+  ],
+  "부다페스트": [
+    {"name": "성 스테판 대성당", "address": "Budapest, Szent István tér 1, 1051 헝가리"},
+    {"name": "피셔만의 요새", "address": "Budapest, Szentháromság tér, 1014 헝가리"},
+    {"name": "나기 으리치 욕장", "address": "Budapest, Gellért tér 1, 1111 헝가리"},
+    {"name": "부다페스트 음악 센터", "address": "Budapest, Zoltán u. 2-4, 1065 헝가리"},
+    {"name": "도나우 강", "address": "Budapest, Hungary"},
+    {"name": "부다페스트 국립 미술관", "address": "Budapest, Dózsa György út 41, 1146 헝가리"},
+    {"name": "세인트 마르코 궁전", "address": "Budapest, Szent Márton tér 2, 1014 헝가리"},
+    {"name": "히르쉬 펠디 합창단", "address": "Budapest, Bécsi út 56, 1034 헝가리"},
+    {"name": "브다페스트 박물관", "address": "Budapest, Kossuth Lajos tér 14-16, 1055 헝가리"},
+    {"name": "부다페스트 동물원", "address": "Budapest, Állatkerti krt. 6-12, 1146 헝가리"}
+  ],
+  "아테네": [
+    {"name": "아크로폴리스", "address": "Athens 105 58, 그리스"},
+    {"name": "파르테논 신전", "address": "Athens 105 58, 그리스"},
+    {"name": "나시오나오크 신전", "address": "Athens 105 58, 그리스"},
+    {"name": "아테네 국립 고고학 박물관", "address": "Athens 106 82, 그리스"},
+    {"name": "시나그마", "address": "Athens 105 56, 그리스"},
+    {"name": "파네페포스의 사원", "address": "Athens 105 55, 그리스"},
+    {"name": "오데온 헤로드스 아투스", "address": "Athens 105 55, 그리스"},
+    {"name": "헤르메스 신전", "address": "Athens 105 62, 그리스"},
+    {"name": "아테네 국립 정원", "address": "Athens 116 56, 그리스"},
+    {"name": "나마라카오 아르헨도우", "address": "Athens 105 61, 그리스"}
+  ],
+  "다카": [
+    {"name": "아하드 스퀘어", "address": "Ahad R/A, Dhaka 1212, Bangladesh"},
+    {"name": "산드니테 궁전", "address": "Abdul Ghani Road, Dhaka 1000, Bangladesh"},
+    {"name": "나스티 코디스 레지던스", "address": "House 24, Rd No. 48, Dhaka 1212, Bangladesh"},
+    {"name": "라스 로아스 국립 도서관", "address": "Shahbag, Dhaka 1000, Bangladesh"},
+    {"name": "다카 대학교", "address": "University Road, Dhaka 1000, Bangladesh"},
+    {"name": "자히르 미르 모스크", "address": "Mirpur Road, Dhaka 1205, Bangladesh"},
+    {"name": "다카 국립 도서관", "address": "Agargaon, Dhaka 1207, Bangladesh"},
+    {"name": "삽퓰 시장", "address": "Shaheed Syed Nazrul Islam Sarani, Dhaka 1205, Bangladesh"},
+    {"name": "리버 뷰 에이브뉴", "address": "Bangladesh"},
+    {"name": "다카 외국인 교환 마켓", "address": "Pragati Sarani, Dhaka 1212, Bangladesh"}
+  ],
+  "뉴델리": [
+    {"name": "인도 게이트", "address": "Rajpath, India Gate, New Delhi, Delhi 110001, India"},
+    {"name": "후마온슈 탑", "address": "Humaun's Tomb, Mathura Road Opposite, Nizamuddin, New Delhi, Delhi 110013, India"},
+    {"name": "뉴델리 쇼핑몰", "address": "Nelson Mandela Marg, Vasant Kunj, New Delhi, Delhi 110070, India"},
+    {"name": "잔타르 말르", "address": "Jantar Mantar, Sansad Marg, Connaught Place, New Delhi, Delhi 110001, India"},
+    {"name": "마드풀리 마크스", "address": "Madame Tussauds, Regal Building, 44, Connaught Cir, Hanuman Road Area, Connaught Place, New Delhi, Delhi 110001, India"},
+    {"name": "라자수투노", "address": "Rajpath, India Gate, New Delhi, Delhi 110001, India"},
+    {"name": "아크샤르다마", "address": "Akshardham Setu, New Delhi, Delhi 110092, India"},
+    {"name": "파라나시나티크람", "address": "Purana Qila, Mathura Road, Near Delhi Zoo, New Delhi, Delhi 110003, India"},
+    {"name": "바이데비", "address": "Birla Mandir Road, Near Gol Market, Mandir Marg, New Delhi, Delhi 110001, India"},
+    {"name": "난다 팔리스", "address": "Nanda Road, Nanda Road, Connaught Place, New Delhi, Delhi 110001, India"}
+  ],
+  "뭄바이": [
+    {"name": "게이트웨이 오브 인디아", "address": "Apollo Bandar, Colaba, Mumbai, Maharashtra 400001, India"},
+    {"name": "에로스 극장", "address": "Churchgate, Mumbai, Maharashtra 400020, India"},
+    {"name": "인도 영화 개발 공사", "address": "Dadasaheb Phalke Chitranagri, Goregaon East, Mumbai, Maharashtra 400065, India"},
+    {"name": "스리딘디 빈도바니 국제공항", "address": "Sahar Elevated Rd, Sahar, Andheri East, Mumbai, Maharashtra 400099, India"},
+    {"name": "빅본바이", "address": "Pedder Road, Cumballa Hill, Mumbai, Maharashtra 400026, India"},
+    {"name": "자베르 스타디움", "address": "Rajawadi Colony, Ghatkopar East, Mumbai, Maharashtra 400077, India"},
+    {"name": "칸틸라 휠", "address": "Dargah Rd, Netaji Subhash Nagar, Kurla, Mumbai, Maharashtra 400070, India"},
+    {"name": "흑인 마켓", "address": "Mohammed Ali Rd, Kumbharwada, Kamathipura, Mumbai, Maharashtra 400003, India"},
+    {"name": "사나야 노바", "address": "Shivaji Park, Mumbai, Maharashtra 400016, India"},
+    {"name": "비빈카테스와라나 제교", "address": "Marine Dr, Netaji Subhash Nagar, Kurla, Mumbai, Maharashtra 400070, India"}
+  ],
+  "카라치": [
+    {"name": "쿠에이드 이즈 아자무 미나라", "address": "Kohinoor Plaza, F.B Area, Karachi, Karachi City, Sindh 75950, Pakistan"},
+    {"name": "모하타 마켓", "address": "Bolton Market, Karachi, Karachi City, Sindh, Pakistan"},
+    {"name": "카라치 주립 미술관", "address": "Sir Jehangir Kothari Parade, Karachi Cantonment, Karachi, Karachi City, Sindh 75530, Pakistan"},
+    {"name": "쿠에이드 이즈 아자무 국립 공항", "address": "Airport Rd, Karachi Cantonment, Karachi, Karachi City, Sindh 75200, Pakistan"},
+    {"name": "모하타 교회", "address": "St. Andrews Church, Fawara Chowk, Karachi, Karachi City, Sindh 74000, Pakistan"},
+    {"name": "피스 컬럼", "address": "Merewether Clock Tower, Club Rd, Karachi Cantonment, Karachi, Karachi City, Sindh 75530, Pakistan"},
+    {"name": "피스 스퀘어", "address": "Club Rd, Karachi Cantonment, Karachi, Karachi City, Sindh 75530, Pakistan"},
+    {"name": "카라치 해변", "address": "Seaview Rd, Karachi Cantonment, Karachi, Karachi City, Sindh, Pakistan"},
+    {"name": "모하타 해변", "address": "Clifton Beach, Karachi, Karachi City, Sindh, Pakistan"},
+    {"name": "프라이버시 클럽 카라치", "address": "Main Khayaban-e-Jami, Block 5, Clifton, Karachi, Karachi City, Sindh, Pakistan"}
+  ],
+  "이스라엘": [
+    {"name": "예루살렘 성전", "address": "Derech Sha'ar HaArayot, Jerusalem, Israel"},
+    {"name": "웨스턴 월", "address": "Jerusalem, Israel"},
+    {"name": "마사다", "address": "Masada, Israel"},
+    {"name": "텔 아비브 스트리트 마켓", "address": "HaCarmel St 11, Tel Aviv-Yafo, Israel"},
+    {"name": "텔아비브 노바 비치", "address": "Tel Aviv-Yafo, Israel"},
+    {"name": "이스라엘 박물관", "address": "Ruppin Blvd 11, Tel Aviv-Yafo, Israel"},
+    {"name": "이즈라엘 자연사 박물관", "address": "Museum Row, Givat Ram, Jerusalem, Israel"},
+    {"name": "텔아비브 바이바르 빌라지", "address": "Ben Gurion Blvd, Tel Aviv-Yafo, Israel"},
+    {"name": "아카코", "address": "Old City, Acre, Israel"},
+    {"name": "카르메시 지", "address": "Tel Aviv-Yafo, Israel"}
+  ],
+  "모스크바": [
+    {"name": "레닌의 묘지", "address": "ул. Ленинские горы, 1, стр. 1, Moscow, Russia, 119071"},
+    {"name": "적관", "address": "ул. Садовая-Кудринская, 18, стр. 1, Moscow, Russia, 123001"},
+    {"name": "에르바트 궁전", "address": "Кутузовский просп., 2/1, стр. 1, Moscow, Russia, 119243"},
+    {"name": "모스크바 주립 미술관", "address": "Ул. Волхонка, 14, стр. 1, Moscow, Russia, 119019"},
+    {"name": "트레카코프 갤러리", "address": "Лаврушинский пер., 12, стр. 1, Moscow, Russia, 119017"},
+    {"name": "모스크바 동물원", "address": "Б. Грузинская ул., 1, стр. 1, Moscow, Russia, 123242"},
+    {"name": "레스피브 페데스탈", "address": "Пресненская наб., 2, стр. 1, Moscow, Russia, 123317"},
+    {"name": "아르바트 거리", "address": "Арбат ул., 1, стр. 1, Moscow, Russia, 119019"},
+    {"name": "메트로", "address": "Театральная пл., 1, стр. 1, Moscow, Russia, 109012"},
+    {"name": "크렘린", "address": "Кремлёвская наб., 103073, Moscow, Russia"}
+  ],
+  "상트페테르부르크": [
+    {"name": "에르미타주 박물관", "address": "Palace Emb., 2, St Petersburg, Russia, 191186"},
+    {"name": "피터 앤 폴 대성당", "address": "Ploshchad' Pionerov, 1, St Petersburg, Russia, 190000"},
+    {"name": "피터호프 궁전", "address": "Petrodvorets, St Petersburg, Russia, 198516"},
+    {"name": "노바야 지역", "address": "Bolshaya Moskovskaya Ulitsa, 42, St Petersburg, Russia, 190031"},
+    {"name": "쇼스타코비치 테마공원", "address": "ul. Shosse Revolyutsii, 84, St Petersburg, Russia, 194291"},
+    {"name": "피터 앤 폴 대학교", "address": "Universitetskaya Naberezhnaya, 7/9, St Petersburg, Russia, 199034"},
+    {"name": "피터 앤 폴 어베뉴", "address": "Petrogradsky District, St Petersburg, Russia, 197101"},
+    {"name": "헤르미타주 극장", "address": "Nevskiy Ave, 34, St Petersburg, Russia, 191186"},
+    {"name": "비토리아나 프라티야", "address": "pl. Ostrovskogo, 2, St Petersburg, Russia, 191023"},
+    {"name": "헤르미타주 다리", "address": "Nevsky Ave, St Petersburg, Russia, 191186"}
+  ],
+  "키예프": [
+    {"name": "세인트 소피아 대성당", "address": "Volodymyrska St, 24, Kyiv, Ukraine, 01001"},
+    {"name": "키예프 벽", "address": "Kyiv, Ukraine, 02000"},
+    {"name": "안드리이우스 궁전", "address": "Andriivska St, 22A, Kyiv, Ukraine, 02000"},
+    {"name": "키예프 볼레", "address": "Volodymyrska St, 33, Kyiv, Ukraine, 01001"},
+    {"name": "스트레츠프 궁전", "address": "Striletska St, 2B, Kyiv, Ukraine, 02000"},
+    {"name": "키예프 국립 미술관", "address": "Mykhaila Hrushevskoho St, 6, Kyiv, Ukraine, 01001"},
+    {"name": "마리인스키 파크", "address": "Mariinsky Park, Kyiv, Ukraine, 02000"},
+    {"name": "키예프 라베리", "address": "Khreshchatyk St, Kyiv, Ukraine, 01001"},
+    {"name": "마이단 네즈아레츠키 궁전", "address": "Kyiv, Ukraine, 01001"},
+    {"name": "키예프 아레나", "address": "Hrushevskoho St, 3, Kyiv, Ukraine, 02000"}
+  ]
+}

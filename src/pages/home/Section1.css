@@ -1,0 +1,56 @@
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 15em;
+}
+
+.search-input {
+  transition: all 0.5s ease-out;
+  width: 25em;
+  padding-left: 30px;
+  border-radius: 10px;
+  padding: 24px 40px;
+  font-size: 1.25rem;
+  visibility: visible;
+  position: absolute; /* 검색 결과에 의해 위치가 변하지 않도록 절대 위치 사용 */
+  z-index: 2;
+  top: 0; /* 컨테이너 상단에 위치 */
+  opacity: 0;
+  height: 5rem; /* 초기 높이 설정 */
+}
+
+.search-input-active {
+  opacity: 1;
+}
+
+.search-results {
+  width: 31em;
+  max-height: 30rem;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 5.5rem;
+  overflow-y: scroll;
+  z-index: 1;
+}
+
+.result-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0; 
+}
+
+/* 지역 텍스트 스타일링 */
+.result-item .location {
+  color: black;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* 국가 텍스트 스타일링 */
+.result-item .country {
+  color: #757575;
+  font-size: 0.875rem;
+}
