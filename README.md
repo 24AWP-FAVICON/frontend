@@ -1,36 +1,132 @@
 # Front-End Features Introduction
 
 ## 1. Home
-**Purpose**: The main page for creating travel plans. Users can search for a destination or click on a country/region to start planning. Alternatively, they can select a card at the bottom to proceed.
+**Main Page Functionality**: This section includes the core layout and functionalities of the main page, consisting of sections for creating travel plans, showcasing travel tips, and highlighting popular destinations.
+
+### Detailed Description
+#### 1. Introduction and Search
+- **Introduction**: Displays a welcoming message and an invitation to start planning a trip.
+- **Search Functionality**: Users can search for locations to plan their trips.
+
+#### 2. Travel Tips Carousel
+- **Carousel Functionality**: Displays travel tips with an image and description in a carousel format.
+- **Navigation**: Users can navigate through tips using previous and next buttons.
+
+#### 3. Popular Destinations
+- **Destination Cards**: Displays a grid of popular travel destinations with images and location names.
+- **Navigation**: Clicking on a destination navigates the user to the planning page for that location.
+
+### Community Screen Shot
+#### 1. Main Page Overview
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/1d87f60f-78c5-410c-8d86-76aa082ae7ce)
+#### 2. Travel Tips Carousel
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/f7898bfe-1db2-4385-962d-89c50ae9ef52)
+#### 3. Popular Destinations
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/5ab3d521-7d7e-4c22-b67b-b1c7bdc3d6ae)
 
 ## 2. Community
-**Purpose**: A space to upload and share travel experiences. Includes functionalities for liking, commenting, and attaching photos.
+**Community Functionality**: This section handles the core functionalities of the community page, including fetching posts, liking/unliking posts, adding comments, and creating new posts.
 
-## 3. SNS
-**Purpose**: Personal messaging feature where users can send direct messages.
+### Detailed Description
 
-## 4. Plan
-**Purpose**: Feature for creating detailed travel plans. Integrates Google Maps API for location search and addition.
+#### 1. Fetching and Displaying Posts
+- **Initial Fetch**: When the component mounts, it fetches posts from the API using the **fetchPosts** function.
+- **Post Enhancement**: Each post is enhanced with comments and like count using **fetchCommentsByPostId**.
+- **Sorting**: Posts are sorted by creation date in descending order.
+- **Infinite Scroll**: Uses Intersection Observer API to load more posts as the user scrolls down.
 
-## 5. Login
-**Purpose**: Uses Google OAuth2 for user registration and login.
+#### 2. Searching Posts
+- **Search Function**: Filters posts based on the search term entered by the user.
 
-## Screenshots
+#### 3. Modal Management
+- **Post Modal**: Opens a modal to show post details and comments when a post is clicked.
+- **Create Post Modal**: Opens a modal to create a new post.
 
-### 1. Home
-(Include an image of the Home screen here)
+#### 4. Adding Comments
+- **Comment Function**: Adds a comment to the selected post and updates the comment count.
 
-### 2. Community
-(Include an image of the Community screen here)
+#### 5. Liking/Unliking Posts
+- **Like Function**: Toggles the like status of a post and triggers a heart animation.
+- **Unlike Function**: Toggles the unlike status of a post and triggers a blue heart animation.
 
-### 3. SNS
-(Include an image of the SNS screen here)
+#### 6. Creating New Posts
+- **Create Post Function**: Handles the creation of a new post, including uploading an image and updating the post with the image URL if provided.
 
-### 4. Plan
-(Include an image of the Plan screen here)
+### Community Screen Shot
+#### 1. Community Main Page
+  ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/ba329f84-a433-4d7a-8e25-54b207b951d4)
+#### 2. Post Modal
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/d536cbd7-b877-415d-a4b1-c92dfcebc2bb)
+#### 3. Create Post Modal
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/da8e63b8-8805-4042-81e7-9d9d519c0350)
 
-### 5. Login
-(Include an image of the Login screen here)
+## 3. Login
+**Login Successful Processing**: After OAuth authentication, the user information is saved and redirected. If the user successfully logs in through Google OAuth, the user information is imported using the issued access token and the refresh token, which is then stored in the cookie. Then, the user is redirected to the main page.
+
+### Detailed Description
+
+#### 1. Verify Tokens and Request User Information
+- Runs when the component is mounted using the **useEffect** hook.
+- Retrieves the **access token** and **refresh token** from the cookies.
+- If the token exists, makes an API call to get user information.
+
+#### 2. Save User Information
+- If the API call is successful, the returned user information is stored in the cookies.
+- For example, you can store **userEmail** in cookies so that other components can utilize this information.
+
+#### 3. Redirection
+- After storing user information, redirects the user to the main page (`/`).
+- If the API call fails or the token does not exist, redirects the user to the login page to prompt re-login.
+
+#### 4. Show Loading Status
+- While importing user information, displays a "Loading..." message to inform the user that processing is underway.
+
+### Login Screen Shot
+#### 1. Login Page
+   ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/65aec526-4297-4f47-adf1-5fac7bd686be)
+#### 2. Google Login
+   ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/90b3d234-2e58-4e43-af40-3e5f3a739be8)
+#### 3. Successful Login
+    ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/b48870b2-4e03-41e8-830b-ff8f783917a4)
+
+> Login Page Code:
+```javascript
+import React from "react";
+import { FcGoogle } from "react-icons/fc";
+
+function Login() {
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-4xl font-bold mb-6 text-center">Favicon</h1>
+        <p className="text-em text-gray-600 mb-6 text-center">
+          소셜로 간편하게 로그인하세요.
+        </p>
+        <div className="flex flex-col items-center">
+          <a
+            href="http://localhost:8080/oauth2/authorization/google"
+            className="flex items-center justify-center w-full bg-white text-gray-600 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition duration-150"
+          >
+            <FcGoogle className="w-6 h-6 mr-2" />
+            Google로 계속하기
+          </a>
+        </div>
+        <p className="text-sm text-gray-600 mt-10 text-center">
+          계속 진행함으로써, <a href="#" className="text-blue-500 hover:underline">이용 약관</a> 및 <a href="#" className="text-blue-500 hover:underline">개인정보 처리방침</a>에 동의합니다.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+```
+
+## 4. SNS
+
+
+## 5. Plan
+
 
 ## Development Contributions
 
