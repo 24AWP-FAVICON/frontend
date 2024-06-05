@@ -87,7 +87,7 @@
 #### 2. Google Login
    ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/90b3d234-2e58-4e43-af40-3e5f3a739be8)
 #### 3. Successful Login
-    ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/b48870b2-4e03-41e8-830b-ff8f783917a4)
+   ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/b48870b2-4e03-41e8-830b-ff8f783917a4)
     
 
 ## 4. SNS
