@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./ChatList.css"; // 스타일 파일 import
 import personIcon from "./person-icon.jpg"; // 이미지 파일 import
-import { updateChatRoomName, createChatRoom, getAllChatRooms, deleteChatRoom, getChatRoomById } from "./ChatApiService";
-import axios from "axios";
-
+import { 
+  updateChatRoomName, 
+  createChatRoom, 
+  getAllChatRooms, 
+  deleteChatRoom, 
+  getChatRoomById 
+} from "./ChatApiService"; // API 서비스 가져오기
 
 function ChatList({ setSelectedChat }) {
   const [showModal, setShowModal] = useState(false); // 모달 창 열고 닫는 상태
@@ -18,8 +22,8 @@ function ChatList({ setSelectedChat }) {
 
   const fetchChatRooms = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/chatRooms"); // 백엔드의 URL로 수정
-      setChats(response.data);
+      const response = await getAllChatRooms(); // 수정된 부분
+      setChats(response);
     } catch (error) {
       console.error("Error fetching chat rooms:", error);
     }
@@ -36,19 +40,15 @@ function ChatList({ setSelectedChat }) {
   const handleAddChat = async () => {
     if (newMessage.trim() !== "" && senderName.trim() !== "") {
       try {
-        // 새로운 대화를 추가하는 함수
-        const newChatRoom = await createChatRoom(senderName); // 새로운 채팅방 생성
-        // 생성된 채팅방을 채팅 목록에 추가합니다.
+        const newChatRoom = await createChatRoom(senderName, null, []); // 수정된 부분
         const newChat = {
           roomId: newChatRoom.id,
           sender: senderName,
           message: newMessage,
         };
         setChats([...chats, newChat]); // 채팅 목록 상태 업데이트
-        // 입력 필드 초기화
         setNewMessage("");
         setSenderName("");
-        // 모달 창 닫기
         setShowModal(false);
       } catch (error) {
         console.error("Error creating chat room:", error);
@@ -62,9 +62,7 @@ function ChatList({ setSelectedChat }) {
 
   const handleDeleteChatRoom = async (roomId) => {
     try {
-      // 채팅방 삭제 함수 호출
       await deleteChatRoom(roomId);
-      // 삭제 후 채팅 목록 다시 불러오기
       fetchChatRooms();
     } catch (error) {
       console.error("Error deleting chat room:", error);
@@ -80,11 +78,10 @@ function ChatList({ setSelectedChat }) {
         </button>
         {chats.map((chat, index) => (
           <li
-          key={index}
-          className="chat-item"
-          onClick={() => handleChatSelection(chat)}
-        >
-        
+            key={index}
+            className="chat-item"
+            onClick={() => handleChatSelection(chat)}
+          >
             <div className="chat-content">
               <img src={personIcon} alt="Person" className="person-icon" />
               <span className="chat-sender">{chat.sender}: </span>
