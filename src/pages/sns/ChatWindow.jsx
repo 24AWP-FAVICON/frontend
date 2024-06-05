@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatWindow.css"; // CSS 파일을 import합니다.
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+
+const SOCKET_URL = 'http://localhost:8080/ws'; // WebSocket 엔드포인트 URL
+
 
 function ChatWindow({ selectedChat, onSendMessage }) {
   const [message, setMessage] = useState(""); // 입력된 채팅 메시지 상태
   const [chatHistory, setChatHistory] = useState([]); // 채팅 내역 상태
   const chatBodyRef = useRef(null); // 채팅창의 몸체를 참조하기 위한 Ref
+  const [stompClient, setStompClient] = useState(null);
 
   // 대화 상대가 변경될 때마다 채팅 내역을 초기화하고 새로운 대화 내역을 가져옵니다.
   useEffect(() => {
@@ -12,8 +18,47 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       setChatHistory([]); // 선택된 채팅이 있을 때만 채팅 내역 초기화
       fetchChatHistory(selectedChat.id); // 대화 내역 가져오기
     }
+    // WebSocket 연결 설정
+    const socket = new SockJS(SOCKET_URL);
+    const client = new Client({
+      webSocketFactory: () => socket,
+      reconnectDelay: 5000,
+      debug: (str) => {
+        console.log(str);
+      },
+    });
+
+    client.onConnect = onConnected;
+    client.onStompError = onError;
+    client.activate();
+
+    setStompClient(client);
+
+    return () => {
+      if (client) {
+        client.deactivate();
+      }
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChat]);
+
+  const onConnected = () => {
+    console.log("Connected to WebSocket");
+    if (selectedChat) {
+      stompClient.subscribe(`/sub/channel/${selectedChat.id}`, onMessageReceived);
+    }
+  };
+
+  const onError = (error) => {
+    console.error("Could not connect to WebSocket server. Please refresh this page to try again!", error);
+  };
+
+  const onMessageReceived = (msg) => {
+    const message = JSON.parse(msg.body);
+    setChatHistory((prevChatHistory) => [...prevChatHistory, message]);
+    scrollToBottom(); // 채팅창 맨 아래로 스크롤
+  };
 
   // 가상의 서버와의 통신을 통해 대화 내역을 가져오는 함수
   const fetchChatHistory = (partnerId) => {
@@ -40,12 +85,18 @@ function ChatWindow({ selectedChat, onSendMessage }) {
 
   // 메시지 전송 함수
   const sendMessage = () => {
-    if (message.trim() !== "") {
+    if (message.trim() !== "" && stompClient ) {
       // 입력된 채팅 메시지가 비어있지 않은 경우에 실행
       const newChat = {
         sender: "나", // 대화 상대 이름
         message: message.trim(), // 입력된 메시지
+        roomId: selectedChat.id, // 채팅방 id
       };
+      stompClient.publish({
+        destination: "/pub/message",
+        body: JSON.stringify(newChat),
+      });
+
       // 이전 채팅 내역에 새로운 채팅을 배열의 끝에 추가
       setChatHistory([...chatHistory, newChat]);
       // 메시지 전송 콜백 호출
