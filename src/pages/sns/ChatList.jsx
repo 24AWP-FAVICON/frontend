@@ -57,7 +57,7 @@ function ChatList({ setSelectedChat }) {
   };
 
   const handleChatSelection = (chat) => {
-    setSelectedChat({ sender: chat.sender, message: chat.message });
+    setSelectedChat({ sendder: chat.sender, message: chat.message });
   };
 
   const handleDeleteChatRoom = async (roomId) => {
