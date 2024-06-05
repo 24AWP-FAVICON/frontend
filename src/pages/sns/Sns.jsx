@@ -6,9 +6,9 @@ import ChatWindow from "./ChatWindow";
 function Sns() {
   const [selectedChat, setSelectedChat] = useState(null);
   const [chats, setChats] = useState([
-    { sender: "김가천", message: "안녕하세요!" },
-    { sender: "박가천", message: "안녕하세요! 반가워요." },
-    { sender: "팀1", message: "팀1입니다." },
+    { roomId: 1, sender: "김가천", message: "안녕하세요!" },
+    { roomId: 2, sender: "박가천", message: "안녕하세요! 반가워요." },
+    { roomId: 3, sender: "팀1", message: "팀1입니다." },
   ]);
 
   const handleSelectChat = (chat) => {
@@ -33,9 +33,19 @@ function Sns() {
     }
   };
 
+  // 임의의 새로운 채팅방 추가
+  const handleAddNewChat = () => {
+    const newChat = {
+      roomId: chats.length + 1, // 채팅방의 ID는 현재 채팅방의 수에 1을 더한 값으로 설정합니다.
+      sender: "새로운 채팅방",
+      message: "환영합니다!",
+    };
+    setChats((prevChats) => [...prevChats, newChat]); // 기존 채팅방 목록에 새로운 채팅방을 추가합니다.
+  };
+
   return (
     <div className="Sns">
-      <ChatList chats={chats} setSelectedChat={handleSelectChat} />
+      <ChatList chats={chats} setSelectedChat={handleSelectChat} onAddNewChat={handleAddNewChat} />
       <ChatWindow
         selectedChat={selectedChat}
         onSendMessage={handleSendMessage}
