@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./ChatWindow.css"; // CSS 파일을 import합니다.
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
+import Cookies from 'js-cookie';
 
 const SOCKET_URL = 'http://localhost:8080/ws'; // WebSocket 엔드포인트 URL
 
@@ -19,7 +20,7 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       fetchChatHistory(selectedChat.id); // 대화 내역 가져오기
     }
     // WebSocket 연결 설정
-    const socket = new SockJS(SOCKET_URL);
+    const socket = new SockJS(SOCKET_URL, null, { transports: ['xhr-streaming'], withCredentials: true });
     const client = new Client({
       webSocketFactory: () => socket,
       reconnectDelay: 5000,
@@ -28,8 +29,22 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       },
     });
 
-    client.onConnect = onConnected;
-    client.onStompError = onError;
+    client.onConnect = () => {
+      console.log("Connected to WebSocket");
+      if (selectedChat) {
+        client.subscribe(`/sub/channel/${selectedChat.id}`, (msg) => {
+          const message = JSON.parse(msg.body);
+          setChatHistory((prevChatHistory) => [...prevChatHistory, message]);
+          scrollToBottom();
+        });
+      }
+    };
+
+    client.onStompError = (frame) => {
+      console.error('Broker reported error: ' + frame.headers['message']);
+      console.error('Additional details: ' + frame.body);
+    };
+
     client.activate();
 
     setStompClient(client);
@@ -43,22 +58,22 @@ function ChatWindow({ selectedChat, onSendMessage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChat]);
 
-  const onConnected = () => {
-    console.log("Connected to WebSocket");
-    if (selectedChat) {
-      stompClient.subscribe(`/sub/channel/${selectedChat.id}`, onMessageReceived);
-    }
-  };
+  // const onConnected = () => {
+  //   console.log("Connected to WebSocket");
+  //   if (selectedChat) {
+  //     stompClient.subscribe(`/sub/channel/${selectedChat.id}`, onMessageReceived);
+  //   }
+  // };
 
-  const onError = (error) => {
-    console.error("Could not connect to WebSocket server. Please refresh this page to try again!", error);
-  };
+  // const onError = (error) => {
+  //   console.error("Could not connect to WebSocket server. Please refresh this page to try again!", error);
+  // };
 
-  const onMessageReceived = (msg) => {
-    const message = JSON.parse(msg.body);
-    setChatHistory((prevChatHistory) => [...prevChatHistory, message]);
-    scrollToBottom(); // 채팅창 맨 아래로 스크롤
-  };
+  // const onMessageReceived = (msg) => {
+  //   const message = JSON.parse(msg.body);
+  //   setChatHistory((prevChatHistory) => [...prevChatHistory, message]);
+  //   scrollToBottom(); // 채팅창 맨 아래로 스크롤
+  // };
 
   // 가상의 서버와의 통신을 통해 대화 내역을 가져오는 함수
   const fetchChatHistory = (partnerId) => {
@@ -95,6 +110,7 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       stompClient.publish({
         destination: "/pub/message",
         body: JSON.stringify(newChat),
+        headers: { Authorization: `Bearer ${Cookies.get('access')}` } // 토큰 전달
       });
 
       // 이전 채팅 내역에 새로운 채팅을 배열의 끝에 추가
