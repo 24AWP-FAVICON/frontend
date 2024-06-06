@@ -1,39 +1,36 @@
 /* ChatList.css */
 
-/* 추가된 부분: 메시지 문장 스타일 */
 .chat-list-title {
-  font-size: 20px;
+  font-size: 2vw;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 2vw;
 }
 
 .chat-list {
   background-color: #f0f0f0;
-  padding: 20px;
-  width: 350px; /* 단위를 추가했어요 */
-  height: 500px;
-  margin-left: 60px;
+  padding: 2vw;
+  width: 25vw;
+  height: 75vh;
+  margin-left: 6vw;
   border-radius: 30px;
-  margin-right: -10px;
-  position: inherit;
-  margin-top: -0%;
-}
-
-.chat-list {
+  margin-right: -1.6vw;
+  position: relative;
+  margin-top: 0;
   list-style-type: none;
   padding: 0;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }
+
 .chat-h2 {
-  padding: 30px;
+  padding: 3vw;
   font-weight: bold;
   display: inline;
-  margin-bottom: 10px;
+  margin-bottom: 1vw;
 }
 
 .chat-item {
-  margin-top: 0px;
-  padding: 15px;
+  margin-top: 0;
+  padding: 3%;
 }
 
 .chat-item:last-child {
@@ -51,36 +48,28 @@
 
 .chat-message {
   margin-left: 5px;
-  margin-bottom: 3.5px;
+  margin-top: 4.5%;
+  height: 2vw;
+  width: 15vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .chat-item:hover {
   background-color: #e0e0e0;
-  border-radius: 30px;
-}
-/* ChatWindow.css */
-.chat-window {
-  padding: 20px;
-}
-
-.chat-window h2 {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.chat-window p {
-  margin-bottom: 5px;
+  border-radius: 4vw;
 }
 
 .person-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+  width: 2vw;
+  height: 2vw;
+  margin-right: 0.5vw;
 }
 
 .chat-message {
-  height: 20px;
-  width: 150px;
+  height: 2vw;
+  width: 15vw;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -92,9 +81,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 2vw;
+  padding: 2vw;
+  box-shadow: 0.2vw 0.2vw 1vw rgba(0, 0, 0, 0.1);
+  z-index: 9999;
 }
 
 .modal-content {
@@ -103,47 +93,58 @@
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 10px; /* 수정된 부분: close 버튼을 오른쪽 상단에 배치 */
+  top: 1vw;
+  right: 1vw;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.5vw;
   color: gray;
 }
 
 .add-chat-input {
-  width: calc(100% - 20px); /* 수정된 부분: 버튼과 겹치지 않도록 너비 조정 */
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: calc(100% - 17%);
+  padding: 1vw;
+  margin-top: 1vw;
+  border: 0.2vw solid #ccc;
+  border-radius: 0.5vw;
+  margin-left: 2%;
+}
+
+.invite-link-input {
+  width: calc(100% - 17%);
+  padding: 1vw;
+  margin-top: 1vw;
+  border: 0.2vw solid #ccc;
+  border-radius: 0.5vw;
+  margin-left: 2%;
 }
 
 .add-chat-button {
-  width: 80px;
+  width: 6vw;
   background-color: #4b89dc;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 1vw;
   cursor: pointer;
-  margin-left: 120px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-left: 6vw;
+  margin-top: 2vw;
+  margin-bottom: 1vw;
 }
 
 .add-chat-modal-button {
-  width: 80px;
+  width: 6vw;
   background-color: #4b89dc;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 1vw;
   cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 2vw;
+  margin-bottom: 1vw;
 }
 
 .add-chat-button:hover {
   background-color: #0056b3;
 }
+
 .add-chat-modal-button:hover {
   background-color: #0056b3;
 }

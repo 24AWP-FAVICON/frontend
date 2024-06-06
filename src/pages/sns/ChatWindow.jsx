@@ -1,66 +1,143 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatWindow.css"; // CSS 파일을 import합니다.
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+import Cookies from 'js-cookie';
+import { getChatRoomById, inviteUserToChatRoom } from './ChatApiService'; // API 서비스에서 함수 가져오기
+
+const SOCKET_URL = 'http://localhost:8080/ws'; // WebSocket 엔드포인트 URL
 
 function ChatWindow({ selectedChat, onSendMessage }) {
   const [message, setMessage] = useState(""); // 입력된 채팅 메시지 상태
-  const [chatHistory, setChatHistory] = useState([]); // 채팅 내역 상태
+  const [chatHistories, setChatHistories] = useState(() => {
+    const savedHistories = localStorage.getItem('chatHistories');
+    return savedHistories ? JSON.parse(savedHistories) : {};
+  }); // 여러 채팅방의 채팅 내역을 저장
   const chatBodyRef = useRef(null); // 채팅창의 몸체를 참조하기 위한 Ref
+  const [stompClient, setStompClient] = useState(null);
+  const [inviteEmail, setInviteEmail] = useState(""); // 초대할 사용자 이메일 상태
+  const [showInviteModal, setShowInviteModal] = useState(false); // 초대 모달 상태
+  const [showParticipantsModal, setShowParticipantsModal] = useState(false); // 참여자 목록 모달 상태
+  const userId = Cookies.get('userId'); // 쿠키에서 사용자 ID를 가져옴
 
-  // 대화 상대가 변경될 때마다 채팅 내역을 초기화하고 새로운 대화 내역을 가져옵니다.
   useEffect(() => {
-    if (selectedChat) {
-      setChatHistory([]); // 선택된 채팅이 있을 때만 채팅 내역 초기화
-      fetchChatHistory(selectedChat.id); // 대화 내역 가져오기
+    if (selectedChat && selectedChat.id) {
+      if (!chatHistories[selectedChat.id]) {
+        fetchChatHistory(selectedChat.id);
+      }
     }
+
+    const socket = new SockJS(SOCKET_URL, null, { transports: ['xhr-streaming'], withCredentials: true });
+    const client = new Client({
+      webSocketFactory: () => socket,
+      reconnectDelay: 5000,
+      debug: (str) => {
+        console.log(str);
+      },
+    });
+
+    client.onConnect = () => {
+      console.log("Connected to WebSocket");
+      if (selectedChat) {
+        client.subscribe(`/sub/channel/${selectedChat.id}`, (msg) => {
+          const message = JSON.parse(msg.body);
+          setChatHistories(prevHistories => ({
+            ...prevHistories,
+            [selectedChat.id]: [...(prevHistories[selectedChat.id] || []), message]
+          }));
+          scrollToBottom();
+        });
+      }
+    };
+
+    client.onStompError = (frame) => {
+      console.error('Broker reported error: ' + frame.headers['message']);
+      console.error('Additional details: ' + frame.body);
+    };
+
+    client.activate();
+    setStompClient(client);
+
+    return () => {
+      if (client) {
+        client.deactivate();
+      }
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChat]);
 
-  // 가상의 서버와의 통신을 통해 대화 내역을 가져오는 함수
-  const fetchChatHistory = (partnerId) => {
-    // 가정: 서버와의 통신을 통해 대화 내역을 가져옴
-    const response = simulateServerRequest(partnerId); // 가상의 서버 요청
-    // 서버 응답에서 메시지 추출 및 설정
-    if (response.success) {
-      setChatHistory(response.messages);
-      scrollToBottom(); // 채팅창 맨 아래로 스크롤
-    } else {
-      console.error("대화 내역을 가져오는 데 실패했습니다.");
+  useEffect(() => {
+    localStorage.setItem('chatHistories', JSON.stringify(chatHistories));
+  }, [chatHistories]);
+
+  const fetchChatHistory = async (partnerId) => {
+    try {
+      const response = await getChatRoomById(partnerId);
+      if (response.data) {
+        setChatHistories(prevHistories => ({
+          ...prevHistories,
+          [partnerId]: response.messages
+        }));
+        scrollToBottom();
+      } else {
+        console.error("대화 내역을 가져오는 데 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("Error fetching chat history:", error);
     }
   };
 
-  // 채팅창 맨 아래로 스크롤하는 함수
   const scrollToBottom = () => {
     chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
   };
 
-  // 채팅 메시지 입력 핸들러
   const handleMessageChange = (e) => {
-    setMessage(e.target.value); // 입력된 채팅 메시지 업데이트
+    setMessage(e.target.value);
   };
 
-  // 메시지 전송 함수
   const sendMessage = () => {
-    if (message.trim() !== "") {
-      // 입력된 채팅 메시지가 비어있지 않은 경우에 실행
+    if (message.trim() !== "" && stompClient && selectedChat) {
       const newChat = {
-        sender: "나", // 대화 상대 이름
-        message: message.trim(), // 입력된 메시지
+        sender: userId,
+        message: message.trim(),
+        roomId: selectedChat.id,
       };
-      // 이전 채팅 내역에 새로운 채팅을 배열의 끝에 추가
-      setChatHistory([...chatHistory, newChat]);
-      // 메시지 전송 콜백 호출
+      stompClient.publish({
+        destination: "/pub/message",
+        body: JSON.stringify(newChat),
+        headers: { Authorization: `Bearer ${Cookies.get('access')}` }
+      });
+
+      setChatHistories(prevHistories => ({
+        ...prevHistories,
+        [selectedChat.id]: [...(prevHistories[selectedChat.id] || []), newChat]
+      }));
       onSendMessage(message);
-      // 입력된 채팅 메시지 초기화
       setMessage("");
-      scrollToBottom(); // 채팅창 맨 아래로 스크롤
+      scrollToBottom();
     }
   };
 
-  // 엔터 키 입력 핸들러
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      // 눌러진 키가 엔터 키인 경우
-      sendMessage(); // 채팅 메시지 전송
+      sendMessage();
+    }
+  };
+
+  const handleInviteEmailChange = (e) => {
+    setInviteEmail(e.target.value);
+  };
+
+  const handleInviteUser = async () => {
+    if (inviteEmail.trim() !== "" && selectedChat.id) {
+      try {
+        await inviteUserToChatRoom(selectedChat.id, inviteEmail);
+        setInviteEmail("");
+        setShowInviteModal(false);
+      } catch (error) {
+        console.error("Error inviting user to chat room:", error);
+      }
     }
   };
 
@@ -69,38 +146,68 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       {selectedChat ? (
         <div className="chat">
           <div className="chat-header">
-            <span className="chat-sender">{selectedChat.sender}</span>
+            <span className="chat-room-name">{selectedChat.name}</span>
+            <button onClick={() => setShowInviteModal(true)} className="invite-user-button">사용자 초대</button>
+            <button onClick={() => setShowParticipantsModal(true)} className="view-participants-button">참여자 목록</button>
           </div>
           <div className="chat-body" ref={chatBodyRef}>
-            {/* 채팅 내역을 매핑하여 출력 */}
             <ul>
-              {chatHistory.map((chat, index) => (
+              {(chatHistories[selectedChat.id] || []).map((chat, index) => (
                 <li
                   key={index}
-                  className={chat.sender === "나" ? "right" : "left"} // 적절한 클래스를 적용합니다.
+                  className={chat.sender === userId ? "right" : "left"}
                 >
-                  {chat.sender === "나" ? "나: " : `${selectedChat.sender}: `}
+                  {chat.sender === userId ? "나: " : `${chat.sender}: `}
                   {chat.message}
                 </li>
               ))}
             </ul>
           </div>
+          <div className="chat-input">
+            <input
+              type="text"
+              placeholder="메시지 입력..."
+              value={message}
+              onChange={handleMessageChange}
+              onKeyPress={handleKeyPress}
+            />
+            <button onClick={sendMessage}>전송</button>
+          </div>
         </div>
       ) : (
         <div className="empty-chat">대화를 선택해주세요.</div>
       )}
-
-      {/* 채팅 입력창 및 전송 버튼 */}
-      {selectedChat && (
-        <div className="chat-input">
-          <input
-            type="text"
-            placeholder="메시지 입력..."
-            value={message}
-            onChange={handleMessageChange}
-            onKeyPress={handleKeyPress}
-          />
-          <button onClick={sendMessage}>전송</button>
+      {showInviteModal && (
+        <div className="chat-modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowInviteModal(false)}>
+              &times;
+            </span>
+            <h2>사용자 초대</h2>
+            <input
+              type="text"
+              value={inviteEmail}
+              onChange={handleInviteEmailChange}
+              placeholder="참여자 이메일"
+              className="add-chat-input"
+            />
+            <button onClick={handleInviteUser} className="add-chat-modal-button">초대</button>
+          </div>
+        </div>
+      )}
+      {showParticipantsModal && (
+        <div className="chat-modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowParticipantsModal(false)}>
+              &times;
+            </span>
+            <h2>참여자 목록</h2>
+            <ul>
+              {selectedChat.users.map((user, index) => (
+                <li key={index}>{user}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
@@ -108,17 +215,3 @@ function ChatWindow({ selectedChat, onSendMessage }) {
 }
 
 export default ChatWindow;
-
-// 가상의 서버 요청 함수 (실제로는 서버와의 통신을 시뮬레이션하는 함수)
-const simulateServerRequest = (partnerId) => {
-  // 대화 상대의 ID를 기반으로 가상의 서버 요청을 보냄
-  // 실제로는 서버에 HTTP 요청을 보내거나 WebSocket을 사용하여 서버와 실시간으로 통신함
-  // 이 예시에서는 가상의 응답을 반환함
-  return {
-    success: true,
-    messages: [
-      { sender: "상대방", message: "안녕하세요!" },
-      { sender: "상대방", message: "어떻게 지내세요?" },
-    ],
-  };
-};
