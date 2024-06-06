@@ -28,7 +28,7 @@ function Community() {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostContent, setNewPostContent] = useState("");
-  const [newPostImage, setNewPostImage] = useState(null);
+  const [newPostImages, setNewPostImages] = useState([]); // 이미지 배열로 변경
   const [showHeart, setShowHeart] = useState(false); // 하트 애니메이션 상태
   const [showUnlikeHeart, setShowUnlikeHeart] = useState(false); // 파란 하트 애니메이션 상태
 
@@ -161,28 +161,34 @@ function Community() {
       const response = await createPost({ title: newPostTitle, content: newPostContent });
       const postId = response.data.postId;
 
-      if (newPostImage) {
+      if (newPostImages.length > 0) {
         const formData = new FormData();
-        formData.append('image', newPostImage);
-        const uploadResponse = await uploadPostImage(postId, formData);
-        const imageUrl = uploadResponse.data;
+        newPostImages.forEach((image, index) => {
+          formData.append(`image_${index}`, image);
+        });
 
-        // 게시글 업데이트
-        await updatePost(postId, { title: newPostTitle, content: newPostContent, thumbnailImageId: imageUrl });
+        const uploadResponse = await uploadPostImage(postId, formData);
+        const imageUrls = uploadResponse.data;
+
+        await updatePost(postId, {
+          title: newPostTitle,
+          content: newPostContent,
+          thumbnailImageIds: imageUrls
+        });
       }
 
       await loadPosts(); // 새로운 게시글을 로드합니다.
       closeCreatePostModal();
       setNewPostTitle("");
       setNewPostContent("");
-      setNewPostImage(null);
+      setNewPostImages([]);
     } catch (error) {
       console.error('Failed to create post:', error);
     }
   };
 
   const handleImageChange = (e) => {
-    setNewPostImage(e.target.files[0]);
+    setNewPostImages([...e.target.files]);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -313,9 +319,19 @@ function Community() {
             />
             <input
               type="file"
+              multiple
               onChange={handleImageChange}
               className="create-post-image"
             />
+            {newPostImages.length > 0 && (
+              <div className="selected-images">
+                {Array.from(newPostImages).map((image, index) => (
+                  <div key={index} className="image-preview">
+                    <span>{image.name}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="modal-footer">
             <button onClick={handleCreatePost} className="create-post-button">Create</button>
