@@ -104,13 +104,8 @@ function ChatWindow({ selectedChat, onSendMessage }) {
         headers: { Authorization: `Bearer ${Cookies.get('access')}` }
       });
 
-      setChatHistories(prevHistories => ({
-        ...prevHistories,
-        [selectedChat.id]: [...(prevHistories[selectedChat.id] || []), newChat]
-      }));
-      onSendMessage(message);
+      // onSendMessage(message); 이 부분을 제거하여 메시지를 즉시 목록에 추가하지 않음
       setMessage("");
-      scrollToBottom();
     }
   };
 
