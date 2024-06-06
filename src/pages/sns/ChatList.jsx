@@ -5,8 +5,11 @@ import {
   getAllChatRooms, 
   createChatRoom, 
   deleteChatRoom, 
-  updateChatRoomName
+  updateChatRoomName 
 } from "./ChatApiService"; // API 서비스 가져오기
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+
 
 function ChatList({ setSelectedChat }) {
   const [showModal, setShowModal] = useState(false); // 모달 창 열고 닫는 상태
@@ -16,6 +19,11 @@ function ChatList({ setSelectedChat }) {
   const [chats, setChats] = useState([]); // 채팅 목록 상태
   const [selectedChatRoom, setSelectedChatRoom] = useState(null); // 선택된 채팅방
 
+  // const userId = Cookies.get('userId'); // 사용자 ID를 쿠키에서 가져오기
+  // console.log("userId", userId)
+  // console.log(Cookies.get())
+
+  
   useEffect(() => {
     // 페이지 로드 시 채팅 목록을 가져오는 함수 호출
     if (chats.length === 0) {
@@ -70,7 +78,7 @@ function ChatList({ setSelectedChat }) {
   };
 
   const handleChatSelection = (chat) => {
-    setSelectedChat({ sender: chat.users[0], id: chat.roomId });
+    setSelectedChat({ sender: chat.users[0], id: chat.roomId, name: chat.name, users: chat.users });
   };
 
   const handleDeleteChatRoom = async (roomId) => {

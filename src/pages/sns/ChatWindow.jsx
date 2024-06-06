@@ -17,19 +17,16 @@ function ChatWindow({ selectedChat, onSendMessage }) {
   const [stompClient, setStompClient] = useState(null);
   const [inviteEmail, setInviteEmail] = useState(""); // 초대할 사용자 이메일 상태
   const [showInviteModal, setShowInviteModal] = useState(false); // 초대 모달 상태
-
+  const [showParticipantsModal, setShowParticipantsModal] = useState(false); // 참여자 목록 모달 상태
   const userId = Cookies.get('userId'); // 쿠키에서 사용자 ID를 가져옴
 
   useEffect(() => {
     if (selectedChat && selectedChat.id) {
-      // 선택된 채팅이 있는 경우
       if (!chatHistories[selectedChat.id]) {
-        // 이전에 이 채팅방의 내역이 없는 경우에만 서버에서 대화 내역을 가져옴
         fetchChatHistory(selectedChat.id);
       }
     }
 
-    // WebSocket 연결 설정
     const socket = new SockJS(SOCKET_URL, null, { transports: ['xhr-streaming'], withCredentials: true });
     const client = new Client({
       webSocketFactory: () => socket,
@@ -59,7 +56,6 @@ function ChatWindow({ selectedChat, onSendMessage }) {
     };
 
     client.activate();
-
     setStompClient(client);
 
     return () => {
@@ -69,10 +65,9 @@ function ChatWindow({ selectedChat, onSendMessage }) {
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedChat]); // selectedChat을 dependency로 추가하여 selectedChat이 변경될 때마다 실행
+  }, [selectedChat]);
 
   useEffect(() => {
-    // 채팅 내역이 변경될 때마다 로컬 스토리지에 저장
     localStorage.setItem('chatHistories', JSON.stringify(chatHistories));
   }, [chatHistories]);
 
@@ -98,20 +93,20 @@ function ChatWindow({ selectedChat, onSendMessage }) {
   };
 
   const handleMessageChange = (e) => {
-    setMessage(e.target.value); // 입력된 채팅 메시지 업데이트
+    setMessage(e.target.value);
   };
 
   const sendMessage = () => {
     if (message.trim() !== "" && stompClient && selectedChat) {
       const newChat = {
-        sender: userId, // 사용자 ID를 sender로 설정
-        message: message.trim(), // 입력된 메시지
-        roomId: selectedChat.id, // 채팅방 id
+        sender: userId,
+        message: message.trim(),
+        roomId: selectedChat.id,
       };
       stompClient.publish({
         destination: "/pub/message",
         body: JSON.stringify(newChat),
-        headers: { Authorization: `Bearer ${Cookies.get('access')}` } // 토큰 전달
+        headers: { Authorization: `Bearer ${Cookies.get('access')}` }
       });
 
       setChatHistories(prevHistories => ({
@@ -151,10 +146,9 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       {selectedChat ? (
         <div className="chat">
           <div className="chat-header">
-            <span className="chat-sender">{selectedChat.sender}</span>
-            <button onClick={() => setShowInviteModal(true)} className="invite-user-button">
-              사용자 초대
-            </button>
+            <span className="chat-room-name">{selectedChat.name}</span>
+            <button onClick={() => setShowInviteModal(true)} className="invite-user-button">사용자 초대</button>
+            <button onClick={() => setShowParticipantsModal(true)} className="view-participants-button">참여자 목록</button>
           </div>
           <div className="chat-body" ref={chatBodyRef}>
             <ul>
@@ -163,30 +157,28 @@ function ChatWindow({ selectedChat, onSendMessage }) {
                   key={index}
                   className={chat.sender === userId ? "right" : "left"}
                 >
-                  {chat.sender === userId ? "나: " : `${selectedChat.sender}: `}
+                  {chat.sender === userId ? "나: " : `${chat.sender}: `}
                   {chat.message}
                 </li>
               ))}
             </ul>
           </div>
+          <div className="chat-input">
+            <input
+              type="text"
+              placeholder="메시지 입력..."
+              value={message}
+              onChange={handleMessageChange}
+              onKeyPress={handleKeyPress}
+            />
+            <button onClick={sendMessage}>전송</button>
+          </div>
         </div>
       ) : (
         <div className="empty-chat">대화를 선택해주세요.</div>
       )}
-      {selectedChat && (
-        <div className="chat-input">
-          <input
-            type="text"
-            placeholder="메시지 입력..."
-            value={message}
-            onChange={handleMessageChange}
-            onKeyPress={handleKeyPress}
-          />
-          <button onClick={sendMessage}>전송</button>
-        </div>
-      )}
       {showInviteModal && (
-        <div className="invite-modal">
+        <div className="chat-modal">
           <div className="modal-content">
             <span className="close" onClick={() => setShowInviteModal(false)}>
               &times;
@@ -197,11 +189,24 @@ function ChatWindow({ selectedChat, onSendMessage }) {
               value={inviteEmail}
               onChange={handleInviteEmailChange}
               placeholder="참여자 이메일"
-              className="invite-chat-input"
+              className="add-chat-input"
             />
-            <button onClick={handleInviteUser} className="invite-chat-modal-button">
-              초대
-            </button>
+            <button onClick={handleInviteUser} className="add-chat-modal-button">초대</button>
+          </div>
+        </div>
+      )}
+      {showParticipantsModal && (
+        <div className="chat-modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowParticipantsModal(false)}>
+              &times;
+            </span>
+            <h2>참여자 목록</h2>
+            <ul>
+              {selectedChat.users.map((user, index) => (
+                <li key={index}>{user}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
