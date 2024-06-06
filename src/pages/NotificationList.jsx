@@ -16,7 +16,7 @@ const NotificationList = ({ notifications, onClose, onDelete }) => {
         ) : (
           notifications.map((notification) => (
             <li key={notification.id} className="flex justify-between items-center px-4 py-2 border-b">
-              <span>{notification.message}</span>
+              <span>{notification.text}</span>
               <button onClick={() => onDelete(notification.id)} className="text-red-500 hover:text-red-700">
                 삭제
               </button>
