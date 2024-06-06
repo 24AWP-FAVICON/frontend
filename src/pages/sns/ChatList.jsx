@@ -2,53 +2,50 @@ import React, { useState, useEffect } from "react";
 import "./ChatList.css"; // 스타일 파일 import
 import personIcon from "./person-icon.jpg"; // 이미지 파일 import
 import { 
-  updateChatRoomName, 
-  createChatRoom, 
   getAllChatRooms, 
-  deleteChatRoom, 
-  getChatRoomById 
+  createChatRoom, 
+  deleteChatRoom 
 } from "./ChatApiService"; // API 서비스 가져오기
 
 function ChatList({ setSelectedChat }) {
   const [showModal, setShowModal] = useState(false); // 모달 창 열고 닫는 상태
-  const [newMessage, setNewMessage] = useState(""); // 새로운 대화를 위한 상태
-  const [senderName, setSenderName] = useState(""); // 보내는 사람 이름을 위한 상태
+  const [chatRoomName, setChatRoomName] = useState(""); // 채팅방 이름 상태
+  const [participantEmail, setParticipantEmail] = useState(""); // 참여자 이메일 상태
   const [chats, setChats] = useState([]); // 채팅 목록 상태
 
   useEffect(() => {
     // 페이지 로드 시 채팅 목록을 가져오는 함수 호출
-    fetchChatRooms();
-  }, []);
+    if (chats.length === 0) {
+      fetchChatRooms();
+    }
+  }, []); // 빈 배열을 전달하여 첫 로드 시에만 호출되도록 함
 
   const fetchChatRooms = async () => {
     try {
       const response = await getAllChatRooms(); // 수정된 부분
       setChats(response);
+      console.log("모든 채팅방 조회: ", response);
     } catch (error) {
       console.error("Error fetching chat rooms:", error);
     }
   };
 
-  const handleInputChange = (e) => {
-    setNewMessage(e.target.value);
+  const handleRoomNameChange = (e) => {
+    setChatRoomName(e.target.value);
   };
 
-  const handleSenderNameChange = (e) => {
-    setSenderName(e.target.value);
+  const handleParticipantEmailChange = (e) => {
+    setParticipantEmail(e.target.value);
   };
 
   const handleAddChat = async () => {
-    if (newMessage.trim() !== "" && senderName.trim() !== "") {
+    if (chatRoomName.trim() !== "" && participantEmail.trim() !== "") {
       try {
-        const newChatRoom = await createChatRoom(senderName, null, []); // 수정된 부분
-        const newChat = {
-          roomId: newChatRoom.id,
-          sender: senderName,
-          message: newMessage,
-        };
-        setChats([...chats, newChat]); // 채팅 목록 상태 업데이트
-        setNewMessage("");
-        setSenderName("");
+        const newChatRoom = await createChatRoom(chatRoomName, [participantEmail]); // 수정된 부분
+        console.log(newChatRoom, "생성할 채팅방");
+        setChats([...chats, newChatRoom]); // 채팅 목록 상태 업데이트
+        setChatRoomName("");
+        setParticipantEmail("");
         setShowModal(false);
       } catch (error) {
         console.error("Error creating chat room:", error);
@@ -57,7 +54,7 @@ function ChatList({ setSelectedChat }) {
   };
 
   const handleChatSelection = (chat) => {
-    setSelectedChat({ sendder: chat.sender, message: chat.message });
+    setSelectedChat({ sender: chat.users[0], id: chat.roomId });
   };
 
   const handleDeleteChatRoom = async (roomId) => {
@@ -84,8 +81,8 @@ function ChatList({ setSelectedChat }) {
           >
             <div className="chat-content">
               <img src={personIcon} alt="Person" className="person-icon" />
-              <span className="chat-sender">{chat.sender}: </span>
-              <span className="chat-message">{chat.message}</span>
+              <span className="chat-sender">{chat.name}: </span>
+              <span className="chat-message">{chat.users.join(", ")}</span>
               <button onClick={(e) => {
                 e.stopPropagation();
                 handleDeleteChatRoom(chat.roomId);
@@ -103,16 +100,16 @@ function ChatList({ setSelectedChat }) {
             <h2>새로운 대화 추가</h2>
             <input
               type="text"
-              value={senderName}
-              onChange={handleSenderNameChange}
-              placeholder="보내는 사람 이름"
+              value={chatRoomName}
+              onChange={handleRoomNameChange}
+              placeholder="채팅방 이름"
               className="add-chat-input"
             />
             <input
               type="text"
-              value={newMessage}
-              onChange={handleInputChange}
-              placeholder="링크 입력"
+              value={participantEmail}
+              onChange={handleParticipantEmailChange}
+              placeholder="참여자 이메일"
               className="add-chat-input"
             />
             <button onClick={handleAddChat} className="add-chat-modal-button">
