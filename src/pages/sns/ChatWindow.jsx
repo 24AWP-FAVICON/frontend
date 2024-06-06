@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./ChatWindow.css"; // CSS 파일을 import합니다.
+import "./ChatWindow.css";
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import Cookies from 'js-cookie';
-import { getChatRoomById, inviteUserToChatRoom } from './ChatApiService'; // API 서비스에서 함수 가져오기
+import { getChatRoomById, inviteUserToChatRoom, getChatRoomMessagesById } from './ChatApiService'; // API 서비스에서 함수 가져오기
 
-const SOCKET_URL = 'http://localhost:8080/ws'; // WebSocket 엔드포인트 URL
+const SOCKET_URL = 'http://localhost:8080/ws';
 
 function ChatWindow({ selectedChat, onSendMessage }) {
-  const [message, setMessage] = useState(""); // 입력된 채팅 메시지 상태
-  const [chatHistories, setChatHistories] = useState(() => {
-    const savedHistories = localStorage.getItem('chatHistories');
-    return savedHistories ? JSON.parse(savedHistories) : {};
-  }); // 여러 채팅방의 채팅 내역을 저장
-  const chatBodyRef = useRef(null); // 채팅창의 몸체를 참조하기 위한 Ref
+  const [message, setMessage] = useState("");
+  const [chatHistories, setChatHistories] = useState({});
+  const chatBodyRef = useRef(null);
   const [stompClient, setStompClient] = useState(null);
-  const [inviteEmail, setInviteEmail] = useState(""); // 초대할 사용자 이메일 상태
-  const [showInviteModal, setShowInviteModal] = useState(false); // 초대 모달 상태
-  const [showParticipantsModal, setShowParticipantsModal] = useState(false); // 참여자 목록 모달 상태
-  const userId = Cookies.get('userId'); // 쿠키에서 사용자 ID를 가져옴
+  const [inviteEmail, setInviteEmail] = useState("");
+  const [showInviteModal, setShowInviteModal] = useState(false);
+  const [showParticipantsModal, setShowParticipantsModal] = useState(false);
+  const userId = Cookies.get('userEmail');
 
   useEffect(() => {
     if (selectedChat && selectedChat.id) {
@@ -37,8 +34,9 @@ function ChatWindow({ selectedChat, onSendMessage }) {
     });
 
     client.onConnect = () => {
-      console.log("Connected to WebSocket");
-      if (selectedChat) {
+      console.log('Connected to server');
+      setStompClient(client);
+      if (selectedChat && selectedChat.id) {
         client.subscribe(`/sub/channel/${selectedChat.id}`, (msg) => {
           const message = JSON.parse(msg.body);
           setChatHistories(prevHistories => ({
@@ -48,7 +46,7 @@ function ChatWindow({ selectedChat, onSendMessage }) {
           scrollToBottom();
         });
       }
-    };
+    }
 
     client.onStompError = (frame) => {
       console.error('Broker reported error: ' + frame.headers['message']);
@@ -64,32 +62,25 @@ function ChatWindow({ selectedChat, onSendMessage }) {
       }
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChat]);
 
-  useEffect(() => {
-    localStorage.setItem('chatHistories', JSON.stringify(chatHistories));
-  }, [chatHistories]);
-
-  const fetchChatHistory = async (partnerId) => {
+  const fetchChatHistory = async (roomId) => {
     try {
-      const response = await getChatRoomById(partnerId);
-      if (response.data) {
-        setChatHistories(prevHistories => ({
-          ...prevHistories,
-          [partnerId]: response.messages
-        }));
-        scrollToBottom();
-      } else {
-        console.error("대화 내역을 가져오는 데 실패했습니다.");
-      }
+      const messages = await getChatRoomMessagesById(roomId);
+      setChatHistories(prevHistories => ({
+        ...prevHistories,
+        [roomId]: messages
+      }));
+      scrollToBottom();
     } catch (error) {
       console.error("Error fetching chat history:", error);
     }
   };
 
   const scrollToBottom = () => {
-    chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
   };
 
   const handleMessageChange = (e) => {
@@ -99,9 +90,13 @@ function ChatWindow({ selectedChat, onSendMessage }) {
   const sendMessage = () => {
     if (message.trim() !== "" && stompClient && selectedChat) {
       const newChat = {
-        sender: userId,
-        message: message.trim(),
-        roomId: selectedChat.id,
+        user: {
+          userId: userId
+        },
+        room: {
+          roomId: selectedChat.id,
+        }, 
+        content: message.trim()        
       };
       stompClient.publish({
         destination: "/pub/message",
@@ -109,13 +104,8 @@ function ChatWindow({ selectedChat, onSendMessage }) {
         headers: { Authorization: `Bearer ${Cookies.get('access')}` }
       });
 
-      setChatHistories(prevHistories => ({
-        ...prevHistories,
-        [selectedChat.id]: [...(prevHistories[selectedChat.id] || []), newChat]
-      }));
-      onSendMessage(message);
+      // onSendMessage(message); 이 부분을 제거하여 메시지를 즉시 목록에 추가하지 않음
       setMessage("");
-      scrollToBottom();
     }
   };
 
@@ -155,10 +145,10 @@ function ChatWindow({ selectedChat, onSendMessage }) {
               {(chatHistories[selectedChat.id] || []).map((chat, index) => (
                 <li
                   key={index}
-                  className={chat.sender === userId ? "right" : "left"}
+                  className={chat.senderId === userId ? "right" : "left"}
                 >
-                  {chat.sender === userId ? "나: " : `${chat.sender}: `}
-                  {chat.message}
+                  {chat.senderId === userId ? "나: " : `${chat.senderId}: `}
+                  {chat.content}
                 </li>
               ))}
             </ul>

@@ -27,6 +27,16 @@ export const getChatRoomById = (roomId) => {
     });
 };
 
+// 특정 채팅방의 모든 메시지 가져오기
+export const getChatRoomMessagesById = (roomId) => {
+  return api.get(`/messenger/chatRoom/${roomId}/messages`)
+    .then(response => response.data)
+    .catch(error => {
+      console.error("Error getting chat room messages:", error);
+      throw error;
+    });
+};
+
 // 특정 채팅방에 사용자 초대
 export const inviteUserToChatRoom = (roomId, inviteUserId) => {
   return api.post(`/messenger/chatRoom/${roomId}`, { inviteUserId });
