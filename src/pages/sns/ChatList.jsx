@@ -4,14 +4,17 @@ import personIcon from "./person-icon.jpg"; // 이미지 파일 import
 import { 
   getAllChatRooms, 
   createChatRoom, 
-  deleteChatRoom 
+  deleteChatRoom, 
+  updateChatRoomName 
 } from "./ChatApiService"; // API 서비스 가져오기
 
 function ChatList({ setSelectedChat }) {
   const [showModal, setShowModal] = useState(false); // 모달 창 열고 닫는 상태
+  const [editModal, setEditModal] = useState(false); // 수정 모달 창 상태
   const [chatRoomName, setChatRoomName] = useState(""); // 채팅방 이름 상태
   const [participantEmail, setParticipantEmail] = useState(""); // 참여자 이메일 상태
   const [chats, setChats] = useState([]); // 채팅 목록 상태
+  const [selectedChatRoom, setSelectedChatRoom] = useState(null); // 선택된 채팅방
 
   useEffect(() => {
     // 페이지 로드 시 채팅 목록을 가져오는 함수 호출
@@ -53,6 +56,19 @@ function ChatList({ setSelectedChat }) {
     }
   };
 
+  const handleEditChatRoomName = async () => {
+    if (chatRoomName.trim() !== "") {
+      try {
+        await updateChatRoomName(selectedChatRoom.roomId, chatRoomName); // 채팅방 이름 업데이트
+        fetchChatRooms(); // 채팅 목록 다시 가져오기
+        setChatRoomName("");
+        setEditModal(false);
+      } catch (error) {
+        console.error("Error updating chat room name:", error);
+      }
+    }
+  };
+
   const handleChatSelection = (chat) => {
     setSelectedChat({ sender: chat.users[0], id: chat.roomId });
   };
@@ -64,6 +80,12 @@ function ChatList({ setSelectedChat }) {
     } catch (error) {
       console.error("Error deleting chat room:", error);
     }
+  };
+
+  const handleEditButtonClick = (chat) => {
+    setSelectedChatRoom(chat);
+    setChatRoomName(chat.name);
+    setEditModal(true);
   };
 
   return (
@@ -83,6 +105,10 @@ function ChatList({ setSelectedChat }) {
               <img src={personIcon} alt="Person" className="person-icon" />
               <span className="chat-sender">{chat.name}: </span>
               <span className="chat-message">{chat.users.join(", ")}</span>
+              <button onClick={(e) => {
+                e.stopPropagation();
+                handleEditButtonClick(chat);
+              }} className="edit-chat-button">수정</button>
               <button onClick={(e) => {
                 e.stopPropagation();
                 handleDeleteChatRoom(chat.roomId);
@@ -114,6 +140,26 @@ function ChatList({ setSelectedChat }) {
             />
             <button onClick={handleAddChat} className="add-chat-modal-button">
               추가
+            </button>
+          </div>
+        </div>
+      )}
+      {editModal && (
+        <div className="chat-modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setEditModal(false)}>
+              &times;
+            </span>
+            <h2>채팅방 이름 수정</h2>
+            <input
+              type="text"
+              value={chatRoomName}
+              onChange={handleRoomNameChange}
+              placeholder="채팅방 이름"
+              className="add-chat-input"
+            />
+            <button onClick={handleEditChatRoomName} className="add-chat-modal-button">
+              수정
             </button>
           </div>
         </div>
