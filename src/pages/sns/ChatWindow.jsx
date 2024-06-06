@@ -3,8 +3,7 @@ import "./ChatWindow.css"; // CSS 파일을 import합니다.
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import Cookies from 'js-cookie';
-import { getChatRoomById } from './ChatApiService'; // API 서비스에서 함수 가져오기
-
+import { getChatRoomById, inviteUserToChatRoom } from './ChatApiService'; // API 서비스에서 함수 가져오기
 
 const SOCKET_URL = 'http://localhost:8080/ws'; // WebSocket 엔드포인트 URL
 
@@ -16,6 +15,8 @@ function ChatWindow({ selectedChat, onSendMessage }) {
   }); // 여러 채팅방의 채팅 내역을 저장
   const chatBodyRef = useRef(null); // 채팅창의 몸체를 참조하기 위한 Ref
   const [stompClient, setStompClient] = useState(null);
+  const [inviteEmail, setInviteEmail] = useState(""); // 초대할 사용자 이메일 상태
+  const [showInviteModal, setShowInviteModal] = useState(false); // 초대 모달 상태
 
   const userId = Cookies.get('userId'); // 쿠키에서 사용자 ID를 가져옴
 
@@ -129,12 +130,31 @@ function ChatWindow({ selectedChat, onSendMessage }) {
     }
   };
 
+  const handleInviteEmailChange = (e) => {
+    setInviteEmail(e.target.value);
+  };
+
+  const handleInviteUser = async () => {
+    if (inviteEmail.trim() !== "" && selectedChat.id) {
+      try {
+        await inviteUserToChatRoom(selectedChat.id, inviteEmail);
+        setInviteEmail("");
+        setShowInviteModal(false);
+      } catch (error) {
+        console.error("Error inviting user to chat room:", error);
+      }
+    }
+  };
+
   return (
     <div className="chat-window">
       {selectedChat ? (
         <div className="chat">
           <div className="chat-header">
             <span className="chat-sender">{selectedChat.sender}</span>
+            <button onClick={() => setShowInviteModal(true)} className="invite-user-button">
+              사용자 초대
+            </button>
           </div>
           <div className="chat-body" ref={chatBodyRef}>
             <ul>
@@ -165,18 +185,28 @@ function ChatWindow({ selectedChat, onSendMessage }) {
           <button onClick={sendMessage}>전송</button>
         </div>
       )}
+      {showInviteModal && (
+        <div className="invite-modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowInviteModal(false)}>
+              &times;
+            </span>
+            <h2>사용자 초대</h2>
+            <input
+              type="text"
+              value={inviteEmail}
+              onChange={handleInviteEmailChange}
+              placeholder="참여자 이메일"
+              className="invite-chat-input"
+            />
+            <button onClick={handleInviteUser} className="invite-chat-modal-button">
+              초대
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export default ChatWindow;
-
-// 가상의 서버 요청 함수 (실제로는 서버와의 통신을 시뮬레이션하는 함수)
-const simulateServerRequest = (partnerId) => {
-  return {
-    success: true,
-    messages: [
-      { sender: "상대방", message: "안녕하세요!", roomId: partnerId },
-    ],
-  };
-};

@@ -5,7 +5,7 @@ import {
   getAllChatRooms, 
   createChatRoom, 
   deleteChatRoom, 
-  updateChatRoomName 
+  updateChatRoomName
 } from "./ChatApiService"; // API 서비스 가져오기
 
 function ChatList({ setSelectedChat }) {
