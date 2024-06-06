@@ -28,13 +28,22 @@ function Community() {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostContent, setNewPostContent] = useState("");
-  const [newPostImages, setNewPostImages] = useState([]); // 이미지 배열로 변경
+  const [newPostImage, setNewPostImage] = useState(null); // 이미지 파일 하나로 변경
   const [showHeart, setShowHeart] = useState(false); // 하트 애니메이션 상태
   const [showUnlikeHeart, setShowUnlikeHeart] = useState(false); // 파란 하트 애니메이션 상태
 
   useEffect(() => {
     loadPosts();
   }, []);
+
+  //S3 URL 추출 함수
+  const extractUrl = (markdown) => {
+    const regex1 = /!\[.*?\]\((.*?)\)/; // ![alt](url) 형식
+    const regex2 = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))/; // 일반 URL 형식
+    const match1 = regex1.exec(markdown);
+    const match2 = regex2.exec(markdown);
+    return match1 ? match1[1] : (match2 ? match2[0] : '');
+  };
 
   const loadPosts = async () => {
     setLoading(true);
@@ -71,6 +80,7 @@ function Community() {
   }, []);
 
   const loadMorePosts = () => {
+    // 필요한 경우, 추가 게시글을 로드하는 로직을 여기에 추가합니다.
   };
 
   const filteredPosts = posts.filter(post =>
@@ -161,19 +171,22 @@ function Community() {
       const response = await createPost({ title: newPostTitle, content: newPostContent });
       const postId = response.data.postId;
   
-      if (newPostImages.length > 0) {
+      if (newPostImage) {
         const formData = new FormData();
-        newPostImages.forEach((image, index) => {
-          formData.append('image', image); // FormData에 이미지 파일 추가
-        });
+        formData.append('image', newPostImage);
   
         const uploadResponse = await uploadPostImage(postId, formData);
-        const imageUrls = uploadResponse.data;
+        const imageUrl = extractUrl(uploadResponse.data);  // 이미지 URL을 받음
   
         await updatePost(postId, {
           title: newPostTitle,
           content: newPostContent,
-          thumbnailImageIds: imageUrls
+          thumbnailImageId: imageUrl // 이미지 URL을 썸네일로 사용
+        });
+      } else {
+        await updatePost(postId, {
+          title: newPostTitle,
+          content: newPostContent
         });
       }
   
@@ -181,14 +194,14 @@ function Community() {
       closeCreatePostModal();
       setNewPostTitle("");
       setNewPostContent("");
-      setNewPostImages([]);
+      setNewPostImage(null);
     } catch (error) {
       console.error('Failed to create post:', error);
     }
   };
 
   const handleImageChange = (e) => {
-    setNewPostImages([...e.target.files]);
+    setNewPostImage(e.target.files[0]);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -221,7 +234,7 @@ function Community() {
               </div>
               <div onClick={() => openModal(post)} className={`post-body ${post.thumbnailImageId ? 'with-image' : 'without-image'}`}>
                 <p>{post.content}</p>
-                {post.thumbnailImageId && <img src={post.thumbnailImageId} alt={post.title} />}
+                {post.thumbnailImageId && <img src={extractUrl(post.thumbnailImageId)} alt={post.title} />}
               </div>
               <div className="post-footer">
                 <div className="post-stats">
@@ -259,7 +272,7 @@ function Community() {
             </div>
             <div className={`post-body ${selectedPost.thumbnailImageId ? 'with-image' : 'without-image'}`}>
               <p>{selectedPost.content}</p>
-              {selectedPost.thumbnailImageId && <img src={selectedPost.thumbnailImageId} alt={selectedPost.title} />}
+              {selectedPost.thumbnailImageId && <img src={extractUrl(selectedPost.thumbnailImageId)} alt={selectedPost.title} />}
             </div>
             <div className="post-footer">
               <div className="post-stats">
@@ -319,17 +332,12 @@ function Community() {
             />
             <input
               type="file"
-              multiple
               onChange={handleImageChange}
               className="create-post-image"
             />
-            {newPostImages.length > 0 && (
-              <div className="selected-images">
-                {Array.from(newPostImages).map((image, index) => (
-                  <div key={index} className="image-preview">
-                    <span>{image.name}</span>
-                  </div>
-                ))}
+            {newPostImage && (
+              <div className="selected-image">
+                <span>{newPostImage.name}</span>
               </div>
             )}
           </div>
