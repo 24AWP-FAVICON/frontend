@@ -6,13 +6,25 @@ export const updateChatRoomName = (roomId, name, creatorUserId) => {
 };
 
 // 새 채팅방 생성
-export const createChatRoom = (name, creatorUserId, participantIds) => {
-  return api.post(`/messenger/chatRoom`, { name, creatorUserId, participantIds });
+// name은 채팅방이름을 의미하며, participantIds는 참여자 목록을 의미함
+// request body 부분 수정함
+export const createChatRoom = (name, participantIds) => {
+  return api.post(`/messenger/chatRoom`, { name, participantIds })
+    .then(response => response.data)
+    .catch(error => {
+      console.error("Error creating chat room:", error);
+      throw error;
+    });
 };
 
 // 특정 채팅방 정보 가져오기
 export const getChatRoomById = (roomId) => {
-  return api.get(`/messenger/chatRoom/${roomId}`);
+  return api.get(`/messenger/chatRoom/${roomId}`)
+    .then(response => response.data)
+    .catch(error => {
+      console.error("Error getting chat room:", error);
+      throw error;
+    });
 };
 
 // 특정 채팅방에 사용자 초대
@@ -22,7 +34,12 @@ export const inviteUserToChatRoom = (roomId, inviteUserId) => {
 
 // 특정 채팅방 삭제
 export const deleteChatRoom = (roomId) => {
-  return api.delete(`/messenger/chatRoom/${roomId}`);
+  return api.delete(`/messenger/chatRoom/${roomId}`)
+    .then(response => response.data)
+    .catch(error => {
+      console.error("Error deleting chat room:", error);
+      throw error;
+    });
 };
 
 // 모든 채팅방 목록 가져오기
@@ -30,6 +47,7 @@ export const getAllChatRooms = async () => {
     try {
         const response = await api.get(`/messenger/chatRooms`);
         // 서버 응답의 상태 코드 확인
+        console.log(response, "결과값")
         if (response.status === 200) {
             // 채팅방 목록이 정상적으로 반환된 경우
             return response.data;
