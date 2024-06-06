@@ -24,8 +24,9 @@ function LoginSuccess() {
         }
 
         const data = await response.json();
+        console.log(data);
 
-        Cookies.set("userEmail", data.email, { path: '/' });
+        Cookies.set("userEmail", data.userId, { path: '/' });
 
         navigate("/");
       } catch (error) {
