@@ -3,36 +3,60 @@
 .chat-window {
   align-items: center;
   background: #ffffff;
-  border-radius: 30px; /* 반지름을 화면 너비의 4%로 설정 */
-  height: 75vh; /* 화면 높이의 80%로 설정 */
-  margin: 5vh auto; /* 상하 여백을 화면 높이의 5%로 설정 */
-  padding: 3vw; /* 패딩을 화면 너비의 3%로 설정 */
-  max-width: 80vw; /* 최대 너비를 화면 너비의 80%로 설정 */
-  width: 60vw; /* 화면 너비의 60%로 설정 */
-  border: 2px solid black; /* 테두리를 화면 너비의 0.5%로 설정 */
-  position: relative; /* 부모 요소 기준으로 자식 요소를 배치 */
+  border-radius: 30px;
+  height: 75vh;
+  margin: 5vh auto;
+  padding: 3vw;
+  max-width: 80vw;
+  width: 60vw;
+  border: 2px solid black;
+  position: relative;
 }
 
 .chat-window .chat-header {
-  border-bottom: 2px solid #ccc; /* 헤더의 아래 테두리 두께 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 1vh;
+}
+
+.chat-window .chat-room-name {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.chat-window .invite-user-button, .chat-window .view-participants-button {
+  background: blue;
+  border: none;
+  border-radius: 2vw;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.5vw 1vw;
+  margin-left: 1vw;
+}
+
+.chat-window .invite-user-button:hover, .chat-window .view-participants-button:hover {
+  background: #0056b3;
 }
 
 .chat-window .chat-body {
-  max-height: 55vh; /* 채팅 내용의 최대 높이를 화면 높이의 60%로 설정 */
+  max-height: 55vh;
   overflow-y: auto;
-  scroll-behavior: smooth; /* 스크롤 시 부드럽게 이동하도록 설정 */
+  scroll-behavior: smooth;
 }
 
 .chat-window .chat-body ul {
   list-style: none;
-  padding: 1vw; /* 리스트 요소의 안쪽 여백을 화면 너비의 1%로 설정 */
+  padding: 1vw;
   margin: 0;
 }
 
 .chat-window .chat-body ul li {
-  padding: 1vw; /* 채팅 메시지 요소의 안쪽 여백을 화면 너비의 1%로 설정 */
-  margin-bottom: 0.5vh; /* 채팅 메시지 요소의 아래 여백을 화면 높이의 0.5%로 설정 */
-  border-radius: 2vw; /* 채팅 메시지 요소의 테두리 반지름을 화면 너비의 2%로 설정 */
+  padding: 1vw;
+  margin-bottom: 0.5vh;
+  border-radius: 2vw;
 }
 
 .chat-window .chat-body ul li.right {
@@ -47,47 +71,82 @@
 
 .chat-window .chat-input {
   position: absolute;
-  bottom: 3vh; /* 하단 여백을 화면 높이의 3%로 설정 */
-  left: 5vw; /* 좌측 여백을 화면 너비의 5%로 설정 */
-  width: 90%; /* 입력창의 너비를 화면 너비의 90%로 설정 */
-  display: flex; /* Flexbox 사용 */
-  align-items: center; /* 수직 정렬 */
+  bottom: 3vh;
+  left: 5vw;
+  width: 90%;
+  display: flex;
+  align-items: center;
 }
 
 .chat-window .chat-input input[type="text"] {
-  flex-grow: 1; /* 입력창이 남은 공간을 최대한 차지하도록 설정 */
-  border: 0.2vw solid #ccc; /* 테두리 두께 설정 */
-  border-radius: 2vw; /* 테두리 반지름 설정 */
-  height: 4vh; /* 입력창의 높이를 화면 높이의 4%로 설정 */
-  padding: 0 2vw; /* 입력창의 안쪽 여백을 화면 너비의 2%로 설정 */
+  flex-grow: 1;
+  border: 0.2vw solid #ccc;
+  border-radius: 2vw;
+  height: 4vh;
+  padding: 0 2vw;
 }
 
 .chat-window .chat-input button {
   background: blue;
   border: none;
-  border-radius: 2vw; /* 버튼의 테두리 반지름 설정 */
+  border-radius: 2vw;
   color: white;
   cursor: pointer;
   font-weight: bold;
-  height: 4vh; /* 버튼의 높이를 화면 높이의 4%로 설정 */
-  padding: 0 2vw; /* 버튼의 안쪽 여백을 화면 너비의 2%로 설정 */
-  margin-left: 1vw; /* 좌측 여백을 화면 너비의 1%로 설정 */
+  height: 4vh;
+  padding: 0 2vw;
+  margin-left: 1vw;
 }
 
 .chat-window .chat-input button:hover {
   background: #0056b3;
 }
 
-/* ChatWindow.css */
-
-/* 채팅방 이름 변경 모달 */
-.change-modal {
+/* 채팅방 초대 모달 및 참여자 목록 모달 */
+.invite-modal, .participants-modal {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명한 검은색으로 설정하여 주변을 어둡게 만듭니다. */
-  z-index: 9999; /* 다른 요소들보다 위에 나타나도록 설정합니다. */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.invite-modal .modal-content, .participants-modal .modal-content {
+  background-color: white;
+  padding: 2vw;
+  border-radius: 2vw;
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.invite-modal .modal-content .invite-chat-input, .participants-modal .modal-content .invite-chat-input {
+  width: 100%;
+  padding: 1vw;
+  margin-bottom: 1vw;
+}
+
+.invite-modal .modal-content .invite-chat-modal-button, .participants-modal .modal-content .invite-chat-modal-button {
+  width: 100%;
+  padding: 1vw;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+}
+
+.invite-modal .modal-content .invite-chat-modal-button:hover, .participants-modal .modal-content .invite-chat-modal-button:hover {
+  background: #0056b3;
+}
+
+.invite-modal .modal-content .close, .participants-modal .modal-content .close {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  cursor: pointer;
+  font-size: 2vw;
 }
