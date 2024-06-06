@@ -33,12 +33,30 @@ const Header = () => {
     setShowProfileMenu(!showProfileMenu);
   };
 
-  const handleLogout = () => {
-    Cookies.remove("access");
-    Cookies.remove("refresh");
-    Cookies.remove("userEmail");
-    setIsLoggedIn(false);
-    window.location.href = "/login";
+  const handleLogout = async () => {
+    try {
+      const accessToken = Cookies.get("access");
+
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/logout`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+
+      if (response.ok) {
+        Cookies.remove("access");
+        Cookies.remove("refresh");
+        Cookies.remove("userEmail");
+        setIsLoggedIn(false);
+        window.location.href = "/login";
+      } else {
+        console.error("Failed to logout");
+      }
+    } catch (error) {
+      console.error("Failed to logout", error);
+    }
   };
 
   const fetchNotifications = async () => {

@@ -160,23 +160,23 @@ function Community() {
     try {
       const response = await createPost({ title: newPostTitle, content: newPostContent });
       const postId = response.data.postId;
-
+  
       if (newPostImages.length > 0) {
         const formData = new FormData();
         newPostImages.forEach((image, index) => {
-          formData.append(`image_${index}`, image);
+          formData.append('image', image); // FormData에 이미지 파일 추가
         });
-
+  
         const uploadResponse = await uploadPostImage(postId, formData);
         const imageUrls = uploadResponse.data;
-
+  
         await updatePost(postId, {
           title: newPostTitle,
           content: newPostContent,
           thumbnailImageIds: imageUrls
         });
       }
-
+  
       await loadPosts(); // 새로운 게시글을 로드합니다.
       closeCreatePostModal();
       setNewPostTitle("");

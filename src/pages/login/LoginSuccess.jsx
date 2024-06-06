@@ -1,4 +1,3 @@
-// LoginSuccess.js
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,6 @@ function LoginSuccess() {
     const accessToken = Cookies.get("access");
     const refreshToken = Cookies.get("refresh");
 
-    // 여기에서 사용자 정보를 받아와 쿠키에 저장.
     const fetchUserInfo = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/info`, {
