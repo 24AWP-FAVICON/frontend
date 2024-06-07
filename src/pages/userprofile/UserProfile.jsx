@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { fetchUserPosts } from '../community/CommunityApiService'; // API 서비스 가져오기
-import './UserProfile.css';
+import './UserProfile.css'; // 사용자 정의 스타일
 
 function UserProfile() {
   const [posts, setPosts] = useState([]);
@@ -54,15 +54,15 @@ function UserProfile() {
   }, []);
 
   return (
-    <div className="profile-container">
-      <div className="profile-card">
-        <div className="profile-header">
+    <div className="user-profile-container">
+      <div className="user-profile-card">
+        <div className="user-profile-header">
           {userInfo ? (
-            <div className="profile-info">
-              <img src={`${process.env.PUBLIC_URL}/HeaderLogo.png`} alt="Profile" className="profile-image"/>
+            <div className="user-profile-info">
+              <img src={`${process.env.PUBLIC_URL}/HeaderLogo.png`} alt="Profile" className="user-profile-image"/>
               <div>
-                <h2 className="profile-name">{userInfo.nickname}</h2>
-                <p className="profile-email">{userInfo.userId}</p>
+                <h2 className="user-profile-name">{userInfo.nickname}</h2>
+                <p className="user-profile-email">{userInfo.userId}</p>
               </div>
             </div>
           ) : (
@@ -70,16 +70,16 @@ function UserProfile() {
           )}
         </div>
       </div>
-      <div className="posts-container">
-        <h2 className="posts-title">User's Posts</h2>
-        <div className="posts-cards">
+      <div className="user-posts-container">
+        <h2 className="user-posts-title">User's Posts</h2>
+        <div className="user-posts-cards">
           {posts.length > 0 ? (
             posts.map(post => (
-              <div key={post.postId} className="post-card">
-                <div className="post-header">
+              <div key={post.postId} className="user-post-card">
+                <div className="user-post-header">
                   <h3>{post.title}</h3>
                 </div>
-                <div className="post-body">
+                <div className="user-post-body">
                   <p>{post.content}</p>
                   {post.thumbnailImageId && <img src={post.thumbnailImageId} alt={post.title} />}
                 </div>

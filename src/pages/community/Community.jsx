@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { FaRegComment, FaRegThumbsUp, FaShareSquare, FaTimes, FaHeart, FaPlus } from "react-icons/fa";
+import { FaRegComment, FaRegThumbsUp, FaShareSquare, FaTimes, FaHeart, FaPlus, FaTrash } from "react-icons/fa";
 import Modal from "react-modal";
+import Cookies from 'js-cookie';
 import './Community.css';
 import {
   fetchPosts,
@@ -10,8 +11,9 @@ import {
   fetchCommentsByPostId,
   addComment,
   uploadPostImage,
-  updatePost
-} from './CommunityApiService'; // API 서비스 가져오기
+  updatePost,
+  deletePost
+} from './CommunityApiService';
 
 Modal.setAppElement('#root');
 
@@ -28,19 +30,19 @@ function Community() {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostContent, setNewPostContent] = useState("");
-  const [newPostImage, setNewPostImage] = useState(null); // 이미지 파일 하나로 변경
-  const [showHeart, setShowHeart] = useState(false); // 하트 애니메이션 상태
-  const [showUnlikeHeart, setShowUnlikeHeart] = useState(false); // 파란 하트 애니메이션 상태
+  const [newPostImage, setNewPostImage] = useState(null);
+  const [showHeart, setShowHeart] = useState(false);
+  const [showUnlikeHeart, setShowUnlikeHeart] = useState(false);
   const MAX_CONTENT_LENGTH = 255;
+  const currentUserEmail = Cookies.get("userEmail");
 
   useEffect(() => {
     loadPosts();
   }, []);
 
-  //S3 URL 추출 함수
   const extractUrl = (markdown) => {
-    const regex1 = /!\[.*?\]\((.*?)\)/; // ![alt](url) 형식
-    const regex2 = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))/; // 일반 URL 형식
+    const regex1 = /!\[.*?\]\((.*?)\)/;
+    const regex2 = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))/;
     const match1 = regex1.exec(markdown);
     const match2 = regex2.exec(markdown);
     return match1 ? match1[1] : (match2 ? match2[0] : '');
@@ -57,10 +59,9 @@ function Community() {
           comments: commentsResponse.data,
           commentsCount: commentsResponse.data.length,
           likesCount: post.postLikes ? post.postLikes.length : 0,
-          liked: false // 기본값을 false로 설정
+          liked: false
         };
       }));
-      // 최신순으로 정렬
       const sortedPosts = postsWithCommentsAndLikes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setPosts(sortedPosts);
     } catch (error) {
@@ -80,9 +81,7 @@ function Community() {
     if (node) observer.current.observe(node);
   }, []);
 
-  const loadMorePosts = () => {
-    // 필요한 경우, 추가 게시글을 로드하는 로직을 여기에 추가합니다.
-  };
+  const loadMorePosts = () => {};
 
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -112,7 +111,6 @@ function Community() {
       setComments(response.data);
       setCommentContent("");
 
-      // 댓글 수 업데이트
       const updatedPosts = posts.map(post => {
         if (post.postId === selectedPost.postId) {
           return { ...post, comments: response.data, commentsCount: response.data.length };
@@ -121,7 +119,6 @@ function Community() {
       });
       setPosts(updatedPosts);
 
-      // 선택된 게시글의 댓글 수 업데이트
       setSelectedPost(prevSelectedPost => ({
         ...prevSelectedPost,
         commentsCount: response.data.length
@@ -135,8 +132,8 @@ function Community() {
     try {
       if (post.liked) {
         await unlikePost(post.postId);
-        setShowUnlikeHeart(true); // 파란 하트 애니메이션 시작
-        setTimeout(() => setShowUnlikeHeart(false), 1000); // 1초 후 애니메이션 숨김
+        setShowUnlikeHeart(true);
+        setTimeout(() => setShowUnlikeHeart(false), 1000);
         let updatedPost = { ...post, liked: false, likesCount: post.likesCount - 1 };
         setPosts(posts.map(p => p.postId === post.postId ? updatedPost : p));
         if (selectedPost && selectedPost.postId === post.postId) {
@@ -144,8 +141,8 @@ function Community() {
         }
       } else {
         await likePost(post.postId);
-        setShowHeart(true); // 빨간 하트 애니메이션 시작
-        setTimeout(() => setShowHeart(false), 1000); // 1초 후 애니메이션 숨김
+        setShowHeart(true);
+        setTimeout(() => setShowHeart(false), 1000);
         let updatedPost = { ...post, liked: true, likesCount: post.likesCount + 1 };
         setPosts(posts.map(p => p.postId === post.postId ? updatedPost : p));
         if (selectedPost && selectedPost.postId === post.postId) {
@@ -154,6 +151,15 @@ function Community() {
       }
     } catch (error) {
       console.error('Failed to update like status:', error);
+    }
+  };
+
+  const handleDeletePost = async (postId) => {
+    try {
+      await deletePost(postId);
+      setPosts(posts.filter(post => post.postId !== postId));
+    } catch (error) {
+      console.error('Failed to delete post:', error);
     }
   };
 
@@ -253,6 +259,11 @@ function Community() {
             <div className="card">
               <div className="post-header">
                 <h3>{post.title}</h3>
+                {post.userId === currentUserEmail && (
+                  <button className="delete-button" onClick={() => handleDeletePost(post.postId)}>
+                    <FaTrash />
+                  </button>
+                )}
               </div>
               <div onClick={() => openModal(post)} className={`post-body ${post.thumbnailImageId ? 'with-image' : 'without-image'}`}>
                 <p>{post.content}</p>
@@ -269,8 +280,8 @@ function Community() {
                   <button><FaShareSquare /> Share</button>
                 </div>
               </div>
-              {showHeart && <FaHeart className="heart-animation" />} {/* 빨간 하트 애니메이션 */}
-              {showUnlikeHeart && <FaHeart className="unlike-heart-animation" />} {/* 파란 하트 애니메이션 */}
+              {showHeart && <FaHeart className="heart-animation" />} 
+              {showUnlikeHeart && <FaHeart className="unlike-heart-animation" />} 
             </div>
           </div>
         ))}
