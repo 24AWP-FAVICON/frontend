@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FaUserCircle } from "react-icons/fa";
@@ -9,6 +9,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const profileMenuRef = useRef(null);
 
   useEffect(() => {
     const accessToken = Cookies.get("access");
@@ -24,6 +25,19 @@ const Header = () => {
       setIsLoggedIn(false);
     }
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
+        setShowProfileMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileMenuRef]);
 
   const toggleProfileMenu = () => {
     setShowProfileMenu(!showProfileMenu);
@@ -89,7 +103,7 @@ const Header = () => {
               <div className="relative mr-10">
                 <Notifications />
               </div>
-              <div className="relative">
+              <div className="relative" ref={profileMenuRef}>
                 <button
                   onClick={toggleProfileMenu}
                   className="hover:text-headerTextColor font-semibold hover:scale-105 transition duration-150"
@@ -97,16 +111,16 @@ const Header = () => {
                   <FaUserCircle size={24} />
                 </button>
                 {showProfileMenu && (
-                  <div className="absolute right-0 mt-5 w-64 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                  <div className="absolute right-0 mt-5 w-64 bg-white border border-gray-200 rounded-md shadow-lg z-50 animate-slide-down">
                     <div className="px-4 py-3 border-b">
                       <p className="text-lg font-semibold">개인 메뉴</p>{" "}
                     </div>
                     <div className="py-1">
-                      <button
+                      {/* <button
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                       >
                         Settings
-                      </button>
+                      </button> */}
                       <button
                         onClick={handleLogout}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
