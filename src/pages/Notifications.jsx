@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Cookies from "js-cookie";
 import { FaBell } from "react-icons/fa";
 import NotificationList from "./NotificationList";
@@ -6,6 +6,7 @@ import NotificationList from "./NotificationList";
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
+  const notificationRef = useRef(null);
 
   useEffect(() => {
     const accessToken = Cookies.get("access");
@@ -36,6 +37,19 @@ const Notifications = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+        setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [notificationRef]);
+
   const handleNotificationClick = () => {
     setShowNotifications(!showNotifications);
   };
@@ -61,10 +75,10 @@ const Notifications = () => {
   };
 
   return (
-    <div className="relative">
-      <button onClick={handleNotificationClick}>
+    <div className="relative" ref={notificationRef}>
+      <button onClick={handleNotificationClick} className="relative">
         <FaBell />
-        {notifications.length > 0 && <span>{notifications.length}</span>}
+        {notifications.length > 0 && <span className="notification-count">{notifications.length}</span>}
       </button>
       {showNotifications && (
         <NotificationList
