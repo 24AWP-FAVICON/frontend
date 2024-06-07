@@ -1,18 +1,17 @@
-/* 기본 스타일 리셋 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.profile-container {
+.user-profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
 }
 
-.profile-card {
+.user-profile-card {
   width: 100%;
   max-width: 1500px;
   background: #fff;
@@ -22,50 +21,50 @@
   padding: 20px;
 }
 
-.profile-header {
+.user-profile-header {
   display: flex;
   align-items: center;
 }
 
-.profile-info {
+.user-profile-info {
   display: flex;
   align-items: center;
 }
 
-.profile-image {
+.user-profile-image {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   margin-right: 20px;
 }
 
-.profile-name {
+.user-profile-name {
   font-size: 24px;
   font-weight: bold;
 }
 
-.profile-email {
+.user-profile-email {
   color: #777;
 }
 
-.posts-container {
+.user-posts-container {
   width: 100%;
   max-width: 1500px;
 }
 
-.posts-title {
+.user-posts-title {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-.posts-cards {
+.user-posts-cards {
   display: flex;
   overflow-x: auto;
   padding: 10px 0;
   gap: 10px; /* 카드 간격 추가 */
 }
 
-.post-card {
+.user-post-card {
   min-width: 250px;
   max-width: 250px;
   flex: 1;
@@ -76,17 +75,17 @@
   padding: 10px;
 }
 
-.post-header h3 {
+.user-post-header h3 {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-.post-body p {
+.user-post-body p {
   font-size: 14px;
   color: #555;
 }
 
-.post-body img {
+.user-post-body img {
   width: 100%;
   border-radius: 10px;
   margin-top: 10px;
