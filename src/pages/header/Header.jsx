@@ -116,11 +116,12 @@ const Header = () => {
                       <p className="text-lg font-semibold">개인 메뉴</p>{" "}
                     </div>
                     <div className="py-1">
-                      {/* <button
+                      <Link
+                        to="/userprofile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                       >
-                        Settings
-                      </button> */}
+                        Profile
+                      </Link>
                       <button
                         onClick={handleLogout}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"

@@ -79,3 +79,8 @@ export const uploadPostImage = (postId, imageData) => {
     }
   });
 };
+
+// 특정 사용자의 포스트 가져오기
+export const fetchUserPosts = (userId) => {
+  return api.get(`/community/posts/user/${userId}`);
+};
