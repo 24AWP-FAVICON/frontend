@@ -366,3 +366,10 @@ textarea {
   margin-left: 5px;
   margin-right: 10px;
 }
+
+.character-count {
+  text-align: right;
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 5px;
+}

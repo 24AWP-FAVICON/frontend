@@ -31,6 +31,7 @@ function Community() {
   const [newPostImage, setNewPostImage] = useState(null); // 이미지 파일 하나로 변경
   const [showHeart, setShowHeart] = useState(false); // 하트 애니메이션 상태
   const [showUnlikeHeart, setShowUnlikeHeart] = useState(false); // 파란 하트 애니메이션 상태
+  const MAX_CONTENT_LENGTH = 255;
 
   useEffect(() => {
     loadPosts();
@@ -119,6 +120,12 @@ function Community() {
         return post;
       });
       setPosts(updatedPosts);
+
+      // 선택된 게시글의 댓글 수 업데이트
+      setSelectedPost(prevSelectedPost => ({
+        ...prevSelectedPost,
+        commentsCount: response.data.length
+      }));
     } catch (error) {
       console.error('Failed to add comment:', error);
     }
@@ -166,7 +173,14 @@ function Community() {
   };
 
   const handleCreatePost = async () => {
-    if (!newPostTitle.trim() || !newPostContent.trim()) return;
+    if (!newPostTitle.trim() || !newPostContent.trim()) {
+      return;
+    }
+  
+    if (newPostContent.length > MAX_CONTENT_LENGTH) {
+      alert(`게시글 내용은 ${MAX_CONTENT_LENGTH}자 이내로 작성해주세요.`);
+      return;
+    }
     try {
       const response = await createPost({ title: newPostTitle, content: newPostContent });
       const postId = response.data.postId;
@@ -176,12 +190,12 @@ function Community() {
         formData.append('image', newPostImage);
   
         const uploadResponse = await uploadPostImage(postId, formData);
-        const imageUrl = extractUrl(uploadResponse.data);  // 이미지 URL을 받음
+        const imageUrl = extractUrl(uploadResponse.data);
   
         await updatePost(postId, {
           title: newPostTitle,
           content: newPostContent,
-          thumbnailImageId: imageUrl // 이미지 URL을 썸네일로 사용
+          thumbnailImageId: imageUrl
         });
       } else {
         await updatePost(postId, {
@@ -190,7 +204,7 @@ function Community() {
         });
       }
   
-      await loadPosts(); // 새로운 게시글을 로드합니다.
+      await loadPosts();
       closeCreatePostModal();
       setNewPostTitle("");
       setNewPostContent("");
@@ -199,6 +213,14 @@ function Community() {
       console.error('Failed to create post:', error);
     }
   };
+  
+  const handleContentChange = (e) => {
+    const content = e.target.value;
+    if (content.length <= MAX_CONTENT_LENGTH) {
+      setNewPostContent(content);
+    }
+  };
+  
 
   const handleImageChange = (e) => {
     setNewPostImage(e.target.files[0]);
@@ -327,9 +349,12 @@ function Community() {
             <textarea
               placeholder="Content"
               value={newPostContent}
-              onChange={(e) => setNewPostContent(e.target.value)}
+              onChange={handleContentChange}
               className="create-post-content"
             />
+            <div className="character-count">
+              {newPostContent.length}/{MAX_CONTENT_LENGTH}
+            </div>
             <input
               type="file"
               onChange={handleImageChange}
