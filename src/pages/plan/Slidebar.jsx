@@ -1,12 +1,65 @@
 import React from 'react';
+import {
+  tripGet,
+  tripIdGet,
+  tripIdPatch
+} from './PlanApiService'; // API 서비스 가져오기
 
 function Slidebar({ selectedDates, onDrop }) {
-  const sendData = () => {
+  const sendData = async() => {
     if (navigator.share) {
       navigator.share({
           title: 'favicon',
           url: './plan',
       });
+  
+    try {
+      let date = {
+        "tripDateId": 0,
+        "trip": locationName,
+        "tripDate": "2024-06-04",
+        "tripDay": 0,
+        "budget": 0,
+        "accommodation": {
+          "accommodationId": 0,
+          "tripDate": "string",
+          "accommodationName": "string",
+          "accommodationLocation": "string"
+        },
+        "locations": [
+          {
+            "locationId": 0,
+            "tripDate": "string",
+            "locationName": "string",
+            "locationAddress": "string"
+            }
+          ]
+        };
+      let tripDates = [];
+      for(let i=0;i<selectedDates.length;i++){
+        date["tripDateId"] = i;
+        date["tripDate"] = selectedDates[i].Date;
+        date["tripDay"] = i+1;
+        date["budget"] = selectedDates[i].budget;
+        date["locations"].locationId = i;
+        date["locations"].tripDate = selectedDates[i].Date;
+        date["locations"].locationName = selectedDates[i].items;
+        date["locations"].locationAddress = selectedDates[i].items;
+        tripDates = [...tripDates, date];
+      }
+      let data = {
+        "tripArea": locationName,
+        "startDate": selectedDates[0].Date,
+        "endDate": selectedDates[selectedDates.length - 1].Date,
+        "budget": budget,
+        "tripDates": tripDates
+      }
+      await tripGet();
+      await tripIdGet(data);
+      await tripIdPatch(data);
+    } catch (error) {
+    console.error('Failed to update like status:', error);
+    }
   } else{
       alert("공유하기가 지원되지 않는 환경 입니다.");
   }
