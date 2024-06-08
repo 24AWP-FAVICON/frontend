@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import placeData from "./place.json";
 
 function SelectPlace({ placesData, pick, onDragStart, locationName }) {
-  console.log("loc", locationName);
   const [filteredData, setFilteredData] = useState([]);
   const [activeCategory, setActiveCategory] = useState('tourist'); // 'tourist' 또는 'lodging'
 
