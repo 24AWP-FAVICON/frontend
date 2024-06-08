@@ -19,6 +19,8 @@ function Sidebar({ placesData, locationName }) {
 
   const handleDates = (childData) => {
     setSelectedDates(childData);
+    console.log(childData);
+    
   };
 
   const handleStartDateChange = (date) => {
@@ -66,7 +68,9 @@ function Sidebar({ placesData, locationName }) {
   };
 
   const handleDropToSlidebar = (index) => {
-    if (draggedElement) {
+    if (Array.isArray(index)) {
+      setSelectedDates(index);
+    } else if (draggedElement) {
       setSelectedDates((prevDates) =>
         prevDates.map((date, i) =>
           i === index ? { ...date, items: [...(date.items || []), draggedElement] } : date
@@ -142,6 +146,8 @@ function Sidebar({ placesData, locationName }) {
       <div className={`transition-all duration-300 ${isOpen ? "flex-grow" : "w-0"} overflow-hidden`}>
         <Slidebar
           selectedDates={selectedDates}
+          locationName={locationName}
+          budget={budget}
           onDrop={handleDropToSlidebar}
           onDragOver={(e) => e.preventDefault()}
           style={{ height: '100%' }}
