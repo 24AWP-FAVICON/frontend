@@ -2,7 +2,14 @@ import React from 'react';
 
 function Slidebar({ selectedDates, onDrop }) {
   const sendData = () => {
-    console.log(selectedDates);
+    if (navigator.share) {
+      navigator.share({
+          title: 'favicon',
+          url: './plan',
+      });
+  } else{
+      alert("공유하기가 지원되지 않는 환경 입니다.");
+  }
   };
 
   return (
