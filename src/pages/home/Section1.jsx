@@ -6,6 +6,7 @@ import locationsData from "./location.json";
 const Section1 = () => {
   const navigate = useNavigate();
   const [locations, setLocations] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
@@ -28,8 +29,27 @@ const Section1 = () => {
 
   const handleResultClick = (location, event) => {
     event.stopPropagation();
-    navigate("/plan", { loc:{ location }, state: { center: { coords: { lat: location.coords.lat, lng: location.coords.lng } } } });
+    navigate("/plan", {
+      state: {
+        loc: location,
+        center: {
+          coords: {
+            lat: location.coords.lat,
+            lng: location.coords.lng,
+          },
+        },
+        locationName: location.location
+      },
+    });
   };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredLocations = locations.filter((location) =>
+    location.location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section className="h-screen flex bg-gray-50 justify-center items-center">
@@ -58,9 +78,11 @@ const Section1 = () => {
                   placeholder="Search..."
                   className="search-input search-input-active"
                   autoFocus
+                  value={searchTerm}
+                  onChange={handleSearchChange}
                 />
                 <div className="search-results">
-                  {locations.map((location) => (
+                  {filteredLocations.map((location) => (
                     <div
                       key={location.id}
                       className="result-item hover:bg-gray-200 cursor-pointer"

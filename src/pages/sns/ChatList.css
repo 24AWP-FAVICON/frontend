@@ -68,14 +68,6 @@
   margin-right: 0.5vw;
 }
 
-.chat-message {
-  height: 2vw;
-  width: 15vw;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .chat-modal {
   position: fixed;
   top: 50%;
@@ -102,7 +94,7 @@
 }
 
 .add-chat-input {
-  width: calc(100% - 17%);  
+  width: calc(100% - 17%);
   padding: 1vw;
   margin-top: 1vw;
   border: 0.2vw solid #ccc;
@@ -120,8 +112,8 @@
 }
 
 .add-chat-button {
-  height: 2.5vh;
   width: 6vw;
+  height: 2.5vh;
   background-color: #4b89dc;
   color: white;
   border: none;

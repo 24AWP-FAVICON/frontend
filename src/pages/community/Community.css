@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .community-content {
   padding: 20px;
   display: flex;
@@ -51,6 +57,9 @@
 .post-header {
   width: 100%;
   text-align: left;
+  display: flex;  /* Flexbox 사용 */
+  justify-content: space-between;  /* 양쪽 끝에 배치 */
+  align-items: center;  /* 수직 가운데 정렬 */
 }
 
 .post-header h3 {
@@ -59,13 +68,27 @@
   font-weight: bold;
 }
 
+.delete-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.delete-button:hover {
+  transform: scale(1.2) rotate(20deg);
+  color: darkred;
+}
+
 .post-body {
-  margin-top: 10px;
+  padding-left: 20px;
+  margin-top: 20px;
   width: 100%;
 }
 
 .post-body.with-image img {
-  width: 100%;
+  width: 35%;
   height: auto;
   margin-top: 10px;
 }
@@ -151,19 +174,68 @@
 .modal-card {
   width: 100%;
   max-width: 600px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-header h3 {
+  margin: 0;
 }
 
 .close-button {
   background: none;
   border: none;
+  font-size: 1.5rem;
   cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.create-post-title,
+.create-post-content,
+.create-post-image {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.create-post-title {
+  font-size: 1.2rem;
+}
+
+.create-post-content {
+  height: 150px;
+  resize: none;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.create-post-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .modal-buttons {
@@ -193,11 +265,23 @@
 
 .post-detail .comments-list, .modal .comments-list {
   margin-bottom: 20px;
+  max-height: 150px; /* 최대 높이를 설정 */
+  overflow-y: auto; /* 스크롤 가능하게 설정 */
 }
 
 .post-detail .comment-item, .modal .comment-item {
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+/* 스크롤바 숨기기 */
+.post-detail .comments-list::-webkit-scrollbar, .modal .comments-list::-webkit-scrollbar {
+  display: none;
+}
+
+.post-detail .comments-list, .modal .comments-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 textarea {
@@ -206,4 +290,104 @@ textarea {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.search-and-create {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 중앙 정렬 */
+  width: 100%;
+  max-width: 800px; /* 적절한 최대 너비 설정 */
+  margin-bottom: 20px;
+  margin-left: 7em;
+}
+
+.search-community-posts {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-post-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+  color: #333;
+  padding-bottom: 0.7em;
+  margin-left: 1em;
+}
+
+.create-post-button:hover {
+  color: #000;
+}
+
+.heart-animation {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  font-size: 50px;
+  color: red;
+  animation: float 1s ease-in-out;
+}
+
+.unlike-heart-animation {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  font-size: 50px;
+  color: blue;
+  animation: drop 1s ease-in-out;
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.character-count {
+  text-align: right;
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 5px;
 }

@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Front-End Features Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. Home
+**Main Page Functionality**: This section includes the core layout and functionalities of the main page, consisting of sections for creating travel plans, showcasing travel tips, and highlighting popular destinations.
 
-## Available Scripts
+### Detailed Description
+#### 1. Introduction and Search
+- **Introduction**: Displays a welcoming message and an invitation to start planning a trip.
+- **Search Functionality**: Users can search for locations to plan their trips.
 
-In the project directory, you can run:
+#### 2. Travel Tips Carousel
+- **Carousel Functionality**: Displays travel tips with an image and description in a carousel format.
+- **Navigation**: Users can navigate through tips using previous and next buttons.
 
-### `npm start`
+#### 3. Popular Destinations
+- **Destination Cards**: Displays a grid of popular travel destinations with images and location names.
+- **Navigation**: Clicking on a destination navigates the user to the planning page for that location.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Community Screen Shot
+#### 1. Main Page Overview
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/1d87f60f-78c5-410c-8d86-76aa082ae7ce)
+#### 2. Travel Tips Carousel
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/f7898bfe-1db2-4385-962d-89c50ae9ef52)
+#### 3. Popular Destinations
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/5ab3d521-7d7e-4c22-b67b-b1c7bdc3d6ae)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 2. Community
+**Community Functionality**: This section handles the core functionalities of the community page, including fetching posts, liking/unliking posts, adding comments, and creating new posts.
 
-### `npm test`
+### Detailed Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 1. Fetching and Displaying Posts
+- **Initial Fetch**: When the component mounts, it fetches posts from the API using the **fetchPosts** function.
+- **Post Enhancement**: Each post is enhanced with comments and like count using **fetchCommentsByPostId**.
+- **Sorting**: Posts are sorted by creation date in descending order.
+- **Infinite Scroll**: Uses Intersection Observer API to load more posts as the user scrolls down.
 
-### `npm run build`
+#### 2. Searching Posts
+- **Search Function**: Filters posts based on the search term entered by the user.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 3. Modal Management
+- **Post Modal**: Opens a modal to show post details and comments when a post is clicked.
+- **Create Post Modal**: Opens a modal to create a new post.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 4. Adding Comments
+- **Comment Function**: Adds a comment to the selected post and updates the comment count.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 5. Liking/Unliking Posts
+- **Like Function**: Toggles the like status of a post and triggers a heart animation.
+- **Unlike Function**: Toggles the unlike status of a post and triggers a blue heart animation.
 
-### `npm run eject`
+#### 6. Creating New Posts
+- **Create Post Function**: Handles the creation of a new post, including uploading an image and updating the post with the image URL if provided.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Community Screen Shot
+#### 1. Community Main Page
+  ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/ba329f84-a433-4d7a-8e25-54b207b951d4)
+#### 2. Post Modal
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/d536cbd7-b877-415d-a4b1-c92dfcebc2bb)
+#### 3. Create Post Modal
+![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/da8e63b8-8805-4042-81e7-9d9d519c0350)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 3. Login
+**Login Successful Processing**: After OAuth authentication, the user information is saved and redirected. If the user successfully logs in through Google OAuth, the user information is imported using the issued access token and the refresh token, which is then stored in the cookie. Then, the user is redirected to the main page.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Detailed Description
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### 1. Verify Tokens and Request User Information
+- Runs when the component is mounted using the **useEffect** hook.
+- Retrieves the **access token** and **refresh token** from the cookies.
+- If the token exists, makes an API call to get user information.
 
-## Learn More
+#### 2. Save User Information
+- If the API call is successful, the returned user information is stored in the cookies.
+- For example, you can store **userEmail** in cookies so that other components can utilize this information.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 3. Redirection
+- After storing user information, redirects the user to the main page (`/`).
+- If the API call fails or the token does not exist, redirects the user to the login page to prompt re-login.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 4. Show Loading Status
+- While importing user information, displays a "Loading..." message to inform the user that processing is underway.
 
-### Code Splitting
+### Login Screen Shot
+#### 1. Login Page
+   ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/65aec526-4297-4f47-adf1-5fac7bd686be)
+#### 2. Google Login
+   ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/90b3d234-2e58-4e43-af40-3e5f3a739be8)
+#### 3. Successful Login
+   ![image](https://github.com/24AWP-FAVICON/frontend/assets/117453101/b48870b2-4e03-41e8-830b-ff8f783917a4)
+    
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 4. SNS
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 5. Plan
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Development Contributions
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Feature   | Developer   | Description                                      |
+|-----------|-------------|--------------------------------------------------|
+| Home      | 박재민 | Implemented the main travel planning interface   |
+| Community | 박재민 | Created the social sharing functionalities       |
+| SNS       | 김민재 | Developed the direct messaging feature           |
+| Plan      | 양지훈 | Integrated Google Maps API for travel planning   |
+| Login     | 박재민 | Implemented OAuth2 social login using Google     |
