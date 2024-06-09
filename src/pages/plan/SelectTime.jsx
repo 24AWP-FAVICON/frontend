@@ -97,8 +97,7 @@ function SelectTime({
         <label className="block mb-2 font-semibold">
           총예산액 <hr />
           <input 
-            type="number" 
-            value={budget} 
+            type="number"
             onChange={onBudgetChange} 
             placeholder='0'
             className="w-full p-2 mt-1 mb-3 border border-gray-300 rounded bg-gray-200"
@@ -136,7 +135,6 @@ function SelectTime({
                       <input
                         type="number"
                         placeholder='0'
-                        value={items[index]?.cost || 0}
                         onChange={(e) => handleCostChange(index, e.target.value)}
                         className="w-full p-1 text-center border border-gray-300 rounded bg-gray-200"
                       />
