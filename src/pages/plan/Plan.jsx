@@ -6,7 +6,7 @@ import "./Plan.css";
 
 const containerStyle = {
   width: "100%",
-  height: "93vh",
+  height: "96vh",
 };
 
 function Plan() {

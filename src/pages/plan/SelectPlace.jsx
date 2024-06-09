@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import placeData from "./place.json";
 
 function SelectPlace({ placesData, pick, onDragStart, locationName }) {
-  console.log("loc", locationName);
   const [filteredData, setFilteredData] = useState([]);
   const [activeCategory, setActiveCategory] = useState('tourist'); // 'tourist' 또는 'lodging'
 
@@ -21,7 +20,7 @@ function SelectPlace({ placesData, pick, onDragStart, locationName }) {
   }, [pick, placesData, activeCategory, locationName]);
 
   return (
-    <div className="w-full p-4 space-y-4 overflow-y-auto" style={{ minHeight: '500px', maxHeight: '500px' }}>
+    <div className="w-full p-4 space-y-4 overflow-y-auto" style={{ minHeight: '500px', maxHeight: '100%' }}>
       <div className="flex space-x-4 mb-4">
         <button
           onClick={() => setActiveCategory('tourist')}

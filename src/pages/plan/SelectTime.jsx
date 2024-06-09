@@ -71,7 +71,7 @@ function SelectTime({
   };
 
   return (
-    <div className="w-full p-5 font-sans bg-white h-full">
+    <div className="w-full p-5 font-sans bg-white h-full" style={{ minHeight: '500px', maxHeight: '500px' }}>
       <div>
         <label className="block mb-2 font-semibold w-full">
           시작 날짜<hr />
