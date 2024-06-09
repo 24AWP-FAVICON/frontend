@@ -81,7 +81,7 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
       <div className="text-2xl font-bold mb-6 text-gray-800">
         <p>Planner</p>
       </div>
-      <div className="space-y-6 h-full overflow-y-auto mt-6 mb-6 rounded-lg" style={{ maxHeight: '500px' }}>
+      <div className="space-y-6 h-full overflow-y-auto mt-6 mb-6 rounded-lg" style={{ maxHeight: '78vh' }}>
         {selectedDates.map((date, index) => (
           <div
             className="p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition cursor-pointer"
