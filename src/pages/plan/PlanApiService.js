@@ -1,7 +1,7 @@
 import api from '../../Frontend_API';
 
 export const tripGet = () => {
-  return api.get('/planner/trip');
+    return api.get('/planner/trip');
 };
 
 export const tripIdGet = (data) => {
