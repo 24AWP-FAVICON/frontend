@@ -130,7 +130,7 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
       </div>
       <div className="flex justify-center items-center h-16">
         <button className="w-1/2 h-full bg-blue-500 text-white rounded-lg flex items-center justify-center shadow hover:bg-blue-600 transition" onClick={sendData}>
-          공유하기
+          생성하기
         </button>
       </div>
     </div>
