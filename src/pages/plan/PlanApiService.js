@@ -1,5 +1,12 @@
 import api from '../../Frontend_API';
 
+export const tripPost = (data) => {
+    return api.post(`/planner/trip`, data);
+}
+
+export const tripIdPost = (tripId, data) => {
+    return api.post(`/planner/trip/${tripId}/detail`, data);
+}
 export const tripGet = () => {
     return api.get('/planner/trip');
 };

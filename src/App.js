@@ -13,7 +13,7 @@ import UserProfile from "./pages/userprofile/UserProfile";
 import "./Frontend_API";
 import "./App.css";
 import { LoadScript } from "@react-google-maps/api";
-import TripPage from "./pages/trip/TripPage";
+import TripPage from "./pages/plan/TripPage";
 
 function App() {
   return (
