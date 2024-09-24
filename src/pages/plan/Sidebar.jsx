@@ -3,11 +3,14 @@ import SelectPlace from './SelectPlace';
 import SelectTime from './SelectTime';
 import Slidebar from './Slidebar';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { tripPost, tripIdPost } from '../plan/PlanApiService'; // API 서비스 가져오기
 
 function Sidebar({ placesData, locationName }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isTime, setIsTime] = useState(true);
   const [isPlace, setIsPlace] = useState(false);
+  const [tripName, setTripName] = useState(''); // 여행 이름 추가
+  const [participantIds, setParticipantIds] = useState(['minbory925@gmail.com']); // 고정된 참여자
   const [selectedDates, setSelectedDates] = useState([]);
   const [loc, setLoc] = useState('');
   const [draggedElement, setDraggedElement] = useState(null);
@@ -17,10 +20,52 @@ function Sidebar({ placesData, locationName }) {
   const [items, setItems] = useState([]);
   const [resultDates, setResultDates] = useState([]);
 
+  const handleCreateTrip = async () => {
+    try {
+      // 종료 날짜 계산
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + parseInt(duration));
+
+      // 첫 번째 API 호출 - 여행 계획 생성
+      const tripData = {
+        tripName,  // 여행 이름
+        tripArea: loc,  // 선택된 지역
+        startDate: startDate.toISOString().split('T')[0],  // 시작 날짜
+        endDate: endDate.toISOString().split('T')[0],  // 종료 날짜
+        budget,
+        participantIds  // 참여자 ID
+      };
+      const response = await tripPost(tripData);  // 여행 계획 생성 API 호출
+      const tripId = response.data.tripId;  // tripId 받아오기
+      console.log(tripId, "tripId");
+      // 두 번째 API 호출 - 세부 일정 저장
+      for (const [index, date] of resultDates.entries()) {
+        const detailData = {
+          tripDate: date.date,
+          tripDay: index + 1,
+          budget: date.cost,  // 각 날짜별 예산
+          // accommodation: {
+          //   accommodationName: date.accommodation?.name || "숙소 이름",
+          //   accommodationLocation: date.accommodation?.location || "숙소 주소"
+          // },
+          locations: date.items.map(item => ({
+            locationName: item.name,
+            locationAddress: item.address
+          }))
+        };
+        await tripIdPost(tripId, detailData);  // 세부 일정 API 호출
+      }
+  
+      alert('여행 계획이 성공적으로 생성되었습니다!');
+    } catch (error) {
+      console.error('여행 계획 생성 중 오류 발생:', error);
+      alert('여행 계획 생성에 실패했습니다.');
+    }
+  };
+
   const handleDates = (childData) => {
     setSelectedDates(childData);
     console.log(childData);
-    
   };
 
   const handleStartDateChange = (date) => {
@@ -90,6 +135,15 @@ function Sidebar({ placesData, locationName }) {
           </button>
         </div>
         <div className="p-4 bg-gray-100">
+          {/* 여행 이름 입력 필드 추가 */}
+          <input
+            id="tripName"
+            type="text"
+            className="w-full p-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            placeholder="여행 계획 이름을 입력하세요."
+            value={tripName}
+            onChange={(e) => setTripName(e.target.value)}
+          />
           <input
             id="name"
             type="text"
