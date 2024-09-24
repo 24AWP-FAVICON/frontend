@@ -15,39 +15,41 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
     // 상태를 업데이트하기 위해 부모 컴포넌트로 콜백 함수를 전달합니다.
     onDrop(updatedDates);
   };
-
-  const handleDrop = (index) => {
-    // 선택된 날짜에 장소 추가
+  
+  const handleDrop = (index, event) => {
+    event.preventDefault();  // 기본 동작 방지
+  
+    // 드래그된 데이터를 가져와 처리
+    const droppedData = JSON.parse(event.dataTransfer.getData("application/json"));
+    
     if (selectedDates[index].items) {
       selectedDates[index].items.push({
-        name: `장소 ${index + 1}`,
-        address: `장소 주소 ${index + 1}`
+        name: droppedData.name,
+        address: droppedData.address,
       });
     } else {
       selectedDates[index].items = [{
-        name: `장소 ${index + 1}`,
-        address: `장소 주소 ${index + 1}`
+        name: droppedData.name,
+        address: droppedData.address,
       }];
     }
+  
     onDrop(selectedDates); // 수정된 데이터를 부모 컴포넌트에 전달
-  };
+  };  
 
   return (
-    <div className="p-6 font-sans bg-gray-200 h-full w-full shadow-md border border-gray-200">
+    <div className="p-6 font-sans bg-gray-200  w-full shadow-md border border-gray-200">
       <div className="text-2xl font-bold mb-6 text-gray-800">
         <p>Planner</p>
       </div>
       <div className="space-y-6 h-full overflow-y-auto mt-6 mb-6 rounded-lg" style={{ maxHeight: '78vh' }}>
         {selectedDates.map((date, index) => (
           <div
-            className="p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition cursor-pointer"
-            key={index}
-            onDrop={(e) => {
-              e.preventDefault();
-              handleDrop(index);
-            }}
-            onDragOver={(e) => e.preventDefault()}
-          >
+              className="p-4 bg-gray-50 rounded-lg shadow hover:bg-gray-100 transition cursor-pointer"
+              key={index}
+              onDrop={(e) => handleDrop(index, e)}  // event 객체를 함께 전달
+              onDragOver={(e) => e.preventDefault()}  // 드래그 중 기본 동작 방지
+            >          
             <div className="flex flex-col mb-4">
               <h3 className="text-lg font-semibold text-gray-700">{date.date}</h3>
               <h3 className="text-lg font-semibold text-gray-700">{date.cost}원</h3>
