@@ -1,10 +1,4 @@
 import React from 'react';
-import {
-  tripGet,
-  tripIdGet,
-  tripIdPatch,
-  tripIdDetailDelete
-} from './PlanApiService'; // API 서비스 가져오기
 
 function Slidebar({ selectedDates, onDrop, locationName, budget }) {
   const handleDeleteItem = (index, itemIndex) => {
@@ -21,59 +15,21 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
     // 상태를 업데이트하기 위해 부모 컴포넌트로 콜백 함수를 전달합니다.
     onDrop(updatedDates);
   };
-  const sendData = async() => {
-    if (navigator.share) {
-      navigator.share({
-          title: 'favicon',
-          url: './plan',
+
+  const handleDrop = (index) => {
+    // 선택된 날짜에 장소 추가
+    if (selectedDates[index].items) {
+      selectedDates[index].items.push({
+        name: `장소 ${index + 1}`,
+        address: `장소 주소 ${index + 1}`
       });
-    } else{
-      alert("공유하기가 지원되지 않는 환경 입니다.");
+    } else {
+      selectedDates[index].items = [{
+        name: `장소 ${index + 1}`,
+        address: `장소 주소 ${index + 1}`
+      }];
     }
-    try {
-      let date = {
-          "tripDateId": 0,
-          "trip": locationName,
-          "tripDate": "2024-06-04",
-          "tripDay": 0,
-          "budget": 0,
-          "accommodation": {
-            "accommodationId": 0,
-            "tripDate": "string",
-            "accommodationName": "string",
-            "accommodationLocation": "string"
-          },
-          "locations": [
-            {
-              "locationId": 0,
-              "tripDate": "string",
-              "locationName": "string",
-              "locationAddress": "string"
-            }
-          ]
-        };
-      let tripDates = [];
-      for(let i=0;i<selectedDates.length;i++){
-        date["tripDateId"] = i;
-        date["tripDate"] = selectedDates[i].Date;
-        date["tripDay"] = i+1;
-        date["budget"] = selectedDates[i].budget;
-        date["locations"].locationId = i;
-        date["locations"].tripDate = selectedDates[i].Date;
-        date["locations"].locationName = selectedDates[i].items;
-        date["locations"].locationAddress = selectedDates[i].items;
-        tripDates = [...tripDates, date];
-      }
-      let data = {
-        "tripArea": locationName,
-        "startDate": selectedDates[0].Date,
-        "endDate": selectedDates[selectedDates.length - 1].Date,
-        "budget": budget,
-        "tripDates": tripDates
-      }
-    } catch (error) {
-      console.error('Failed to update like status:', error);
-    }
+    onDrop(selectedDates); // 수정된 데이터를 부모 컴포넌트에 전달
   };
 
   return (
@@ -88,10 +44,8 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
             key={index}
             onDrop={(e) => {
               e.preventDefault();
-              onDrop(index)
-            }
-              
-            }
+              handleDrop(index);
+            }}
             onDragOver={(e) => e.preventDefault()}
           >
             <div className="flex flex-col mb-4">
@@ -106,10 +60,9 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
                 <div className="relative border-2 border-gray-200 rounded-lg p-2 w-56 h-24 text-sm font-semibold bg-white shadow-sm">
                   <div className="text-gray-800 w-4/4 flex justify-between">
                     {item.name}
-
                     <button
-                    className="px-2 py-1 bg-red-500 text-white text-xs rounded-md hover:bg-red-600 transition-colors duration-200 ease-in-out shadow focus:outline-none focus:ring-2 focus:ring-red-300"
-                    onClick={() => handleDeleteItem(index, itemIndex)}
+                      className="px-2 py-1 bg-red-500 text-white text-xs rounded-md hover:bg-red-600 transition-colors duration-200 ease-in-out shadow focus:outline-none focus:ring-2 focus:ring-red-300"
+                      onClick={() => handleDeleteItem(index, itemIndex)}
                     >
                       삭제
                     </button>
@@ -127,11 +80,6 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
             ))}
           </div>
         ))}
-      </div>
-      <div className="flex justify-center items-center h-16">
-        <button className="w-1/2 h-full bg-blue-500 text-white rounded-lg flex items-center justify-center shadow hover:bg-blue-600 transition" onClick={sendData}>
-          생성하기
-        </button>
       </div>
     </div>
   );

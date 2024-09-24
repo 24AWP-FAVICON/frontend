@@ -16,7 +16,7 @@ function SelectTime({
   onResultDatesChange,
 }) {
   const [balance, setBalance] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0); // 애니메이션 효과를 위한 키 상태
+  const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
     const totalCost = items.reduce((acc, item) => acc + item.cost, 0);
