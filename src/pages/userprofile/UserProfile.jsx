@@ -3,11 +3,13 @@ import Cookies from 'js-cookie';
 import { fetchUserPosts } from '../community/CommunityApiService'; // API 서비스 가져오기
 import { tripGet } from '../plan/PlanApiService'; // tripGet API 가져오기
 import './UserProfile.css'; // 사용자 정의 스타일
+import { useNavigate } from 'react-router';
 
 function UserProfile() {
   const [trips, setTrips] = useState([]);
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -92,7 +94,9 @@ function UserProfile() {
         <div className="user-posts-cards">
           {trips.length > 0 ? (
             trips.map(trip => (
-              <div key={trip.tripId} className="user-post-card">
+              <div
+              onClick={() => navigate(`/trip?tripId=${trip.tripId}`)} 
+              key={trip.tripId} className="user-post-card">
                 <div className="user-post-header">
                   <h3>{trip.tripName}</h3>
                 </div>
