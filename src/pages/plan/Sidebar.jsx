@@ -3,7 +3,7 @@ import SelectPlace from './SelectPlace';
 import SelectTime from './SelectTime';
 import Slidebar from './Slidebar';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { tripPost, tripIdPost } from '../plan/PlanApiService'; // API 서비스 가져오기
+import { tripPost, tripIdPost, tripIdShare } from '../plan/PlanApiService'; // API 서비스 가져오기
 
 function Sidebar({ placesData, locationName }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -21,6 +21,7 @@ function Sidebar({ placesData, locationName }) {
   const [resultDates, setResultDates] = useState([]);
   const [showModal, setShowModal] = useState(false); // 모달 상태
   const [selectedPlace, setSelectedPlace] = useState(null); // 선택된 장소 저장
+  const [tripId, setTripId] = useState(null); // 여행 계획 ID 상태 추가
 
   
   const handleCreateTrip = async () => {
@@ -39,8 +40,9 @@ function Sidebar({ placesData, locationName }) {
         participantIds  // 참여자 ID
       };
       const response = await tripPost(tripData);  // 여행 계획 생성 API 호출
-      const tripId = response.data.tripId;  // tripId 받아오기
-      console.log(tripId, "tripId");
+      const newTripId = response.data.tripId;  // tripId 받아오기
+      setTripId(newTripId);
+      console.log(newTripId, "tripId");
       // 두 번째 API 호출 - 세부 일정 저장
       // 여러 개의 세부 일정을 배열로 준비
       const detailDataArray = resultDates.map((date, index) => ({
@@ -60,7 +62,7 @@ function Sidebar({ placesData, locationName }) {
       console.log("Detail Data to send: ", detailDataArray);
 
       // 두 번째 API 호출 - 리스트로 세부 일정 전송
-      await tripIdPost(tripId, detailDataArray);  // 세부 일정 배열 전송 API 호출
+      await tripIdPost(newTripId, detailDataArray);  // 세부 일정 배열 전송 API 호출
 
       alert('여행 계획이 성공적으로 생성되었습니다!');
       setShowModal(true);
@@ -228,26 +230,40 @@ function Sidebar({ placesData, locationName }) {
         )}
       </div>
 
-{/* TODO: 참여자 초대 API랑 연결해야 함. */}
       {showModal && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center" style={{ zIndex: 1000 }}>
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">여행 일정 초대</h2>
-            <p>참여자 이메일을 입력하세요:</p>
+            {/* 안내 메시지 추가 */}
+            <p>이메일을 콤마(,)로 구분하여 나열하여 적어주세요:</p>
             <input
-              type="email"
+              type="text"
               className="w-full p-2 mt-2 border border-gray-300 rounded"
-              placeholder="이메일 입력"
-              onChange={(e) => setParticipantIds([e.target.value])}
+              placeholder="예: email1@gmail.com, email2@gmail.com"
+              onChange={(e) => {
+                // 입력된 값을 쉼표로 구분하여 리스트로 변환
+                const emails = e.target.value.split(',').map(email => email.trim());
+                setParticipantIds(emails); // 리스트로 저장
+              }}
             />
             <div className="mt-4">
-              <button onClick={closeModal} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+              <button onClick={async () => {
+                try {
+                  await tripIdShare(tripId, { userGoogleIds: participantIds }); // API 호출
+                  alert('참여자가 성공적으로 초대되었습니다!');
+                  closeModal(); // 모달 닫기
+                } catch (error) {
+                  console.error('참여자 초대 중 오류 발생:', error);
+                  alert('참여자 초대에 실패했습니다.');
+                }
+              }} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                 완료
               </button>
             </div>
           </div>
         </div>
       )}
+
     </div>
   );
 }
