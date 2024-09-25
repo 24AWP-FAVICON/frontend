@@ -230,7 +230,7 @@ function Sidebar({ placesData, locationName }) {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center" style={{ zIndex: 1000 }}>
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">여행 일정 초대</h2>
             <p>참여자 이메일을 입력하세요:</p>
