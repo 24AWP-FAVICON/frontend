@@ -32,7 +32,7 @@ function Sidebar({ placesData, locationName }) {
       // 첫 번째 API 호출 - 여행 계획 생성
       const tripData = {
         tripName,  // 여행 이름
-        tripArea: loc,  // 선택된 지역
+        tripArea: locationName,  // 선택된 지역
         startDate: startDate.toISOString().split('T')[0],  // 시작 날짜
         endDate: endDate.toISOString().split('T')[0],  // 종료 날짜
         budget,
@@ -42,27 +42,26 @@ function Sidebar({ placesData, locationName }) {
       const tripId = response.data.tripId;  // tripId 받아오기
       console.log(tripId, "tripId");
       // 두 번째 API 호출 - 세부 일정 저장
-      for (const [index, date] of resultDates.entries()) {
-        const detailData = {
-          tripDate: date.date,
-          tripDay: index + 1,
-          budget: date.cost || 0, // 각 날짜별 예산
-          locations: date.items ? date.items.map((item) => ({
-            locationName: item.name,
-            locationAddress: item.address,
-          })) : [],
-          accommodation: date.accommodation ? {
-            accommodationName: date.accommodation.name,
-            accommodationAddress: date.accommodation.address,
-          } : null  // 숙소가 있으면 객체로 저장, 없으면 null
-        };
-        
-        // 세부 일정 데이터 확인용 콘솔 출력
-        console.log("Detail Data to send: ", detailData);
-        
-        await tripIdPost(tripId, detailData);  // 세부 일정 API 호출
-      }
-  
+      // 여러 개의 세부 일정을 배열로 준비
+      const detailDataArray = resultDates.map((date, index) => ({
+        tripDate: date.date,
+        tripDay: index + 1,
+        budget: date.cost || 0, // 각 날짜별 예산
+        locations: date.items ? date.items.map((item) => ({
+          locationName: item.name,
+          locationAddress: item.address,
+        })) : [],
+        accommodation: date.accommodation ? {
+          accommodationName: date.accommodation.name,
+          accommodationAddress: date.accommodation.address,
+        } : null  // 숙소가 있으면 객체로 저장, 없으면 null
+      }));
+
+      console.log("Detail Data to send: ", detailDataArray);
+
+      // 두 번째 API 호출 - 리스트로 세부 일정 전송
+      await tripIdPost(tripId, detailDataArray);  // 세부 일정 배열 전송 API 호출
+
       alert('여행 계획이 성공적으로 생성되었습니다!');
       setShowModal(true);
     } catch (error) {
@@ -229,6 +228,7 @@ function Sidebar({ placesData, locationName }) {
         )}
       </div>
 
+{/* TODO: 참여자 초대 API랑 연결해야 함. */}
       {showModal && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center" style={{ zIndex: 1000 }}>
           <div className="bg-white p-8 rounded-lg shadow-lg">
