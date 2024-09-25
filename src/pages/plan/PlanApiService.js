@@ -15,6 +15,10 @@ export const tripIdGet = (tripId) => {
     return api.get(`/planner/trip/${tripId}`);
 }
 
+export const tripIdShare = (tripId, data) => {
+    return api.post(`/planner/trip/${tripId}/share`, data);
+}
+
 export const tripIdPut = (tripId, data) => {
     return api.put(`/planner/trip/${tripId}`,data);
 }
