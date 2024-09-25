@@ -19,13 +19,16 @@ function Sidebar({ placesData, locationName }) {
   const [budget, setBudget] = useState(0);
   const [items, setItems] = useState([]);
   const [resultDates, setResultDates] = useState([]);
+  const [showModal, setShowModal] = useState(false); // 모달 상태
+  const [selectedPlace, setSelectedPlace] = useState(null); // 선택된 장소 저장
 
+  
   const handleCreateTrip = async () => {
     try {
       // 종료 날짜 계산
       const endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + parseInt(duration));
-
+  
       // 첫 번째 API 호출 - 여행 계획 생성
       const tripData = {
         tripName,  // 여행 이름
@@ -43,31 +46,37 @@ function Sidebar({ placesData, locationName }) {
         const detailData = {
           tripDate: date.date,
           tripDay: index + 1,
-          budget: date.cost,  // 각 날짜별 예산
-          // accommodation: {
-          //   accommodationName: date.accommodation?.name || "숙소 이름",
-          //   accommodationLocation: date.accommodation?.location || "숙소 주소"
-          // },
-          locations: date.items.map(item => ({
+          budget: date.cost || 0, // 각 날짜별 예산
+          locations: date.items ? date.items.map((item) => ({
             locationName: item.name,
-            locationAddress: item.address
-          }))
+            locationAddress: item.address,
+          })) : [],
+          accommodation: date.accommodation ? {
+            accommodationName: date.accommodation.name,
+            accommodationAddress: date.accommodation.address,
+          } : null  // 숙소가 있으면 객체로 저장, 없으면 null
         };
+        
+        // 세부 일정 데이터 확인용 콘솔 출력
+        console.log("Detail Data to send: ", detailData);
+        
         await tripIdPost(tripId, detailData);  // 세부 일정 API 호출
       }
   
       alert('여행 계획이 성공적으로 생성되었습니다!');
+      setShowModal(true);
     } catch (error) {
       console.error('여행 계획 생성 중 오류 발생:', error);
       alert('여행 계획 생성에 실패했습니다.');
     }
   };
+  
 
   const handleDates = (childData) => {
     setSelectedDates(childData);
-    console.log(childData);
   };
 
+  
   const handleStartDateChange = (date) => {
     setStartDate(date);
   };
@@ -111,7 +120,7 @@ function Sidebar({ placesData, locationName }) {
   const handleDragStart = (element) => {
     setDraggedElement(element);
   };
-
+  
   const handleDropToSlidebar = (index) => {
     if (Array.isArray(index)) {
       setSelectedDates(index);
@@ -123,6 +132,10 @@ function Sidebar({ placesData, locationName }) {
       );
       setDraggedElement(null);
     }
+  };
+
+  const closeModal = () => {
+    setShowModal(false); // 모달 창 닫기
   };
 
   return (
@@ -193,10 +206,11 @@ function Sidebar({ placesData, locationName }) {
               placesData={placesData}
               locationName={locationName} // locationName을 SelectPlace로 전달
             />
+            
           )}
         </div>
       </div>
-      
+
       <div className={`transition-all duration-300 ${isOpen ? "flex-grow" : "w-0"} overflow-hidden`}>
         <Slidebar
           selectedDates={selectedDates}
@@ -206,7 +220,34 @@ function Sidebar({ placesData, locationName }) {
           onDragOver={(e) => e.preventDefault()}
           style={{ height: '100%' }}
         />
+        {selectedDates.length > 0 && (
+          <div className="p-4 bg-white">
+            <button onClick={handleCreateTrip} className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+              생성하기
+            </button>
+          </div>
+        )}
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">여행 일정 초대</h2>
+            <p>참여자 이메일을 입력하세요:</p>
+            <input
+              type="email"
+              className="w-full p-2 mt-2 border border-gray-300 rounded"
+              placeholder="이메일 입력"
+              onChange={(e) => setParticipantIds([e.target.value])}
+            />
+            <div className="mt-4">
+              <button onClick={closeModal} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                완료
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
