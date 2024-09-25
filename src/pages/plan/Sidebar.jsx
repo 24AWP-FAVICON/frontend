@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SelectPlace from './SelectPlace';
 import SelectTime from './SelectTime';
 import Slidebar from './Slidebar';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { tripPost, tripIdPost, tripIdShare } from '../plan/PlanApiService'; // API 서비스 가져오기
+import Cookies from 'js-cookie';
 
 function Sidebar({ placesData, locationName }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isTime, setIsTime] = useState(true);
   const [isPlace, setIsPlace] = useState(false);
   const [tripName, setTripName] = useState(''); // 여행 이름 추가
-  const [participantIds, setParticipantIds] = useState(['minbory925@gmail.com']); // 고정된 참여자
+  const [participantIds, setParticipantIds] = useState([]); // 참여자 이메일 리스트
+  const [userEmail, setUserEmail] = useState(''); // 사용자의 이메일 상태
   const [selectedDates, setSelectedDates] = useState([]);
   const [loc, setLoc] = useState('');
   const [draggedElement, setDraggedElement] = useState(null);
@@ -23,7 +25,34 @@ function Sidebar({ placesData, locationName }) {
   const [selectedPlace, setSelectedPlace] = useState(null); // 선택된 장소 저장
   const [tripId, setTripId] = useState(null); // 여행 계획 ID 상태 추가
 
-  
+  // 사용자 이메일을 가져오는 함수
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const accessToken = Cookies.get("access");
+
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/info`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserEmail(data.userId);  // 사용자 이메일 설정
+          setParticipantIds([data.userId]);  // 자기 자신을 참여자 리스트에 추가
+        } else {
+          console.error('Failed to fetch user info');
+        }
+      } catch (error) {
+        console.error('Failed to fetch user info', error);
+      }
+    };
+
+    fetchUserInfo();  // 컴포넌트가 로드될 때 사용자 정보 가져오기
+  }, []);
+
   const handleCreateTrip = async () => {
     try {
       // 종료 날짜 계산
@@ -243,8 +272,8 @@ function Sidebar({ placesData, locationName }) {
               onChange={(e) => {
                 // 입력된 값을 쉼표로 구분하여 리스트로 변환
                 const emails = e.target.value.split(',').map(email => email.trim());
-                setParticipantIds(emails); // 리스트로 저장
-              }}
+                  setParticipantIds([userEmail, ...emails]);  // 자기 자신과 입력된 이메일들 추가
+                }}
             />
             <div className="mt-4">
               <button onClick={async () => {
