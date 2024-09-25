@@ -59,7 +59,7 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
                 <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-bold">
                   {itemIndex + 1}
                 </div>
-                <div className="relative border-2 border-gray-200 rounded-lg p-2 w-56 h-24 text-sm font-semibold bg-white shadow-sm">
+                <div className="relative border-2 border-gray-200 rounded-lg p-2 w-56 h-20 text-sm font-semibold bg-white shadow-sm">
                   <div className="text-gray-800 w-4/4 flex justify-between">
                     {item.name}
                     <button
@@ -72,11 +72,11 @@ function Slidebar({ selectedDates, onDrop, locationName, budget }) {
                   <div className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
                     {item.address}
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full flex justify-between items-center p-1 bg-gray-50 rounded-b-lg">
+                  {/* <div className="absolute bottom-0 left-0 w-full flex justify-between items-center p-1 bg-gray-50 rounded-b-lg">
                     <input className="w-28 p-1 border border-gray-300 rounded-md text-xs" type="time" />
                     <span className="mx-1">-</span>
                     <input className="w-28 p-1 border border-gray-300 rounded-md text-xs" type="time" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
