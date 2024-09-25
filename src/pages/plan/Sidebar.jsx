@@ -4,6 +4,7 @@ import SelectTime from './SelectTime';
 import Slidebar from './Slidebar';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { tripPost, tripIdPost, tripIdShare } from '../plan/PlanApiService'; // API 서비스 가져오기
+import { createChatRoom } from '../sns/ChatApiService'; // Chat API 가져오기
 import Cookies from 'js-cookie';
 
 function Sidebar({ placesData, locationName }) {
@@ -279,6 +280,7 @@ function Sidebar({ placesData, locationName }) {
               <button onClick={async () => {
                 try {
                   await tripIdShare(tripId, { userGoogleIds: participantIds }); // API 호출
+                  await createChatRoom(tripName, participantIds);
                   alert('참여자가 성공적으로 초대되었습니다!');
                   closeModal(); // 모달 닫기
                 } catch (error) {
