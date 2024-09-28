@@ -103,10 +103,10 @@ const TripPage = () => {
                   <FaSackDollar className="text-yellow-500" />
                   {info.budget.toLocaleString()}원
                 </span>
-                <div className="flex gap-2 items-center text-lg font-semibold ">
+                {/* <div className="flex gap-2 items-center text-lg font-semibold ">
                   <FaBed className="text-purple-600" />
                   {info.accommodation.accommodationName}
-                </div>
+                </div> */}
                 <div className="gap-2 font-semibold text-md">
                   {info.locations.map((loc, index) => (
                     <div key={index} className="flex items-center gap-2">
