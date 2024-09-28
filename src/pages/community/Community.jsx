@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { FaRegComment, FaRegThumbsUp, FaShareSquare, FaTimes, FaHeart, FaPlus, FaTrash } from "react-icons/fa";
+import {
+  FaRegComment,
+  FaRegThumbsUp,
+  FaShareSquare,
+  FaTimes,
+  FaHeart,
+  FaPlus,
+  FaTrash,
+} from "react-icons/fa";
 import Modal from "react-modal";
-import Cookies from 'js-cookie';
-import './Community.css';
+import Cookies from "js-cookie";
+import "./Community.css";
 import {
   fetchPosts,
   createPost,
@@ -12,10 +20,11 @@ import {
   addComment,
   uploadPostImage,
   updatePost,
-  deletePost
-} from './CommunityApiService';
+  deletePost,
+  extractUrl,
+} from "./CommunityApiService";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 function Community() {
   const [posts, setPosts] = useState([]);
@@ -45,35 +54,39 @@ function Community() {
     const regex2 = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))/;
     const match1 = regex1.exec(markdown);
     const match2 = regex2.exec(markdown);
-    return match1 ? match1[1] : (match2 ? match2[0] : '');
+    return match1 ? match1[1] : match2 ? match2[0] : "";
   };
 
   const loadPosts = async () => {
     setLoading(true);
     try {
       const response = await fetchPosts();
-      const postsWithCommentsAndLikes = await Promise.all(response.data.map(async (post) => {
-        const commentsResponse = await fetchCommentsByPostId(post.postId);
-        return {
-          ...post,
-          comments: commentsResponse.data,
-          commentsCount: commentsResponse.data.length,
-          likesCount: post.postLikes ? post.postLikes.length : 0,
-          liked: false
-        };
-      }));
-      const sortedPosts = postsWithCommentsAndLikes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      const postsWithCommentsAndLikes = await Promise.all(
+        response.data.map(async (post) => {
+          const commentsResponse = await fetchCommentsByPostId(post.postId);
+          return {
+            ...post,
+            comments: commentsResponse.data,
+            commentsCount: commentsResponse.data.length,
+            likesCount: post.postLikes ? post.postLikes.length : 0,
+            liked: false,
+          };
+        })
+      );
+      const sortedPosts = postsWithCommentsAndLikes.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
       setPosts(sortedPosts);
     } catch (error) {
-      console.error('Failed to fetch posts:', error);
+      console.error("Failed to fetch posts:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const lastPostElementRef = useCallback(node => {
+  const lastPostElementRef = useCallback((node) => {
     if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver(entries => {
+    observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         loadMorePosts();
       }
@@ -83,7 +96,7 @@ function Community() {
 
   const loadMorePosts = () => {};
 
-  const filteredPosts = posts.filter(post =>
+  const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -93,7 +106,7 @@ function Community() {
       const response = await fetchCommentsByPostId(post.postId);
       setComments(response.data);
     } catch (error) {
-      console.error('Failed to fetch comments:', error);
+      console.error("Failed to fetch comments:", error);
     }
     setModalIsOpen(true);
   };
@@ -111,20 +124,24 @@ function Community() {
       setComments(response.data);
       setCommentContent("");
 
-      const updatedPosts = posts.map(post => {
+      const updatedPosts = posts.map((post) => {
         if (post.postId === selectedPost.postId) {
-          return { ...post, comments: response.data, commentsCount: response.data.length };
+          return {
+            ...post,
+            comments: response.data,
+            commentsCount: response.data.length,
+          };
         }
         return post;
       });
       setPosts(updatedPosts);
 
-      setSelectedPost(prevSelectedPost => ({
+      setSelectedPost((prevSelectedPost) => ({
         ...prevSelectedPost,
-        commentsCount: response.data.length
+        commentsCount: response.data.length,
       }));
     } catch (error) {
-      console.error('Failed to add comment:', error);
+      console.error("Failed to add comment:", error);
     }
   };
 
@@ -134,8 +151,14 @@ function Community() {
         await unlikePost(post.postId);
         setShowUnlikeHeart(true);
         setTimeout(() => setShowUnlikeHeart(false), 1000);
-        let updatedPost = { ...post, liked: false, likesCount: post.likesCount - 1 };
-        setPosts(posts.map(p => p.postId === post.postId ? updatedPost : p));
+        let updatedPost = {
+          ...post,
+          liked: false,
+          likesCount: post.likesCount - 1,
+        };
+        setPosts(
+          posts.map((p) => (p.postId === post.postId ? updatedPost : p))
+        );
         if (selectedPost && selectedPost.postId === post.postId) {
           setSelectedPost(updatedPost);
         }
@@ -143,28 +166,34 @@ function Community() {
         await likePost(post.postId);
         setShowHeart(true);
         setTimeout(() => setShowHeart(false), 1000);
-        let updatedPost = { ...post, liked: true, likesCount: post.likesCount + 1 };
-        setPosts(posts.map(p => p.postId === post.postId ? updatedPost : p));
+        let updatedPost = {
+          ...post,
+          liked: true,
+          likesCount: post.likesCount + 1,
+        };
+        setPosts(
+          posts.map((p) => (p.postId === post.postId ? updatedPost : p))
+        );
         if (selectedPost && selectedPost.postId === post.postId) {
           setSelectedPost(updatedPost);
         }
       }
     } catch (error) {
-      console.error('Failed to update like status:', error);
+      console.error("Failed to update like status:", error);
     }
   };
 
   const handleDeletePost = async (postId) => {
     try {
       await deletePost(postId);
-      setPosts(posts.filter(post => post.postId !== postId));
+      setPosts(posts.filter((post) => post.postId !== postId));
     } catch (error) {
-      console.error('Failed to delete post:', error);
+      console.error("Failed to delete post:", error);
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleAddComment();
     }
@@ -182,51 +211,53 @@ function Community() {
     if (!newPostTitle.trim() || !newPostContent.trim()) {
       return;
     }
-  
+
     if (newPostContent.length > MAX_CONTENT_LENGTH) {
       alert(`게시글 내용은 ${MAX_CONTENT_LENGTH}자 이내로 작성해주세요.`);
       return;
     }
     try {
-      const response = await createPost({ title: newPostTitle, content: newPostContent });
+      const response = await createPost({
+        title: newPostTitle,
+        content: newPostContent,
+      });
       const postId = response.data.postId;
-  
+
       if (newPostImage) {
         const formData = new FormData();
-        formData.append('image', newPostImage);
-  
+        formData.append("image", newPostImage);
+
         const uploadResponse = await uploadPostImage(postId, formData);
         const imageUrl = extractUrl(uploadResponse.data);
-  
+
         await updatePost(postId, {
           title: newPostTitle,
           content: newPostContent,
-          thumbnailImageId: imageUrl
+          thumbnailImageId: imageUrl,
         });
       } else {
         await updatePost(postId, {
           title: newPostTitle,
-          content: newPostContent
+          content: newPostContent,
         });
       }
-  
+
       await loadPosts();
       closeCreatePostModal();
       setNewPostTitle("");
       setNewPostContent("");
       setNewPostImage(null);
     } catch (error) {
-      console.error('Failed to create post:', error);
+      console.error("Failed to create post:", error);
     }
   };
-  
+
   const handleContentChange = (e) => {
     const content = e.target.value;
     if (content.length <= MAX_CONTENT_LENGTH) {
       setNewPostContent(content);
     }
   };
-  
 
   const handleImageChange = (e) => {
     setNewPostImage(e.target.files[0]);
@@ -260,28 +291,53 @@ function Community() {
               <div className="post-header">
                 <h3>{post.title}</h3>
                 {post.userId === currentUserEmail && (
-                  <button className="delete-button" onClick={() => handleDeletePost(post.postId)}>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeletePost(post.postId)}
+                  >
                     <FaTrash />
                   </button>
                 )}
               </div>
-              <div onClick={() => openModal(post)} className={`post-body ${post.thumbnailImageId ? 'with-image' : 'without-image'}`}>
+              <div
+                onClick={() => openModal(post)}
+                className={`post-body ${
+                  post.thumbnailImageId ? "with-image" : "without-image"
+                }`}
+              >
                 <p>{post.content}</p>
-                {post.thumbnailImageId && <img src={extractUrl(post.thumbnailImageId)} alt={post.title} />}
+                {post.thumbnailImageId && (
+                  <img
+                    src={extractUrl(post.thumbnailImageId)}
+                    alt={post.title}
+                  />
+                )}
               </div>
               <div className="post-footer">
                 <div className="post-stats">
-                  <span><FaRegComment /> {post.commentsCount}</span>
-                  <span><FaRegThumbsUp /> {post.likesCount}</span>
+                  <span>
+                    <FaRegComment /> {post.commentsCount}
+                  </span>
+                  <span>
+                    <FaRegThumbsUp /> {post.likesCount}
+                  </span>
                 </div>
                 <div className="post-actions">
-                  <button onClick={() => handleLike(post)}><FaHeart /> {post.liked ? 'Unlike' : 'Like'}</button>
-                  <button onClick={() => openModal(post)}><FaRegComment /> Comment</button>
-                  <button><FaShareSquare /> Share</button>
+                  <button onClick={() => handleLike(post)}>
+                    <FaHeart /> {post.liked ? "Unlike" : "Like"}
+                  </button>
+                  <button onClick={() => openModal(post)}>
+                    <FaRegComment /> Comment
+                  </button>
+                  <button>
+                    <FaShareSquare /> Share
+                  </button>
                 </div>
               </div>
-              {showHeart && <FaHeart className="heart-animation" />} 
-              {showUnlikeHeart && <FaHeart className="unlike-heart-animation" />} 
+              {showHeart && <FaHeart className="heart-animation" />}
+              {showUnlikeHeart && (
+                <FaHeart className="unlike-heart-animation" />
+              )}
             </div>
           </div>
         ))}
@@ -298,31 +354,58 @@ function Community() {
           <div className="modal-card">
             <div className="modal-header">
               <div className="profile-info">
-                <img src={`${process.env.PUBLIC_URL}/profile.png`} alt="Profile" className="profile-image" />
+                <img
+                  src={`${process.env.PUBLIC_URL}/profile.png`}
+                  alt="Profile"
+                  className="profile-image"
+                />
                 <h3>{selectedPost.userId}</h3>
               </div>
-              <button className="close-button" onClick={closeModal}><FaTimes /></button>
+              <button className="close-button" onClick={closeModal}>
+                <FaTimes />
+              </button>
             </div>
-            <div className={`post-body ${selectedPost.thumbnailImageId ? 'with-image' : 'without-image'}`}>
+            <div
+              className={`post-body ${
+                selectedPost.thumbnailImageId ? "with-image" : "without-image"
+              }`}
+            >
               <p>{selectedPost.content}</p>
-              {selectedPost.thumbnailImageId && <img src={extractUrl(selectedPost.thumbnailImageId)} alt={selectedPost.title} />}
+              {selectedPost.thumbnailImageId && (
+                <img
+                  src={extractUrl(selectedPost.thumbnailImageId)}
+                  alt={selectedPost.title}
+                />
+              )}
             </div>
             <div className="post-footer">
               <div className="post-stats">
-                <span><FaRegComment /> {comments.length}</span>
-                <span><FaHeart /> {selectedPost.likesCount}</span>
+                <span>
+                  <FaRegComment /> {comments.length}
+                </span>
+                <span>
+                  <FaHeart /> {selectedPost.likesCount}
+                </span>
               </div>
               <div className="post-actions">
-                <button onClick={() => handleLike(selectedPost)}><FaHeart /> {selectedPost.liked ? 'Unlike' : 'Like'}</button>
-                <button><FaRegComment /> Comment</button>
-                <button><FaShareSquare /> Share</button>
+                <button onClick={() => handleLike(selectedPost)}>
+                  <FaHeart /> {selectedPost.liked ? "Unlike" : "Like"}
+                </button>
+                <button>
+                  <FaRegComment /> Comment
+                </button>
+                <button>
+                  <FaShareSquare /> Share
+                </button>
               </div>
             </div>
             <div className="comments-section">
               <div className="comments-list">
-                {comments.map(comment => (
+                {comments.map((comment) => (
                   <div key={comment.commentId} className="comment-item">
-                    <p>{comment.content}</p>
+                    <p>
+                      <strong>{comment.userId}</strong>: {comment.content}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -347,7 +430,9 @@ function Community() {
         <div className="modal-card">
           <div className="modal-header">
             <h3>Create New Post</h3>
-            <button className="close-button" onClick={closeCreatePostModal}><FaTimes /></button>
+            <button className="close-button" onClick={closeCreatePostModal}>
+              <FaTimes />
+            </button>
           </div>
           <div className="modal-body">
             <input
@@ -378,7 +463,9 @@ function Community() {
             )}
           </div>
           <div className="modal-footer">
-            <button onClick={handleCreatePost} className="create-post-button">Create</button>
+            <button onClick={handleCreatePost} className="create-post-button">
+              Create
+            </button>
           </div>
         </div>
       </Modal>

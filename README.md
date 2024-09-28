@@ -94,14 +94,3 @@
 
 
 ## 5. Plan
-
-
-## Development Contributions
-
-| Feature   | Developer   | Description                                      |
-|-----------|-------------|--------------------------------------------------|
-| Home      | 박재민 | Implemented the main travel planning interface   |
-| Community | 박재민 | Created the social sharing functionalities       |
-| SNS       | 김민재 | Developed the direct messaging feature           |
-| Plan      | 양지훈 | Integrated Google Maps API for travel planning   |
-| Login     | 박재민 | Implemented OAuth2 social login using Google     |
