@@ -84,3 +84,12 @@ export const uploadPostImage = (postId, imageData) => {
 export const fetchUserPosts = (userId) => {
   return api.get(`/community/posts/user/${userId}`);
 };
+
+// extractUrl 함수 추가
+export const extractUrl = (markdown) => {
+    const regex1 = /!\[.*?\]\((.*?)\)/;
+    const regex2 = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))/;
+    const match1 = regex1.exec(markdown);
+    const match2 = regex2.exec(markdown);
+    return match1 ? match1[1] : (match2 ? match2[0] : '');
+};

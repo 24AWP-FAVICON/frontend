@@ -3,13 +3,14 @@ import { FaTimes } from 'react-icons/fa';
 
 const NotificationList = ({ notifications, onClose, onDelete }) => {
   const getNotificationMessage = (notification) => {
-    if (notification.text.includes("adds new like")) {
+    console.log("notification id "+notification.lastEventId)
+    if (notification.data.includes("adds new like")) {
       return "👍 New like on your post!";
     }
-    if (notification.text.includes("adds new comment")) {
-      return "💬 New commented on your post!";
+    if (notification.data.includes("adds new comment")) {
+      return "💬 New comment on your post!";
     }
-    return notification.text;
+    return notification.data;
   };
 
   return (
@@ -25,9 +26,9 @@ const NotificationList = ({ notifications, onClose, onDelete }) => {
           <li className="px-4 py-2 text-gray-600">알림이 없습니다.</li>
         ) : (
           notifications.map((notification) => (
-            <li key={notification.id} className="flex justify-between items-center px-4 py-2 border-b">
+            <li key={notification.lastEventId} className="flex justify-between items-center px-4 py-2 border-b">
               <span>{getNotificationMessage(notification)}</span>
-              <button onClick={() => onDelete(notification.id)} className="text-red-500 hover:text-red-700">
+              <button onClick={() => onDelete(notification.lastEventId)} className="text-red-500 hover:text-red-700">
                 삭제
               </button>
             </li>

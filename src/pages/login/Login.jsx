@@ -11,7 +11,7 @@ function Login() {
         </p>
         <div className="flex flex-col items-center">
           <a
-            href="http://localhost:8080/oauth2/authorization/google?prompt=select_account"
+            href="http://localhost:8080/oauth2/authorization/google?prompt=select_account/"
             className="flex items-center justify-center w-full bg-white text-gray-600 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition duration-150"
           >
             <FcGoogle className="w-6 h-6 mr-2" />

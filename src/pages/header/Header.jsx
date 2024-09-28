@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FaUserCircle } from "react-icons/fa";
 import Notifications from "./Notifications";
@@ -10,6 +10,7 @@ const Header = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const profileMenuRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const accessToken = Cookies.get("access");
@@ -60,7 +61,7 @@ const Header = () => {
         Cookies.remove("refresh");
         Cookies.remove("userEmail");
         setIsLoggedIn(false);
-        window.location.href = "/login";
+        navigate("/login");
       } else {
         console.error("Failed to logout");
       }

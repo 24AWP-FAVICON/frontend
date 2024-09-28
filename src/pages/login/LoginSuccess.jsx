@@ -6,10 +6,14 @@ function LoginSuccess() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const accessToken = Cookies.get("access");
-    const refreshToken = Cookies.get("refresh");
-
     const fetchUserInfo = async () => {
+      const accessToken = Cookies.get("access");
+
+      if (!accessToken) {
+        navigate("/login");
+        return;
+      }
+
       try {
         const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/info`, {
           headers: {
@@ -17,15 +21,18 @@ function LoginSuccess() {
           }
         });
 
+        if (response.status === 401) {
+          // Access Token 만료: 로그아웃 로직 추가
+          navigate("/login");
+          return;
+        }
+
         if (!response.ok) {
           throw new Error('Failed to fetch user info');
         }
 
         const data = await response.json();
-        console.log(data);
-
         Cookies.set("userEmail", data.userId, { path: '/' });
-
         navigate("/");
       } catch (error) {
         console.error('Failed to fetch user info:', error);
@@ -33,11 +40,7 @@ function LoginSuccess() {
       }
     };
 
-    if (accessToken && refreshToken) {
-      fetchUserInfo();
-    } else {
-      navigate("/login");
-    }
+    fetchUserInfo();
   }, [navigate]);
 
   return <div>Loading...</div>;
