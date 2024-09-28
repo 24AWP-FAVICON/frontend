@@ -61,10 +61,26 @@ const Notifications = () => {
       }
     };
 
+    /* SSE JSON 파싱 */
     eventSource.onmessage = (event) => {
-      console.log("Raw event data received:", event);  // 원시 이벤트 데이터를 로그로 확인
-      setNotifications((prevNotifications) => [...prevNotifications, event]);
+      try {
+        const parsedData = JSON.parse(event.data);  // 데이터 파싱
+        console.log("Parsed event data received:", parsedData);  // 파싱된 데이터를 로그로 확인
+    
+        setNotifications((prevNotifications) => {
+          // 중복된 알림이 있는지 확인
+          const isDuplicate = prevNotifications.some((n) => n.lastEventId === parsedData.lastEventId);
+          if (!isDuplicate) {
+            return [...prevNotifications, parsedData];  // 중복이 없으면 새로운 알림 추가
+          }
+          return prevNotifications;  // 중복이 있으면 기존 알림 목록 유지
+        });
+    
+      } catch (error) {
+        console.error("Failed to parse event data", error);
+      }
     };
+        
 
     eventSourceRef.current = eventSource;
   }, []);
