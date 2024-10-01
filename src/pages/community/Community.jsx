@@ -61,10 +61,12 @@ function Community() {
     setLoading(true);
     try {
       const response = await fetchPosts();
-      
+  
       // 현재 사용자의 이메일을 기반으로 로컬 스토리지에서 좋아요 상태 불러오기
       const currentUserEmail = Cookies.get("userEmail");
       const likedPostsKey = `likedPosts_${currentUserEmail}`;
+      
+      // localStorage에서 가져온 값이 null일 경우 빈 배열로 설정
       const likedPosts = JSON.parse(localStorage.getItem(likedPostsKey)) || [];
   
       const postsWithCommentsAndLikes = await Promise.all(
@@ -89,8 +91,7 @@ function Community() {
     } finally {
       setLoading(false);
     }
-  };
-  
+  }; 
 
   const lastPostElementRef = useCallback((node) => {
     if (observer.current) observer.current.disconnect();
