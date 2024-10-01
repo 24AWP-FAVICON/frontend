@@ -3,7 +3,7 @@ import placeData from "./place.json";
 
 function SelectPlace({ placesData, pick, onDragStart, locationName }) {
   const [filteredData, setFilteredData] = useState([]);
-  const [activeCategory, setActiveCategory] = useState('tourist'); // 'tourist' 또는 'lodging'
+  const [activeCategory, setActiveCategory] = useState('tourist');
 
   useEffect(() => {
     if (locationName && placeData[locationName]) {
@@ -18,6 +18,11 @@ function SelectPlace({ placesData, pick, onDragStart, locationName }) {
       }
     }
   }, [pick, placesData, activeCategory, locationName]);
+
+  const handleDragStart = (event, place) => {
+    event.dataTransfer.setData("application/json", JSON.stringify(place)); // 드래그된 데이터 설정
+    if (onDragStart) onDragStart(place);
+  };
 
   return (
     <div className="w-full p-4 space-y-4 overflow-y-auto" style={{ minHeight: '500px', maxHeight: '100%' }}>
@@ -44,25 +49,12 @@ function SelectPlace({ placesData, pick, onDragStart, locationName }) {
           className="p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-gray-100 transition w-full"
           draggable="true"
           key={location.id}
-          onDragStart={() => onDragStart(location)}
+          onDragStart={(event) => handleDragStart(event, location)}  // 드래그 이벤트
         >
           <div className="flex flex-col justify-center h-full">
             <div className="text-lg font-semibold">{location.name}</div>
             <div className="text-sm text-gray-500 overflow-hidden text-ellipsis">
               {location.address}
-            </div>
-            <div className="hidden time mt-2 items-center space-x-2">
-              <input
-                className="w-20 p-2 border border-gray-300 rounded"
-                type="time"
-                placeholder="00:00"
-              />
-              <span>-</span>
-              <input
-                className="w-20 p-2 border border-gray-300 rounded"
-                type="time"
-                placeholder="00:00"
-              />
             </div>
           </div>
         </div>
