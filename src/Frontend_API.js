@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL, // 환경 변수 사용
+  withCredentials: true, // 쿠키와 함께 요청을 보내기 위한 설정
 });
 
 // 요청 인터셉터 설정
@@ -41,7 +42,7 @@ api.interceptors.response.use(
       if (newAccessToken) {
         // 새로운 액세스 토큰을 요청 헤더에 추가하고 요청 재시도
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        return api(originalRequest);
+        return api(originalRequest); // 원래 요청을 다시 보냄
       }
     }
 
@@ -53,7 +54,16 @@ async function refreshAccessToken() {
   const refreshToken = Cookies.get("refresh");
 
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/refresh`, { token: refreshToken });
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_BASE_URL}/auth/refresh`, 
+      {},
+      {
+        headers: {
+          'Authorization': `Bearer ${refreshToken}`, // 리프레시 토큰을 Authorization 헤더로 전송
+        },
+        withCredentials: true, // 쿠키와 함께 요청을 보내기 위한 설정
+      }
+    );
     const { accessToken } = response.data;
 
     // 새로운 액세스 토큰을 쿠키에 저장
@@ -61,8 +71,11 @@ async function refreshAccessToken() {
     return accessToken;
   } catch (error) {
     console.error("Failed to refresh access token", error);
+
     // 리프레시 토큰도 만료되었으면 로그인 페이지로 리디렉션
-    window.location.href = "/login";
+    Cookies.remove("access");
+    Cookies.remove("refresh");
+    window.location.href = "/login"; // 로그인 페이지로 리다이렉트
   }
 }
 
