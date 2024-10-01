@@ -3,15 +3,18 @@ import { FaTimes } from 'react-icons/fa';
 
 const NotificationList = ({ notifications, onClose, onDelete }) => {
   const getNotificationMessage = (notification) => {
-    console.log("notification id "+notification.lastEventId)
+    console.log("notification id " + notification.lastEventId);
+    
     if (notification.data.includes("adds new like")) {
       return "👍 New like on your post!";
     }
     if (notification.data.includes("adds new comment")) {
       return "💬 New comment on your post!";
     }
-    return notification.data;
+    
+    return notification.data;  // 기본적으로 받은 데이터를 출력
   };
+  
 
   return (
     <div className="absolute top-12 right-0 w-80 bg-white border border-gray-200 rounded-md shadow-lg z-50 animate-slide-down">

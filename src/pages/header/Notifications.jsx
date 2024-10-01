@@ -17,74 +17,88 @@ const Notifications = () => {
       console.error("Access token is missing.");
       return;
     }
-
+  
+    // 마지막으로 받은 이벤트 ID를 로컬 스토리지에서 가져옴
+    const lastEventId = localStorage.getItem('lastEventId') || '';
+  
     // 중복 연결 방지
     if (eventSourceRef.current && eventSourceRef.current.readyState !== EventSource.CLOSED) {
       console.log("SSE already connected.");
       return;
     }
-
+  
     const eventSource = new EventSourcePolyfill(
       `${process.env.REACT_APP_API_BASE_URL}/users/alarm/subscribe`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          'Last-Event-ID': lastEventId  // 마지막 이벤트 ID를 헤더에 추가
         },
         heartbeatTimeout: 1000 * 60 * 60,
-        withCredentials: true, // 클라이언트가 자격 증명을 포함한 요청을 보내도록 설정
-        heartbeatTimeout: 86400000,  // 24시간 동안 재연결 없이 유지
+        withCredentials: true,  // 자격 증명을 포함한 요청
+        heartbeatTimeout: 86400000,  // 24시간 유지
       }
     );
-
+  
     eventSource.onopen = () => {
       console.log("SSE connection established.");
     };
-
-    let retryCount = 0;  // 재연결 시도 횟수 추적
-
+  
+    let retryCount = 0;
+  
     eventSource.onerror = (error) => {
       console.error("SSE connection error:", error);
-
-      // 연결이 닫힌 경우에만 재연결을 시도
+  
       if (eventSource.readyState === EventSource.CLOSED) {
         console.log("SSE connection was closed.");
-
-        // 지수 백오프 알고리즘 사용하여 재연결 지연 시간 증가
+  
         const retryTimeout = Math.min(1000 * Math.pow(2, retryCount), 30000);  // 최대 30초
         retryCount++;
-
+  
         setTimeout(() => {
           console.log("Reconnecting SSE...");
           connectSSE();  // 재연결 함수 호출
-        }, retryTimeout);  // 백오프 시간 후 재연결 시도
+        }, retryTimeout);
       } else {
         console.log("SSE connection error, readyState:", eventSource.readyState);
       }
     };
-
-    /* SSE JSON 파싱 */
+  
     eventSource.onmessage = (event) => {
       try {
-        const parsedData = JSON.parse(event.data);  // 데이터 파싱
-        console.log("Parsed event data received:", parsedData);  // 파싱된 데이터를 로그로 확인
-    
+        const isJson = event.data.startsWith('{') && event.data.endsWith('}');
+        let notification;
+  
+        if (isJson) {
+          notification = JSON.parse(event.data);
+        } else {
+          notification = {
+            lastEventId: Date.now(),  // 고유 ID 생성
+            data: event.data  // 텍스트 데이터를 그대로 사용
+          };
+        }
+  
+        console.log("Parsed event data received:", notification);
+  
+        // 알림 상태 업데이트
         setNotifications((prevNotifications) => {
-          // 중복된 알림이 있는지 확인
-          const isDuplicate = prevNotifications.some((n) => n.lastEventId === parsedData.lastEventId);
+          const isDuplicate = prevNotifications.some((n) => n.lastEventId === notification.lastEventId);
           if (!isDuplicate) {
-            return [...prevNotifications, parsedData];  // 중복이 없으면 새로운 알림 추가
+            // 새로운 알림을 상태에 추가
+            localStorage.setItem('lastEventId', notification.lastEventId);  // 마지막 이벤트 ID 저장
+            return [...prevNotifications, notification];
           }
-          return prevNotifications;  // 중복이 있으면 기존 알림 목록 유지
+          return prevNotifications;
         });
-    
+  
       } catch (error) {
-        console.error("Failed to parse event data", error);
+        console.error("Failed to parse event data. Error:", error);
       }
     };
-        
-
+  
     eventSourceRef.current = eventSource;
   }, []);
+  
 
   useEffect(() => {
     connectSSE();  // 컴포넌트가 마운트될 때 SSE 연결
