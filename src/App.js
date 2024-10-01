@@ -13,6 +13,7 @@ import UserProfile from "./pages/userprofile/UserProfile";
 import "./Frontend_API";
 import "./App.css";
 import { LoadScript } from "@react-google-maps/api";
+import TripPage from "./pages/plan/TripPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/userprofile" element={<UserProfile></UserProfile>}></Route>
               <Route path="/sns" element={<SNS />} />
               <Route path="/plan" element={<Plan />} />
+              <Route path="/trip" element={<TripPage />} />
               <Route path="/community" element={<Community />} />
               <Route path="/login" element={<Login />} />
               <Route path="/login/success" element={<LoginSuccess />} />
