@@ -61,6 +61,12 @@ function Community() {
     setLoading(true);
     try {
       const response = await fetchPosts();
+      
+      // 현재 사용자의 이메일을 기반으로 로컬 스토리지에서 좋아요 상태 불러오기
+      const currentUserEmail = Cookies.get("userEmail");
+      const likedPostsKey = `likedPosts_${currentUserEmail}`;
+      const likedPosts = JSON.parse(localStorage.getItem(likedPostsKey)) || [];
+  
       const postsWithCommentsAndLikes = await Promise.all(
         response.data.map(async (post) => {
           const commentsResponse = await fetchCommentsByPostId(post.postId);
@@ -69,10 +75,11 @@ function Community() {
             comments: commentsResponse.data,
             commentsCount: commentsResponse.data.length,
             likesCount: post.postLikes ? post.postLikes.length : 0,
-            liked: false,
+            liked: likedPosts.includes(post.postId), // 로컬 스토리지에서 좋아요 상태 적용
           };
         })
       );
+  
       const sortedPosts = postsWithCommentsAndLikes.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -83,6 +90,7 @@ function Community() {
       setLoading(false);
     }
   };
+  
 
   const lastPostElementRef = useCallback((node) => {
     if (observer.current) observer.current.disconnect();
@@ -146,42 +154,53 @@ function Community() {
   };
 
   const handleLike = async (post) => {
+    const currentUserEmail = Cookies.get("userEmail");  // 사용자 이메일 가져오기
+    const likedPostsKey = `likedPosts_${currentUserEmail}`;  // 사용자별 로컬 스토리지 키 생성
+    const likedPosts = JSON.parse(localStorage.getItem(likedPostsKey)) || [];
+  
     try {
       if (post.liked) {
+        // 좋아요 취소 처리
         await unlikePost(post.postId);
         setShowUnlikeHeart(true);
         setTimeout(() => setShowUnlikeHeart(false), 1000);
-        let updatedPost = {
+        
+        const updatedPost = {
           ...post,
           liked: false,
           likesCount: post.likesCount - 1,
         };
-        setPosts(
-          posts.map((p) => (p.postId === post.postId ? updatedPost : p))
+        setPosts(posts.map((p) => (p.postId === post.postId ? updatedPost : p)));
+  
+        // 로컬 스토리지에서 해당 게시글 ID 삭제
+        localStorage.setItem(
+          likedPostsKey,
+          JSON.stringify(likedPosts.filter((id) => id !== post.postId))
         );
-        if (selectedPost && selectedPost.postId === post.postId) {
-          setSelectedPost(updatedPost);
-        }
       } else {
+        // 좋아요 추가 처리
         await likePost(post.postId);
         setShowHeart(true);
         setTimeout(() => setShowHeart(false), 1000);
-        let updatedPost = {
+        
+        const updatedPost = {
           ...post,
           liked: true,
           likesCount: post.likesCount + 1,
         };
-        setPosts(
-          posts.map((p) => (p.postId === post.postId ? updatedPost : p))
+        setPosts(posts.map((p) => (p.postId === post.postId ? updatedPost : p)));
+  
+        // 로컬 스토리지에 해당 게시글 ID 추가
+        localStorage.setItem(
+          likedPostsKey,
+          JSON.stringify([...likedPosts, post.postId])
         );
-        if (selectedPost && selectedPost.postId === post.postId) {
-          setSelectedPost(updatedPost);
-        }
       }
     } catch (error) {
       console.error("Failed to update like status:", error);
     }
   };
+  
 
   const handleDeletePost = async (postId) => {
     try {
